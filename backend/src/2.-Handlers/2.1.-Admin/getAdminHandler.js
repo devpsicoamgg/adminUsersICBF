@@ -51,7 +51,7 @@ module.exports = {
   getContractByIdHandlerAdmin, 
   getUserByIdHandlerAdmin,
   getGroupsHandlerAdmin,
- getGroupByIdHandlerAdmin, 
+  getGroupByIdHandlerAdmin, 
   getTeachersByIdHandlerAdmin, 
   getTeachersHandlerAdmin,
 };
