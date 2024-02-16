@@ -1,18 +1,15 @@
 const { Router } = require("express");
 
+const {   createGroupHandlerCoordinators, 
+  createTeacherHandlerCoordinators, } = require("../../2.-Handlers/2.2.-Coordinators/postCoordinatorsHandler")
+
 const postCoordinatorsRouter = Router();
 
 
-const createTeacherHandler = (req, res) => {
-  res.status(200).send(`CREA UN DOCENTE COORDINA`);
-};
-
-const createGroupHandler = (req, res) => {
-  res.status(200).send(`CREA UN GRUPO POR COORDI`);
-};
 
 
-postCoordinatorsRouter.post("/teachers", createTeacherHandler);
-postCoordinatorsRouter.post("/groups", createGroupHandler);
+
+postCoordinatorsRouter.post("/teachers",   createTeacherHandlerCoordinators);
+postCoordinatorsRouter.post("/groups", createGroupHandlerCoordinators);
 
 module.exports = postCoordinatorsRouter;

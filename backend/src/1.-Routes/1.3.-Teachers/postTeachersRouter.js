@@ -1,14 +1,10 @@
 const { Router } = require("express");
 
+const { createUserHandlerTeachers } = require("../../2.-Handlers/2.3.-Teachers/postTeachersHandler")
+
 const postTeachersRouter = Router();
 
-
-const createUserHandler = (req, res) => {
-  res.status(200).send(`CREA UN usuario por profe`);
-};
-
-
-postTeachersRouter.post("/users", createUserHandler);
+postTeachersRouter.post("/users", createUserHandlerTeachers);
 
 
 module.exports = postTeachersRouter;
