@@ -1,0 +1,37 @@
+{
+  "name": "usersicbf",
+  "version": "1.0.0",
+  "description": "This Node.js project utilizes Express.js framework for server-side development and SQL for database management. It aims to provide a platform for managing child welfare programs, integrating various functionalities such as case management, user authentication, reporting, and analytics. The project is intended to streamline operations within the Colombian Family Welfare Institute (ICBF) framework, enhancing efficiency and effectiveness in program management.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devpsicoamgg/adminUsersICBF.git"
+  },
+  "keywords": [
+    "ICBF",
+    "CRUD",
+    "USERS",
+    "ADMIN"
+  ],
+  "author": "AMGG",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/devpsicoamgg/adminUsersICBF/issues"
+  },
+  "homepage": "https://github.com/devpsicoamgg/adminUsersICBF#readme",
+  "dependencies": {
+    "axios": "^1.6.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.4",
+    "express": "^4.18.2",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.0.3",
+    "pg": "^8.11.3",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.0"
+  }
+}
