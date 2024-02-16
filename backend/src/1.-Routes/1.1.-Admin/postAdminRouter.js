@@ -1,21 +1,16 @@
 const { Router } = require("express");
+const {
+  createCoordinatorHandler,
+  createContractHandler,
+  createTeacherHandler,
+  createGroupHandler,
+} = require("../../2.-Handlers/2.1.-Admin/postAdmindHandler");
 
 const postAdminRouter = Router();
 
-postAdminRouter.post("/coordinators/", (req, res) => {
-  res.status(200).send(`crea un coordinador por admin`);
-});
-
-postAdminRouter.post("/contract/", (req, res) => {
-  res.status(200).send(`crea un contrato por admin`);
-});
-
-postAdminRouter.post("/teachers", (req, res) => {
-  res.status(200).send(`CREA UN DOCENTE por admin`);
-});
-
-postAdminRouter.post("/groups", (req, res) => {
-  res.status(200).send(`CREA UN GRUPO por admin`);
-});
+postAdminRouter.post("/coordinators/", createCoordinatorHandler);
+postAdminRouter.post("/contract/", createContractHandler);
+postAdminRouter.post("/teachers", createTeacherHandler);
+postAdminRouter.post("/groups", createGroupHandler);
 
 module.exports = postAdminRouter;

@@ -2,37 +2,48 @@ const { Router } = require("express");
 
 const getCoordinatorsRouter = Router();
 
-getCoordinatorsRouter.get("/contract/:id", (req, res) => {
-  const contractsId = req.params.id;
-  res.status(200).send(`Contrato No ${contractsId} POR COORDI`);
-});
 
-getCoordinatorsRouter.get("/users", (req, res) => {
+const getContractByIdHandler = (req, res) => {
+  const contractId = req.params.id;
+  res.status(200).send(`Contrato No ${contractId} POR COORDI`);
+};
+
+const getAllUsersHandler = (req, res) => {
   res.status(200).send(`TODOS LOS USUARIOS POR COORDI`);
-});
+};
 
-getCoordinatorsRouter.get("/users/:id", (req, res) => {
-  const usersId = req.params.id;
-  res.status(200).send(`Usuario no ${usersId} POR COORDI`);
-});
+const getUserByIdHandler = (req, res) => {
+  const userId = req.params.id;
+  res.status(200).send(`Usuario no ${userId} POR COORDI`);
+};
 
-getCoordinatorsRouter.get("/groups", (req, res) => {
+const getAllGroupsHandler = (req, res) => {
   res.status(200).send(`TODOS LOS GRUPOS POR COORDI`);
-});
+};
 
-getCoordinatorsRouter.get("/groups/:id", (req, res) => {
-  const groupsId = req.params.id;
-  res.status(200).send(`Grupo no ${groupsId} POR COORDI`);
-});
+const getGroupByIdHandler = (req, res) => {
+  const groupId = req.params.id;
+  res.status(200).send(`Grupo no ${groupId} POR COORDI`);
+};
 
-getCoordinatorsRouter.get("/teachers", (req, res) => {
+const getAllTeachersHandler = (req, res) => {
   res.status(200).send(`TODOS LOS TEACHERS POR COORDI`);
-});
+};
 
-getCoordinatorsRouter.get("/teachers/:id", (req, res) => {
-  const teachersId = req.params.id;
-  res.status(200).send(`teachers no ${teachersId} POR COORDI`);
-});
+const getTeacherByIdHandler = (req, res) => {
+  const teacherId = req.params.id;
+  res.status(200).send(`Profesor no ${teacherId} POR COORDI`);
+};
+
+
+
+getCoordinatorsRouter.get("/contract/:id", getContractByIdHandler);
+getCoordinatorsRouter.get("/users", getAllUsersHandler);
+getCoordinatorsRouter.get("/users/:id", getUserByIdHandler );
+getCoordinatorsRouter.get("/groups", getAllGroupsHandler );
+getCoordinatorsRouter.get("/groups/:id", getGroupByIdHandler);
+getCoordinatorsRouter.get("/teachers", getAllTeachersHandler);
+getCoordinatorsRouter.get("/teachers/:id", getTeacherByIdHandler);
 
 
 module.exports = getCoordinatorsRouter;

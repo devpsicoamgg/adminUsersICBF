@@ -2,20 +2,25 @@ const { Router } = require("express");
 
 const patchTeacherRouter = Router();
 
-patchTeacherRouter.patch("/users/:id", (req, res) => {
+const patchUserHandler = (req, res) => {
   const usersId = req.params.id;
   res.status(200).send(`Usuario no ${usersId} patcheado por teacher`);
-});
+};
 
-patchTeacherRouter.patch("/groups/:id", (req, res) => {
+const patchGroupHandler = (req, res) => {
   const groupsId = req.params.id;
   res.status(200).send(`Grupo no ${groupsId} patcheado por teacher`);
-});
+};
 
-patchTeacherRouter.patch("/teachers/:id", (req, res) => {
+const patchTeacherHandler = (req, res) => {
   const teachersId = req.params.id;
   res.status(200).send(`teachers no ${teachersId} patcheado por teacher`);
-});
+};
+
+
+patchTeacherRouter.patch("/users/:id", patchUserHandler);
+patchTeacherRouter.patch("/groups/:id", patchGroupHandler);
+patchTeacherRouter.patch("/teachers/:id", patchTeacherHandler);
 
 
 module.exports = patchTeacherRouter;

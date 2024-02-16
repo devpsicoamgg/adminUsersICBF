@@ -1,24 +1,15 @@
 const { Router } = require("express");
 
+const {
+  delAdminHandlerCoordinator,
+  delAdminHandlerGroup,
+  delAdminHandlerTeacher,
+} = require("../../2.-Handlers/2.1.-Admin/subHandlerAdmin");
+
 const delAdminRouter = Router();
 
-
-
-delAdminRouter.delete("/coordinators/:id", (req, res) => {
-  const coordinatorId = req.params.id;
-  res.status(200).send(`Coordinador No ${coordinatorId} eliminado por admin `);
-});
-
-
-delAdminRouter.delete("/groups/:id", (req, res) => {
-  const groupsId = req.params.id;
-  res.status(200).send(`Grupo no ${groupsId} eliminado por admin`);
-});
-
-delAdminRouter.delete("/teachers/:id", (req, res) => {
-  const teachersId = req.params.id;
-  res.status(200).send(`teachers no ${teachersId} eliminado por admin`);
-});
-
+delAdminRouter.delete("/coordinators/:id", delAdminHandlerCoordinator);
+delAdminRouter.delete("/groups/:id", delAdminHandlerGroup);
+delAdminRouter.delete("/teachers/:id", delAdminHandlerTeacher);
 
 module.exports = delAdminRouter;
