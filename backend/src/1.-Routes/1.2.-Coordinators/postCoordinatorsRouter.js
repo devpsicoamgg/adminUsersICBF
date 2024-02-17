@@ -1,7 +1,7 @@
 const { Router } = require("express");
 
 const {   createGroupHandlerCoordinators, 
-  createTeacherHandlerCoordinators, } = require("../../2.-Handlers/2.2.-Coordinators/postCoordinatorsHandler")
+  createTeacherHandlerCoordinators, } = require("../../2.-Handlers/2.2.-Coordinators/subHandlerCoordinators")
 
 const postCoordinatorsRouter = Router();
 

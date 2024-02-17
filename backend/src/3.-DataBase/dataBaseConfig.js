@@ -2,12 +2,12 @@ require("dotenv").config();
 const { Sequelize, DataTypes } = require("sequelize");
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME } = process.env;
 
-const Contract = require("./models/Contract");
-const Family = require("./models/Family");
-const Group = require("./models/Group");
-const TeamIntervention = require("./models/TeamIntervention");
-const UserFinal = require("./models/UserFinal");
-const Coordinator = require("./models/Coordinator");
+const Contract = require("./3.1.-Models/Contract");
+const Family = require("./3.1.-Models/Family");
+const Group = require("./3.1.-Models/Group");
+const TeamIntervention = require("./3.1.-Models/TeamIntervention");
+const UserFinal = require("./3.1.-Models/UserFinal");
+const Coordinator = require("./3.1.-Models/Coordinator");
 
 
 

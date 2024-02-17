@@ -4,7 +4,7 @@ const {
   deleteGroupHandlerCoordinators,
   deleteTeacherHandlerCoordinators,
   deleteUserHandlerCoordinators,
-} = require("../../2.-Handlers/2.2.-Coordinators/delCoordinatorsHandler");
+} = require("../../2.-Handlers/2.2.-Coordinators/subHandlerCoordinators");
 
 const delCoordinatorsRouter = Router();
 

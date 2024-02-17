@@ -4,7 +4,7 @@ const {
   createContractHandler,
   createTeacherHandler,
   createGroupHandler,
-} = require("../../2.-Handlers/2.1.-Admin/postAdmindHandler");
+} = require("../../2.-Handlers/2.1.-Admin/subHandlerAdmin");
 
 const postAdminRouter = Router();
 

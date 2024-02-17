@@ -4,7 +4,7 @@ const {    patchCoordinatorHandler,
   patchUserHandler, 
   patchGroupHandler, 
   patchTeacherHandler, 
-  patchContractHandler} = require("../../2.-Handlers/2.1.-Admin/ptchAdminHandler")
+  patchContractHandler} = require("../../2.-Handlers/2.1.-Admin/subHandlerAdmin")
 
 const patchAdminRouter = Router();
 

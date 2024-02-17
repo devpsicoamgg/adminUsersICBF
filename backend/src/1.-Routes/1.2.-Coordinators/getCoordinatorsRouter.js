@@ -8,7 +8,7 @@ const {
   getGroupByIdHandlerCoordinators,
   getAllTeachersHandlerCoordinators,
   getTeacherByIdHandlerCoordinators,
-} = require("../../2.-Handlers/2.2.-Coordinators/getCoordinatorsHandler");
+} = require("../../2.-Handlers/2.2.-Coordinators/subHandlerCoordinators");
 
 const getCoordinatorsRouter = Router();
 

@@ -1,30 +1,7 @@
-import {
-  deleteGroupHandlerCoordinators,
-  deleteTeacherHandlerCoordinators,
-  deleteUserHandlerCoordinators,
-} from "./delCoordinatorsHandler";
-
-import {
-  getAllGroupsHandlerCoordinators,
-  getAllUsersHandlerCoordinators,
-  getUserByIdHandlerCoordinators,
-  getContractByIdHandlerCoordinators,
-  getGroupByIdHandlerCoordinators,
-  getAllTeachersHandlerCoordinators,
-  getTeacherByIdHandlerCoordinators,
-} from "./getCoordinatorsHandler";
-
-import {
-  patchUserHandlerCoordinators,
-  patchGroupHandlerCoordinators,
-  patchTeacherHandlerCoordinators,
-} from "./ptchCoordinatorsHandler";
-
-const {
-  deleteGroupHandlerCoordinators,
-  deleteTeacherHandlerCoordinators,
-  deleteUserHandlerCoordinators,
-} = delCoordinatorsHandler;
+const delCoordinatorsHandler  = require("./delCoordinatorsHandler");
+const getCoordinatorsHandler = require("./getCoordinatorsHandler");
+const ptchCoordinatorsHandler = require("./ptchCoordinatorsHandler");
+const postCoordinatorsHandler = require("./postCoordinatorsHandler");
 
 const {
   getAllGroupsHandlerCoordinators,
@@ -41,10 +18,19 @@ const {
   patchGroupHandlerCoordinators,
   patchTeacherHandlerCoordinators,
 } = ptchCoordinatorsHandler;
-module.exports = {
+
+const {
   deleteGroupHandlerCoordinators,
   deleteTeacherHandlerCoordinators,
   deleteUserHandlerCoordinators,
+} = delCoordinatorsHandler;
+
+const { 
+  createGroupHandlerCoordinators, 
+  createTeacherHandlerCoordinators 
+} = postCoordinatorsHandler;
+
+module.exports = {
   deleteGroupHandlerCoordinators,
   deleteTeacherHandlerCoordinators,
   deleteUserHandlerCoordinators,
@@ -58,4 +44,6 @@ module.exports = {
   patchUserHandlerCoordinators,
   patchGroupHandlerCoordinators,
   patchTeacherHandlerCoordinators,
+  createGroupHandlerCoordinators,
+  createTeacherHandlerCoordinators,
 };

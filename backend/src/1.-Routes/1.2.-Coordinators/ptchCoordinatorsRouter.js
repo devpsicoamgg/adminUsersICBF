@@ -4,7 +4,7 @@ const {
   patchUserHandlerCoordinators,
   patchGroupHandlerCoordinators,
   patchTeacherHandlerCoordinators,
-} = require("../../2.-Handlers/2.2.-Coordinators/ptchCoordinatorsHandler");
+} = require("../../2.-Handlers/2.2.-Coordinators/subHandlerCoordinators");
 
 const patchCoordinatorsRouter = Router();
 

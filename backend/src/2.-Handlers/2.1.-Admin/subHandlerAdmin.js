@@ -1,8 +1,7 @@
 const delAdminHandlers = require("./delAdminHandler");
-const getAdminHandlers = require("../../2.-Handlers/2.1.-Admin/getAdminHandler");
-const postAdminHandlers = require("../../2.-Handlers/2.1.-Admin/postAdmindHandler")
-const patchAdminHandlers = require("../../2.-Handlers/2.1.-Admin/ptchAdminHandler")
-
+const getAdminHandlers = require("./getAdminHandler");
+const postAdminHandlers = require("./postAdmindHandler");
+const patchAdminHandlers = require("./ptchAdminHandler");
 
 const {
   delAdminHandlerCoordinator,
@@ -23,12 +22,20 @@ const {
   getTeachersHandlerAdmin,
 } = getAdminHandlers;
 
-const { 
-  createCoordinatorHandler, 
-  createContractHandler, 
-  createTeacherHandler, 
-  createGroupHandler
+const {
+  createCoordinatorHandler,
+  createContractHandler,
+  createTeacherHandler,
+  createGroupHandler,
 } = postAdminHandlers;
+
+const {
+  patchCoordinatorHandler,
+  patchUserHandler,
+  patchGroupHandler,
+  patchTeacherHandler,
+  patchContractHandler,
+} = patchAdminHandlers;
 
 module.exports = {
   delAdminHandlerCoordinator,
@@ -44,8 +51,13 @@ module.exports = {
   getGroupByIdHandlerAdmin,
   getTeachersByIdHandlerAdmin,
   getTeachersHandlerAdmin,
-  createCoordinatorHandler, 
-  createContractHandler, 
-  createTeacherHandler, 
+  createCoordinatorHandler,
+  createContractHandler,
+  createTeacherHandler,
   createGroupHandler,
+  patchCoordinatorHandler,
+  patchUserHandler,
+  patchGroupHandler,
+  patchTeacherHandler,
+  patchContractHandler,
 };
