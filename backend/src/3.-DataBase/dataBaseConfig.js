@@ -7,6 +7,7 @@ const Family = require("./models/Family");
 const Group = require("./models/Group");
 const TeamIntervention = require("./models/TeamIntervention");
 const UserFinal = require("./models/UserFinal");
+const Coordinator = require("./models/Coordinator");
 
 
 
@@ -24,19 +25,22 @@ const FamilyModel = Family(sequelize, DataTypes);
 const GroupModel = Group(sequelize, DataTypes);
 const TeamInterventionModel = TeamIntervention(sequelize, DataTypes);
 const UserFinalModel = UserFinal(sequelize, DataTypes);
+const CoordinatorModel = Coordinator(sequelize, DataTypes);
 
 
-ContractModel.hasOne(TeamInterventionModel, { foreignKey: 'contractId' });
-ContractModel.hasMany(UserFinalModel, { foreignKey: 'contractId' });
+ContractModel.hasMany(CoordinatorModel, { foreignKey: 'contractId' });
+CoordinatorModel.belongsTo(ContractModel, { foreignKey: 'contractId' });
 
-TeamInterventionModel.belongsTo(ContractModel, { foreignKey: 'contractId' });
+CoordinatorModel.hasMany(TeamInterventionModel, { foreignKey: 'coordinatorId' });
+TeamInterventionModel.belongsTo(CoordinatorModel, { foreignKey: 'coordinatorId' });
+
+TeamInterventionModel.hasMany(GroupModel, { foreignKey: 'teamInterventionId' });
+GroupModel.belongsTo(TeamInterventionModel, { foreignKey: 'teamInterventionId' });
+
+GroupModel.hasMany(UserFinalModel, { foreignKey: 'groupId' });
+UserFinalModel.belongsTo(GroupModel, { foreignKey: 'groupId' });
 
 FamilyModel.hasMany(UserFinalModel, { foreignKey: 'familyId' });
-
-GroupModel.belongsTo(UserFinalModel, { foreignKey: 'groupId' });
-GroupModel.hasMany(UserFinalModel, { foreignKey: 'groupId' });
-
-UserFinalModel.belongsTo(GroupModel, { foreignKey: 'groupId' });
 UserFinalModel.belongsTo(FamilyModel, { foreignKey: 'familyId' });
 
 
