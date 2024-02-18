@@ -182,6 +182,11 @@ const UserFinalModel = (sequelize) => {
         type: DataTypes.DATE,
         allowNull: true,
       },
+      modificaciones: {
+        type: DataTypes.ARRAY(DataTypes.JSON),
+        allowNull: true,
+        defaultValue: [],
+      },
 
       
     },

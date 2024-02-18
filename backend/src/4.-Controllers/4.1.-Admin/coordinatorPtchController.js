@@ -1,6 +1,6 @@
 const { Coordinator } = require("../../3.-DataBase/dataBaseConfig");
 
-console.log("Controller PATCH levantado en admin para", Coordinator);
+console.log("Controller 🛠️ PATCH levantado en admin para", Coordinator);
 
 const patchCoordinator = async (coordinatorId, dataToUpdate) => {
   try {
@@ -8,23 +8,44 @@ const patchCoordinator = async (coordinatorId, dataToUpdate) => {
     if (!coordinator) {
       return {
         success: false,
-        message: `Contract with id N° ${coordinatorId} not found`,
+        message: `Coordinator with id N° ${coordinatorId} not found`,
       };
     }
 
-    await coordinator.update(dataToUpdate, {
-      where: {
-        id: coordinatorId
+    const previousCoordinatorData = { ...coordinator.get() }; 
+   
+    await coordinator.update(dataToUpdate);
+
+   
+    const modifiedFields = {};
+    for (const key of Object.keys(dataToUpdate)) {
+      if (previousCoordinatorData[key] !== coordinator[key]) {
+        modifiedFields[key] = {
+          valor_anterior: previousCoordinatorData[key],
+          valor_actual: coordinator[key]
+        };
       }
-    });
+    }
 
+    const modificationInfo = {   
+      ModificacionesAdministrativas: `${new Date()}`, modifiedFields,   
+    };
 
-    return { success: true, 
-      message: `Cooordinador actualizado exitosamente ${coordinatorId}` };
+    let modificaciones = coordinator.modificaciones || [];
+    modificaciones.push(modificationInfo);
+
+    await Coordinator.update({ modificaciones }, { where: { id: coordinatorId } });
+
+    return {
+      success: true,
+      message: `Coordinator actualizado exitosamente ${coordinatorId}`,
+    };
   } catch (error) {
-    console.error("Error al actualizar el cooordinador: " + error.message);
-    return { success: false, message: "Internal several error"}
+    console.error("Error al actualizar el coordinador: " + error.message);
+    return { success: false, message: "Internal several error" };
   }
 };
 
 module.exports = { patchCoordinator };
+
+

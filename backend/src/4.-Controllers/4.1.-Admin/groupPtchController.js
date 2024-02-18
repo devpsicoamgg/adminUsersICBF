@@ -1,6 +1,6 @@
 const { Group } = require("../../3.-DataBase/dataBaseConfig");
 
-console.log("Controller PATCH levantado en admin para", Group);
+console.log("Controller 🛠️ PATCH levantado en admin para", Group);
 
 const patchGroup = async (groupId, dataToUpdate) => {
   try {
@@ -8,18 +8,42 @@ const patchGroup = async (groupId, dataToUpdate) => {
     if (!group) {
       return {
         success: false,
-        message: `Grupo with id N° ${groupId} not found`,
+        message: `Group with id N° ${groupId} not found`,
       };
     }
 
+    const previousGroupData = { ...group.get() }; 
     await group.update(dataToUpdate);
 
-    return { success: true, 
-      message: `Grupo actualizado exitosamente ${groupId}` };
+
+    const modifiedFields = {};
+    for (const key of Object.keys(dataToUpdate)) {
+      if (previousGroupData[key] !== group[key]) {
+        modifiedFields[key] = {
+          valor_anterior: previousGroupData[key],
+          valor_actual: group[key]
+        };
+      }
+    }
+
+    const modificationInfo = {   
+      ModificacionesAdministrativas: `${new Date()}`, modifiedFields,   
+    };
+
+    let modificaciones = group.modificaciones || [];
+    modificaciones.push(modificationInfo);
+
+    await Group.update({ modificaciones }, { where: { id: groupId } });
+
+    return {
+      success: true,
+      message: `Group actualizado exitosamente ${groupId}`,
+    };
   } catch (error) {
     console.error("Error al actualizar el grupo: " + error.message);
-    return { success: false, message: "Internal several error"}
+    return { success: false, message: "Internal several error" };
   }
 };
 
 module.exports = { patchGroup };
+

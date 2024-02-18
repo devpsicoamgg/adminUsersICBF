@@ -31,7 +31,12 @@ const GroupModel = (sequelize) => {
       neighborhood: {
         type: DataTypes.STRING,
         allowNull: false
-      }
+      }, 
+      modificaciones: {
+        type: DataTypes.ARRAY(DataTypes.JSON),
+        allowNull: true,
+        defaultValue: [],
+      },
     },
     { timestamps: false }
   );

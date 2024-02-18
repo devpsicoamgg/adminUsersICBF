@@ -1,9 +1,6 @@
 const { Group } = require("../../3.-DataBase/dataBaseConfig");
 
-
-console.log("Controller DELETE levantado en admin para",Group);
-
-
+console.log("Controller ⛔DELETE levantado en admin para", Group);
 
 const deleteGroup = async (groupId) => {
   try {
@@ -12,11 +9,10 @@ const deleteGroup = async (groupId) => {
       throw new Error("Contrato no encontrado");
     }
 
-
     await group.destroy({
       where: {
-        id: groupId
-      }
+        id: groupId,
+      },
     });
 
     return { message: "Grupo eliminado exitosamente" };

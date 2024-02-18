@@ -68,7 +68,7 @@ const ContractModel = (sequelize) => {
     },
     { timestamps: true }
   );
-
+  
   return Contract;
 };
 

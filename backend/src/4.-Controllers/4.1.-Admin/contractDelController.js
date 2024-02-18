@@ -1,6 +1,6 @@
 const { Contract } = require("../../3.-DataBase/dataBaseConfig");
 
-console.log("Controller DELETE levantado en admin para", Contract)
+console.log("Controller ⛔DELETE levantado en admin para", Contract);
 
 const deleteContract = async (contractId) => {
   try {
@@ -9,11 +9,10 @@ const deleteContract = async (contractId) => {
       throw new Error("Contrato no encontrado");
     }
 
-
     await contract.destroy({
       where: {
-        id: contractId
-      }
+        id: contractId,
+      },
     });
 
     return { message: "Contrato eliminado exitosamente" };

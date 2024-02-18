@@ -2,7 +2,7 @@ const { generateRandomPassword } = require("../../5.-Utils/passwordUtils.js");
 const { TeamIntervention } = require("../../3.-DataBase/dataBaseConfig");
 const sendEmail = require("../../6.-Mail/sendEmail.js");
 
-console.log("Controller POST levantado en admin para", TeamIntervention)
+console.log("Controller 📤POST levantado en admin para", TeamIntervention);
 
 const createTeamIntervention = async (
   firstName,
@@ -21,7 +21,7 @@ const createTeamIntervention = async (
   coordinatorId
 ) => {
   const randomPassword = generateRandomPassword();
-  
+
   try {
     const teamInterventionUser = await TeamIntervention.create({
       firstName,

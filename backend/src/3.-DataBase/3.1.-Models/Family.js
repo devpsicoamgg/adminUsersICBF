@@ -85,6 +85,12 @@ const FamilyModel = (sequelize) => {
         allowNull: true,
       },
 
+      modificaciones: {
+        type: DataTypes.ARRAY(DataTypes.JSON),
+        allowNull: true,
+        defaultValue: [],
+      },
+
     },
     { timestamps: true }
   );
