@@ -1,6 +1,6 @@
 const { Contract } = require("../../3.-DataBase/dataBaseConfig");
 
-console.log("Controller ⛔DELETE levantado en admin para", Contract);
+console.log("Controller ⛔DELETE levantado para acciones en", Contract);
 
 const deleteContract = async (contractId) => {
   try {

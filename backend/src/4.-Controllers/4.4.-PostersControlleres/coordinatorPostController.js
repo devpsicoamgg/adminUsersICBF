@@ -1,8 +1,8 @@
 const { generateRandomPassword } = require("../../5.-Utils/passwordUtils.js");
-const { Coordinator } = require("../../3.-DataBase/dataBaseConfig");
+const { Coordinator } = require("../../3.-DataBase/dataBaseConfig.js");
 const sendEmail = require("../../6.-Mail/sendEmail.js");
 
-console.log("Controller 📤POST levantado en admin para", Coordinator);
+console.log("Controller 📤POST levantado para acciones en", Coordinator);
 
 const createCoordinator = async (
   firstName,

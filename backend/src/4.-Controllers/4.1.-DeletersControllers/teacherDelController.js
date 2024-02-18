@@ -1,6 +1,6 @@
 const { TeamIntervention } = require("../../3.-DataBase/dataBaseConfig");
 
-console.log("Controller ⛔DELETE levantado en admin para", TeamIntervention);
+console.log("Controller ⛔DELETE levantado para acciones en", TeamIntervention);
 
 const deleteCollaborator = async (teamInterventionId) => {
   try {

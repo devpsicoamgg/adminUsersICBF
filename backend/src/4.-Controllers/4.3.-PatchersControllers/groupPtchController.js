@@ -1,6 +1,6 @@
 const { Group } = require("../../3.-DataBase/dataBaseConfig");
 
-console.log("Controller 🛠️ PATCH levantado en admin para", Group);
+console.log("Controller 🛠️ PATCH levantado para acciones en", Group);
 
 const patchGroup = async (groupId, dataToUpdate) => {
   try {
@@ -12,16 +12,15 @@ const patchGroup = async (groupId, dataToUpdate) => {
       };
     }
 
-    const previousGroupData = { ...group.get() }; 
+    const previousGroupData = { ...group.get() };
     await group.update(dataToUpdate);
-
 
     const modifiedFields = {};
     for (const key of Object.keys(dataToUpdate)) {
       if (previousGroupData[key] !== group[key]) {
         modifiedFields[key] = {
           valor_anterior: previousGroupData[key],
-          valor_actual: group[key]
+          valor_actual: group[key],
         };
       }
     }
@@ -50,4 +49,3 @@ const patchGroup = async (groupId, dataToUpdate) => {
 };
 
 module.exports = { patchGroup };
-

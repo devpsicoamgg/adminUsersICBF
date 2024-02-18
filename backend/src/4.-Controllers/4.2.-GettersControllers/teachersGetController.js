@@ -1,11 +1,10 @@
 const { TeamIntervention } = require("../../3.-DataBase/dataBaseConfig");
 
 console.log(
-  "Controller 📥GET levantado en admin para",
+  "Controller 📥GET levantado para acciones en",
   TeamIntervention,
   "y teacherById"
 );
-
 
 const getAllMembersTeamIntervention = async () => {
   try {
@@ -15,7 +14,10 @@ const getAllMembersTeamIntervention = async () => {
       data: teachers,
     };
   } catch (error) {
-    console.error("Error al obtener los miembros del equipo de intervención: " + error.message);
+    console.error(
+      "Error al obtener los miembros del equipo de intervención: " +
+        error.message
+    );
     return { success: false, message: "Internal several error" };
   }
 };
@@ -36,9 +38,15 @@ const getMemberTeamInterventionById = async (teacherId) => {
       data: teacher,
     };
   } catch (error) {
-    console.error("Error al obtener el miembro del equipo de intervencipon con ID: " + error.message);
+    console.error(
+      "Error al obtener el miembro del equipo de intervencipon con ID: " +
+        error.message
+    );
     return { success: false, message: "Internal server error" };
   }
 };
 
-module.exports = { getAllMembersTeamIntervention, getMemberTeamInterventionById };
+module.exports = {
+  getAllMembersTeamIntervention,
+  getMemberTeamInterventionById,
+};

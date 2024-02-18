@@ -1,8 +1,9 @@
 const { Group } = require("../../3.-DataBase/dataBaseConfig");
 
 console.log(
-  "Controller 📥GET levantado en admin para",
-  Group,"y groupById"
+  "Controller 📥GET levantado para acciones en",
+  Group,
+  "y groupById"
 );
 
 const getAllGroups = async () => {
@@ -40,4 +41,3 @@ const getGroupById = async (groupId) => {
 };
 
 module.exports = { getAllGroups, getGroupById };
-

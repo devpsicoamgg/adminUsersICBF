@@ -1,6 +1,6 @@
 const { Contract } = require("../../3.-DataBase/dataBaseConfig");
 
-console.log("Controller 🛠️ PATCH levantado en admin para", Contract);
+console.log("Controller 🛠️ PATCH levantado para acciones en", Contract);
 
 const patchContract = async (contractId, dataToUpdate) => {
   try {
@@ -12,14 +12,14 @@ const patchContract = async (contractId, dataToUpdate) => {
       };
     }
 
-    const previousContractData = { ...contract.get() }; 
+    const previousContractData = { ...contract.get() };
     await contract.update(dataToUpdate);
     const modifiedFields = {};
     for (const key of Object.keys(dataToUpdate)) {
       if (previousContractData[key] !== contract[key]) {
         modifiedFields[key] = {
           valor_anterior: previousContractData[key],
-          valor_actual: contract[key]
+          valor_actual: contract[key],
         };
       }
     }
@@ -45,6 +45,5 @@ const patchContract = async (contractId, dataToUpdate) => {
     return { success: false, message: "Internal several error" };
   }
 };
-
 
 module.exports = { patchContract };

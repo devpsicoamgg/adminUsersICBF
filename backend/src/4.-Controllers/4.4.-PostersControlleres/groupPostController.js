@@ -1,6 +1,6 @@
 const { Group } = require("../../3.-DataBase/dataBaseConfig");
 
-console.log("Controller 📤POST levantado en admin para", Group);
+console.log("Controller 📤POST levantado para acciones en", Group);
 
 const createGroup = async (
   groupName,

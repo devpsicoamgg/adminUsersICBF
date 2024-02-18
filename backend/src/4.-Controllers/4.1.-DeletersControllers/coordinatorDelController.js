@@ -1,6 +1,6 @@
 const { Coordinator } = require("../../3.-DataBase/dataBaseConfig");
 
-console.log("Controller ⛔DELETE levantado en admin para", Coordinator);
+console.log("Controller ⛔DELETE levantado para acciones en", Coordinator);
 
 const deleteCoordinator = async (coordinatorId) => {
   try {

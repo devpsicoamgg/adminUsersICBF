@@ -1,7 +1,7 @@
 const { Contract } = require("../../3.-DataBase/dataBaseConfig");
 
 console.log(
-  "Controller 📥GET levantado en admin para",
+  "Controller 📥GET levantado para acciones en",
   Contract,
   "y contractById"
 );

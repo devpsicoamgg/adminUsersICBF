@@ -1,6 +1,6 @@
 const { TeamIntervention } = require("../../3.-DataBase/dataBaseConfig");
 
-console.log("Controller 🛠️ PATCH levantado en admin para", TeamIntervention);
+console.log("Controller 🛠️ PATCH levantado para acciones en", TeamIntervention);
 
 const patchCollaborator = async (teacherId, dataToUpdate) => {
   try {
@@ -32,7 +32,6 @@ const patchCollaborator = async (teacherId, dataToUpdate) => {
       modificacionesAdministrativasRealizadas: modifiedFields,
     };
 
-    
     let modificaciones = teacher.modificaciones || [];
     modificaciones.push(modificationInfo);
     await TeamIntervention.update(

@@ -1,6 +1,6 @@
 const { Coordinator } = require("../../3.-DataBase/dataBaseConfig");
 
-console.log("Controller 🛠️ PATCH levantado en admin para", Coordinator);
+console.log("Controller 🛠️ PATCH levantado para acciones en", Coordinator);
 
 const patchCoordinator = async (coordinatorId, dataToUpdate) => {
   try {
@@ -12,17 +12,16 @@ const patchCoordinator = async (coordinatorId, dataToUpdate) => {
       };
     }
 
-    const previousCoordinatorData = { ...coordinator.get() }; 
-   
+    const previousCoordinatorData = { ...coordinator.get() };
+
     await coordinator.update(dataToUpdate);
 
-   
     const modifiedFields = {};
     for (const key of Object.keys(dataToUpdate)) {
       if (previousCoordinatorData[key] !== coordinator[key]) {
         modifiedFields[key] = {
           valor_anterior: previousCoordinatorData[key],
-          valor_actual: coordinator[key]
+          valor_actual: coordinator[key],
         };
       }
     }
@@ -38,7 +37,10 @@ const patchCoordinator = async (coordinatorId, dataToUpdate) => {
     let modificaciones = coordinator.modificaciones || [];
     modificaciones.push(modificationInfo);
 
-    await Coordinator.update({ modificaciones }, { where: { id: coordinatorId } });
+    await Coordinator.update(
+      { modificaciones },
+      { where: { id: coordinatorId } }
+    );
 
     return {
       success: true,
@@ -51,5 +53,3 @@ const patchCoordinator = async (coordinatorId, dataToUpdate) => {
 };
 
 module.exports = { patchCoordinator };
-
-
