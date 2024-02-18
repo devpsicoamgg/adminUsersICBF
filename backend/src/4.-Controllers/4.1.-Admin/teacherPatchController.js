@@ -12,30 +12,33 @@ const patchCollaborator = async (teacherId, dataToUpdate) => {
       };
     }
 
-    const previousTeacherData = { ...teacher.get() }; // Almacenar los valores actuales del colaborador
-
-    // Realizar la actualización del colaborador
-    await TeamIntervention.update(dataToUpdate, { where: { id: teacherId } });
-
-    // Comparar los valores actuales con los valores actualizados para determinar los campos modificados
+    const previousTeacherData = { ...teacher.get() };
+    await teacher.update(dataToUpdate);
     const modifiedFields = {};
     for (const key of Object.keys(dataToUpdate)) {
       if (previousTeacherData[key] !== teacher[key]) {
         modifiedFields[key] = {
           valor_anterior: previousTeacherData[key],
-          valor_actual: teacher[key]
+          valor_actual: teacher[key],
         };
       }
     }
 
-    const modificationInfo = {   
-      ModificacionesAdministrativas: `${new Date()}`, modifiedFields,   
+    const numCamposModificados = Object.keys(modifiedFields).length;
+
+    const modificationInfo = {
+      FechaModificaciónAdministrativa: new Date(),
+      numCamposModificados: numCamposModificados,
+      modificacionesAdministrativasRealizadas: modifiedFields,
     };
 
+    
     let modificaciones = teacher.modificaciones || [];
     modificaciones.push(modificationInfo);
-
-    await TeamIntervention.update({ modificaciones }, { where: { id: teacherId } });
+    await TeamIntervention.update(
+      { modificaciones },
+      { where: { id: teacherId } }
+    );
 
     return {
       success: true,

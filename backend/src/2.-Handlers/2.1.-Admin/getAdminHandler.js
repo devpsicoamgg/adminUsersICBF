@@ -9,8 +9,14 @@ const {
 } = require("../../4.-Controllers/4.1.-Admin/coordinatorsGetController");
 
 const {
-  getAllGroups, getGroupById
+  getAllGroups,
+  getGroupById,
 } = require("../../4.-Controllers/4.1.-Admin/groupGetController");
+
+const {
+  getAllMembersTeamIntervention,
+  getMemberTeamInterventionById,
+} = require("../../4.-Controllers/4.1.-Admin/teachersGetController");
 
 const getContractsHandlerAdmin = async (req, res) => {
   try {
@@ -99,14 +105,38 @@ const getGroupByIdHandlerAdmin = async (req, res) => {
   }
 };
 
-const getTeachersByIdHandlerAdmin = (req, res) => {
-  const teacherId = req.params.id;
-  res.status(200).send(`Obtener profesor No ${teacherId}`);
+const getTeachersHandlerAdmin = async (req, res) => {
+  try {
+    const result = await getAllMembersTeamIntervention();
+    res.status(200).json(result);
+  } catch (error) {
+    console.error(
+      "Error in handler to get all members team intervention",
+      error
+    );
+    res.status(500).json({
+      success: false,
+      error: "Internal several error",
+      details: error.message,
+    });
+  }
 };
 
-const getTeachersHandlerAdmin = (req, res) => {
-  res.status(200).send(`Obtener todos los profesores`);
+const getTeachersByIdHandlerAdmin = async (req, res) => {
+  const teacherId = req.params.id;
+  try {
+    const result = await getMemberTeamInterventionById(teacherId);
+    res.status(200).json(result);
+  } catch (error) {
+    console.error("Error in handler to get teacher by ID", error);
+    res.status(500).json({
+      success: false,
+      error: "Internal server error",
+      details: error.message,
+    });
+  }
 };
+
 
 const getUsersHandlerAdmin = (req, res) => {
   res.status(200).send(`Obtener todos los usuarios por admin`);
@@ -116,8 +146,6 @@ const getUserByIdHandlerAdmin = (req, res) => {
   const userId = req.params.id;
   res.status(200).send(`Obtener usuario No ${userId}`);
 };
-
-
 
 module.exports = {
   getCoordinatorsHandlerAdmin,

@@ -24,8 +24,12 @@ const patchContract = async (contractId, dataToUpdate) => {
       }
     }
 
-    const modificationInfo = {   
-      ModificacionesAdministrativas: `${new Date()}`, modifiedFields,   
+    const numCamposModificados = Object.keys(modifiedFields).length;
+
+    const modificationInfo = {
+      FechaModificaciónAdministrativa: new Date(),
+      numCamposModificados: numCamposModificados,
+      modificacionesAdministrativasRealizadas: modifiedFields,
     };
 
     let modificaciones = contract.modificaciones || [];
