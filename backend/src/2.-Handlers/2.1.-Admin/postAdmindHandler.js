@@ -1,23 +1,200 @@
-const createCoordinatorHandler = (req, res) => {
-  res.status(200).send(`Crear un coordinador por admin`);
+const { Contract, Coordinator } = require("../../3.-DataBase/dataBaseConfig");
+const {
+  createContractInformation,
+} = require("../../4.-Controllers/4.1.-Admin/contractPostController");
+const {
+  createCoordinator,
+} = require("../../4.-Controllers/4.1.-Admin/coordinatorPostController");
+const {
+  createTeamIntervention,
+} = require("../../4.-Controllers/4.1.-Admin/teacherPostController");
+const {
+  createGroup,
+} = require("../../4.-Controllers/4.1.-Admin/groupPostController");
+
+const createContractHandler = async (req, res) => {
+  const {
+    areaMisionalIcbf,
+    regional,
+    vigencia,
+    serviceName,
+    supervisor,
+    startDate,
+    endDate,
+    contractNumber,
+    legalRepresentative,
+    spots,
+  } = req.body;
+
+  console.log("Datos recibidos:", req.body);
+
+  try {
+    const response = await createContractInformation(
+      areaMisionalIcbf,
+      regional,
+      vigencia,
+      serviceName,
+      supervisor,
+      startDate,
+      endDate,
+      contractNumber,
+      legalRepresentative,
+      spots
+    );
+    console.log("Respuesta de la creación del contrato:", response);
+    res
+      .status(200)
+      .send(`Crear un contrato por admin A ${legalRepresentative}`);
+  } catch (error) {
+    console.error("Error al crear el contrato:", error);
+    res.status(400).json({ error: error.message });
+  }
 };
 
-const createContractHandler = (req, res) => {
-  res.status(200).send(`Crear un contrato por admin`);
+const createCoordinatorHandler = async (req, res) => {
+  const contractId = req.body.contractId;
+  const {
+    firstName,
+    secondName,
+    firstLastName,
+    secondLastName,
+    kindDoc,
+    numberDoc,
+    nataleDate,
+    gender,
+    entryDate,
+    phone,
+    email,
+    role,
+  } = req.body;
+  console.log("Datos recibidos:", req.body);
+
+  const birthDate = new Date(nataleDate);
+  const today = new Date();
+  const diff = today.getTime() - birthDate.getTime();
+  const ageDate = new Date(diff);
+  const edad = Math.abs(ageDate.getUTCFullYear() - 1970);
+
+  try {
+    const contract = await Contract.findByPk(contractId);
+
+    if (!contract) {
+      console.error("Contrato no encontrado");
+      return res.status(404).json({ error: "Contrato no encontrado" });
+    }
+
+    const response = await createCoordinator(
+      firstName,
+      secondName,
+      firstLastName,
+      secondLastName,
+      kindDoc,
+      numberDoc,
+      nataleDate,
+      edad,
+      gender,
+      entryDate,
+      phone,
+      email,
+      role,
+      contractId
+    );
+
+    console.log("Respuesta recibida", response);
+    res
+      .status(200)
+      .send(`Crear un coordinador por admin A ${firstName} ${firstLastName}`);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
 };
 
-const createTeacherHandler = (req, res) => {
-  res.status(200).send(`Crear un docente por admin`);
+const createTeacherHandler = async (req, res) => {
+  const coordinatorId = req.body.coordinatorId;
+  const {
+    firstName,
+    secondName,
+    firstLastName,
+    secondLastName,
+    kindDoc,
+    numberDoc,
+    nataleDate,
+    gender,
+    entryDate,
+    phone,
+    email,
+    role,
+  } = req.body;
+  console.log("Datos recibidos:", req.body);
+
+  const birthDate = new Date(nataleDate);
+  const today = new Date();
+  const diff = today.getTime() - birthDate.getTime();
+  const ageDate = new Date(diff);
+  const edad = Math.abs(ageDate.getUTCFullYear() - 1970);
+
+  try {
+    const coordinator = await Coordinator.findByPk(coordinatorId);
+
+    if (!coordinator) {
+      console.error("Coordinador no encontrado");
+      return res.status(404).json({ error: "Coordinador no encontrado" });
+    }
+
+    const response = await createTeamIntervention(
+      firstName,
+      secondName,
+      firstLastName,
+      secondLastName,
+      kindDoc,
+      numberDoc,
+      nataleDate,
+      edad,
+      gender,
+      entryDate,
+      phone,
+      email,
+      role,
+      coordinatorId
+    );
+    console.log("Respuesta de la creación docente:", response);
+    res
+      .status(200)
+      .send(`Crear un colbaorador por admoin ${firstName} ${firstLastName}`);
+  } catch (error) {
+    console.error("Error al crear el colaborador:", error);
+    res.status(400).json({ error: error.message });
+  }
 };
 
-const createGroupHandler = (req, res) => {
-  res.status(200).send(`Crear un grupo por admin`);
+const createGroupHandler = async (req, res) => {
+  const { 
+    groupName, 
+    cuentameCode, 
+    address, 
+    municipality, 
+    neighborhood 
+  } = req.body;
+  console.log("Datos recibidos:", req.body);
+  try {
+     const response = await createGroup(
+      groupName, 
+      cuentameCode, 
+      address, 
+      municipality, 
+      neighborhood 
+     );
+    console.log("Respuesta de la creación del grupo:", response);
+    res.status(200).send(`Crear un grupo por admin A ${groupName}`);
+  } catch (error) {
+    console.error("Error al crear el grupo:", error);
+    res.status(400).json({ error: error.message });
+  }
 };
-
 
 module.exports = {
-  createCoordinatorHandler, 
-  createContractHandler, 
-  createTeacherHandler, 
-  createGroupHandler
-}
+  createCoordinatorHandler,
+  createContractHandler,
+  createTeacherHandler,
+  createGroupHandler,
+};

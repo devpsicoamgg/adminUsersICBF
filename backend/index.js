@@ -1,11 +1,11 @@
 require('dotenv').config();
 const server = require("./src/server");
-const { conn }
+const { sequelize }
  = require("../backend/src/3.-DataBase/dataBaseConfig")
 const { PORT_SERVER } = process.env;
 
 
 server.listen(PORT_SERVER, () => {
-  conn.sync({force: true})
+  sequelize.sync({force: false})
   console.log(`Server is live & listening on port 🎉 ${PORT_SERVER} 🎈`);
 });

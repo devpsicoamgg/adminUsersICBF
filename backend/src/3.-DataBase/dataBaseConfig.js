@@ -1,16 +1,14 @@
 require("dotenv").config();
-const { Sequelize, DataTypes } = require("sequelize");
+const { Sequelize } = require("sequelize");
+
+const ContractModel = require("./3.1.-Models/Contract");
+const FamilyModel = require("./3.1.-Models/Family");
+const GroupModel = require("./3.1.-Models/Group");
+const TeamInterventionModel = require("./3.1.-Models/TeamIntervention");
+const UserFinalModel = require("./3.1.-Models/UserFinal");
+const CoordinatorModel = require("./3.1.-Models/Coordinator");
+
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME } = process.env;
-
-const Contract = require("./3.1.-Models/Contract");
-const Family = require("./3.1.-Models/Family");
-const Group = require("./3.1.-Models/Group");
-const TeamIntervention = require("./3.1.-Models/TeamIntervention");
-const UserFinal = require("./3.1.-Models/UserFinal");
-const Coordinator = require("./3.1.-Models/Coordinator");
-
-
-
 const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
   {
@@ -19,36 +17,39 @@ const sequelize = new Sequelize(
   }
 );
 
-// Definir los modelos
-const ContractModel = Contract(sequelize, DataTypes);
-const FamilyModel = Family(sequelize, DataTypes);
-const GroupModel = Group(sequelize, DataTypes);
-const TeamInterventionModel = TeamIntervention(sequelize, DataTypes);
-const UserFinalModel = UserFinal(sequelize, DataTypes);
-const CoordinatorModel = Coordinator(sequelize, DataTypes);
+ContractModel(sequelize);
+FamilyModel(sequelize);
+GroupModel(sequelize);
+TeamInterventionModel(sequelize);
+UserFinalModel(sequelize);
+CoordinatorModel(sequelize);
 
+const { Contract, Family, Group, TeamIntervention, UserFinal, Coordinator } =
+  sequelize.models;
 
-ContractModel.hasMany(CoordinatorModel, { foreignKey: 'contractId' });
-CoordinatorModel.belongsTo(ContractModel, { foreignKey: 'contractId' });
+Contract.hasMany(Coordinator, { foreignKey: "contractId" });
+Coordinator.belongsTo(Contract, { foreignKey: "contractId" });
 
-CoordinatorModel.hasMany(TeamInterventionModel, { foreignKey: 'coordinatorId' });
-TeamInterventionModel.belongsTo(CoordinatorModel, { foreignKey: 'coordinatorId' });
+Coordinator.hasMany(TeamIntervention, {
+  foreignKey: "coordinatorId",
+});
+TeamIntervention.belongsTo(Coordinator, {
+  foreignKey: "coordinatorId",
+});
 
-TeamInterventionModel.hasMany(GroupModel, { foreignKey: 'teamInterventionId' });
-GroupModel.belongsTo(TeamInterventionModel, { foreignKey: 'teamInterventionId' });
+TeamIntervention.hasMany(Group, { foreignKey: "teamInterventionId" });
+Group.belongsTo(TeamIntervention, {
+  foreignKey: "teamInterventionId",
+});
 
-GroupModel.hasMany(UserFinalModel, { foreignKey: 'groupId' });
-UserFinalModel.belongsTo(GroupModel, { foreignKey: 'groupId' });
+Group.hasMany(UserFinal, { foreignKey: "groupId" });
+UserFinal.belongsTo(Group, { foreignKey: "groupId" });
 
-FamilyModel.hasMany(UserFinalModel, { foreignKey: 'familyId' });
-UserFinalModel.belongsTo(FamilyModel, { foreignKey: 'familyId' });
+Family.hasMany(UserFinal, { foreignKey: "familyId" });
+UserFinal.belongsTo(Family, { foreignKey: "familyId" });
 
 
 module.exports = {
-  conn: sequelize,
-  Contract: ContractModel,
-  Family: FamilyModel,
-  Group: GroupModel,
-  TeamIntervention: TeamInterventionModel,
-  UserFinal: UserFinalModel
+...sequelize.models,
+  sequelize,
 };

@@ -1,55 +1,74 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes } = require("sequelize");
 
-const Contract = (sequelize) => {
+const ContractModel = (sequelize) => {
   const Contract = sequelize.define(
-    'Contract',
+    "Contract",
     {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
+        allowNull: false,
         primaryKey: true,
-        autoIncrement: true
+        defaultValue: DataTypes.UUIDV4,
       },
       areaMisionalIcbf: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       regional: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       vigencia: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       serviceName: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       supervisor: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       startDate: {
         type: DataTypes.DATEONLY,
-        allowNull: false
+        allowNull: false,
       },
       endDate: {
         type: DataTypes.DATEONLY,
-        allowNull: false
+        allowNull: false,
       },
       contractNumber: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       legalRepresentative: {
         type: DataTypes.STRING,
-        allowNull: false
-      }
+        allowNull: false,
+      },
+      spots: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0,
+        validate: {
+          min: 0,
+        },
+      },
+      otroSi: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        defaultValue: false,
+      },
+      modificaciones: {
+        type: DataTypes.ARRAY(DataTypes.JSON),
+        allowNull: true,
+        defaultValue: [],
+      },
     },
-    { timestamps: false }
+    { timestamps: true }
   );
 
   return Contract;
 };
 
-module.exports = Contract;
+module.exports = ContractModel;

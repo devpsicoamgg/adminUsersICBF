@@ -1,8 +1,8 @@
 const { DataTypes } = require("sequelize");
 
-const Coordinators = (sequelize) => {
-  const Coordinators = sequelize.define(
-    "Coordinators",
+const CoordinatorModel = (sequelize) => {
+  const Coordinator = sequelize.define(
+    "Coordinator",
     {
       // Primary key
       id: {
@@ -59,7 +59,13 @@ const Coordinators = (sequelize) => {
         allowNull: true,
       },
 
+      edad: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+
       // Marital and Disability Information
+
       maritalStatus: {
         type: DataTypes.STRING,
         allowNull: true,
@@ -129,10 +135,12 @@ const Coordinators = (sequelize) => {
       phone: {
         type: DataTypes.STRING,
         allowNull: true,
+        unique: true,
       },
       email: {
         type: DataTypes.STRING,
         allowNull: true,
+        unique: true,
       },
       maxEducationalLevel: {
         type: DataTypes.STRING,
@@ -220,15 +228,20 @@ const Coordinators = (sequelize) => {
         allowNull: false,
       },
 
+      password: {
+        type: DataTypes.STRING, 
+        allowNull: false,
+      },
+
       imgDoc: {
         type: DataTypes.STRING,
         allowNull: true,
       },
     },
-    { timestamps: true }
+    { timestamps: true}
   );
 
-  return Coordinators;
+  return Coordinator;
 };
 
-module.exports = Coordinators;
+module.exports = CoordinatorModel;

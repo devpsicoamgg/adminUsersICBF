@@ -1,6 +1,6 @@
 const { DataTypes } = require("sequelize");
 
-const TeamIntervention = (sequelize) => {
+const TeamInterventionModel = (sequelize) => {
   const TeamIntervention = sequelize.define(
     "TeamIntervention",
     {
@@ -57,6 +57,10 @@ const TeamIntervention = (sequelize) => {
       nataleDate: {
         type: DataTypes.DATEONLY,
         allowNull: true,
+      },
+      edad: {
+        type: DataTypes.STRING,
+        allowNull: false,
       },
 
       // Marital and Disability Information
@@ -220,6 +224,11 @@ const TeamIntervention = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false, 
       },
+
+      password: {
+        type: DataTypes.STRING, 
+        allowNull: false,
+      },
  
       imgDoc: {
         type: DataTypes.STRING, 
@@ -233,4 +242,4 @@ const TeamIntervention = (sequelize) => {
   return TeamIntervention;
 };
 
-module.exports = TeamIntervention;
+module.exports = TeamInterventionModel;

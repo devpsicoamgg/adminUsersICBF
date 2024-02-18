@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize');
 
-const Group = (sequelize) => {
+const GroupModel = (sequelize) => {
   const Group = sequelize.define(
     'Group',
     {
@@ -36,4 +36,4 @@ const Group = (sequelize) => {
   return Group;
 };
 
-module.exports = Group;
+module.exports = GroupModel;
