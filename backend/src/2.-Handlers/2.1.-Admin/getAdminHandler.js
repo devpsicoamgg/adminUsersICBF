@@ -1,22 +1,22 @@
 const {
   getAllContracts,
   getContractById,
-} = require("../../4.-Controllers/4.1.-Admin/contractGetController");
+} = require("../../4.-Controllers/4.2.-GettersControllers/contractGetController");
 
 const {
   getAllCoordinators,
   getCoordinatorById,
-} = require("../../4.-Controllers/4.1.-Admin/coordinatorsGetController");
+} = require("../../4.-Controllers/4.2.-GettersControllers/coordinatorsGetController");
 
 const {
   getAllGroups,
   getGroupById,
-} = require("../../4.-Controllers/4.1.-Admin/groupGetController");
+} = require("../../4.-Controllers/4.2.-GettersControllers/groupGetController");
 
 const {
   getAllMembersTeamIntervention,
   getMemberTeamInterventionById,
-} = require("../../4.-Controllers/4.1.-Admin/teachersGetController");
+} = require("../../4.-Controllers/4.2.-GettersControllers/teachersGetController");
 
 const getContractsHandlerAdmin = async (req, res) => {
   try {
@@ -136,7 +136,6 @@ const getTeachersByIdHandlerAdmin = async (req, res) => {
     });
   }
 };
-
 
 const getUsersHandlerAdmin = (req, res) => {
   res.status(200).send(`Obtener todos los usuarios por admin`);

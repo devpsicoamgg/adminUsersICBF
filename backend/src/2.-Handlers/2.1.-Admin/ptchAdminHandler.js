@@ -1,19 +1,18 @@
 const {
   patchContract,
-} = require("../../4.-Controllers/4.1.-Admin/contractPtchController");
+} = require("../../4.-Controllers/4.3.-PatchersControllers/contractPtchController");
 
 const {
   patchCoordinator,
-} = require("../../4.-Controllers/4.1.-Admin/coordinatorPtchController");
+} = require("../../4.-Controllers/4.3.-PatchersControllers/coordinatorPtchController");
 
 const {
   patchGroup,
-} = require("../../4.-Controllers/4.1.-Admin/groupPtchController");
+} = require("../../4.-Controllers/4.3.-PatchersControllers/groupPtchController");
 
 const {
   patchCollaborator,
-} = require("../../4.-Controllers/4.1.-Admin/teacherPatchController");
-
+} = require("../../4.-Controllers/4.3.-PatchersControllers/teacherPtchController");
 
 const patchCoordinatorHandler = async (req, res) => {
   const coordinatorId = req.params.id;

@@ -1,16 +1,16 @@
 const { Contract, Coordinator } = require("../../3.-DataBase/dataBaseConfig");
 const {
   createContractInformation,
-} = require("../../4.-Controllers/4.1.-Admin/contractPostController");
+} = require("../../4.-Controllers/4.4.-PostersControlleres/contractPostController");
 const {
   createCoordinator,
-} = require("../../4.-Controllers/4.1.-Admin/coordinatorPostController");
+} = require("../../4.-Controllers/4.4.-PostersControlleres/coordinatorPostController");
 const {
   createTeamIntervention,
-} = require("../../4.-Controllers/4.1.-Admin/teacherPostController");
+} = require("../../4.-Controllers/4.4.-PostersControlleres/teacherPostController");
 const {
   createGroup,
-} = require("../../4.-Controllers/4.1.-Admin/groupPostController");
+} = require("../../4.-Controllers/4.4.-PostersControlleres/groupPostController");
 
 const createContractHandler = async (req, res) => {
   const {
@@ -168,22 +168,17 @@ const createTeacherHandler = async (req, res) => {
 };
 
 const createGroupHandler = async (req, res) => {
-  const { 
-    groupName, 
-    cuentameCode, 
-    address, 
-    municipality, 
-    neighborhood 
-  } = req.body;
+  const { groupName, cuentameCode, address, municipality, neighborhood } =
+    req.body;
   console.log("Datos recibidos:", req.body);
   try {
-     const response = await createGroup(
-      groupName, 
-      cuentameCode, 
-      address, 
-      municipality, 
-      neighborhood 
-     );
+    const response = await createGroup(
+      groupName,
+      cuentameCode,
+      address,
+      municipality,
+      neighborhood
+    );
     console.log("Respuesta de la creación del grupo:", response);
     res.status(200).send(`Crear un grupo por admin A ${groupName}`);
   } catch (error) {

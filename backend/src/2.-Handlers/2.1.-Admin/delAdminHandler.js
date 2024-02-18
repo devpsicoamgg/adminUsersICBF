@@ -1,30 +1,27 @@
 const {
   deleteContract,
-} = require("../../4.-Controllers/4.1.-Admin/contractDelController");
+} = require("../../4.-Controllers/4.1.-DeletersControllers/contractDelController");
 
 const {
-  deleteGroup
-} = require("../../4.-Controllers/4.1.-Admin/groupDelController");
+  deleteGroup,
+} = require("../../4.-Controllers/4.1.-DeletersControllers/groupDelController");
 
 const {
   deleteCoordinator,
-} = require("../../4.-Controllers/4.1.-Admin/coordinatorDelController");
-
+} = require("../../4.-Controllers/4.1.-DeletersControllers/coordinatorDelController");
 
 const {
   deleteCollaborator,
-} = require("../../4.-Controllers/4.1.-Admin/teacherDelController");
+} = require("../../4.-Controllers/4.1.-DeletersControllers/teacherDelController");
 
 const delAdminHandlerContract = async (req, res) => {
   const contractId = req.params.id;
   try {
     const deleteInfo = await deleteContract(contractId);
-    res
-      .status(200)
-      .json({
-        message: "Contrato Eliminado correctamente",
-        contrato: deleteInfo,
-      });
+    res.status(200).json({
+      message: "Contrato Eliminado correctamente",
+      contrato: deleteInfo,
+    });
   } catch (error) {
     console.error("Error in the contract delete handler:", error);
     //si err xq no existe
@@ -41,12 +38,10 @@ const delAdminHandlerCoordinator = async (req, res) => {
   const coordinatorId = req.params.id;
   try {
     const deleteEmploy = await deleteCoordinator(coordinatorId);
-    res
-      .status(200)
-      .json({
-        message: "Coordinador Eliminado correctamente",
-        contrato: deleteEmploy,
-      });
+    res.status(200).json({
+      message: "Coordinador Eliminado correctamente",
+      contrato: deleteEmploy,
+    });
   } catch (error) {
     console.error("Error in the coordinator delete handler:", error);
     //si err xq no existe
@@ -63,12 +58,10 @@ const delAdminHandlerGroup = async (req, res) => {
   const groupId = req.params.id;
   try {
     const deleteInfo = await deleteGroup(groupId);
-    res
-      .status(200)
-      .json({
-        message: "Grupo eliminado correctamente",
-        contrato: deleteInfo,
-      });
+    res.status(200).json({
+      message: "Grupo eliminado correctamente",
+      contrato: deleteInfo,
+    });
   } catch (error) {
     console.error("Error in the group delete handler:", error);
     //si err xq no existe
@@ -85,12 +78,10 @@ const delAdminHandlerTeacher = async (req, res) => {
   const teamInterventionId = req.params.id;
   try {
     const deleteEmploy = await deleteCollaborator(teamInterventionId);
-    res
-      .status(200)
-      .json({
-        message: "Colaborador Eliminado correctamente",
-        Colaborador: deleteEmploy,
-      });
+    res.status(200).json({
+      message: "Colaborador Eliminado correctamente",
+      Colaborador: deleteEmploy,
+    });
   } catch (error) {
     console.error("Error in the employee delete handler:", error);
     //si err xq no existe
