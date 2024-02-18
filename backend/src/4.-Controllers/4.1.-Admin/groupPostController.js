@@ -1,6 +1,6 @@
 const { Group } = require("../../3.-DataBase/dataBaseConfig");
 
-console.log("Tabla de grupo levantada", Group);
+console.log("Controller POST levantado en admin para", Group);
 
 const createGroup = async (
   groupName, 

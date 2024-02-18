@@ -41,6 +41,7 @@ const ContractModel = (sequelize) => {
       contractNumber: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
       },
       legalRepresentative: {
         type: DataTypes.STRING,

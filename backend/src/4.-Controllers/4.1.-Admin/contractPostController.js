@@ -1,6 +1,6 @@
 const { Contract } = require("../../3.-DataBase/dataBaseConfig");
 
-console.log("Tabla de contrato levantada",Contract);
+console.log("Controller POST levantado en admin para",Contract);
 
 const createContractInformation = async (
   areaMisionalIcbf,

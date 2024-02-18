@@ -1,6 +1,31 @@
-const patchCoordinatorHandler = (req, res) => {
+const {
+  patchContract,
+} = require("../../4.-Controllers/4.1.-Admin/contractPtchController");
+
+const {
+  patchCoordinator,
+} = require("../../4.-Controllers/4.1.-Admin/coordinatorPtchController");
+
+const {
+  patchGroup,
+} = require("../../4.-Controllers/4.1.-Admin/groupPtchController");
+
+const {
+  patchCollaborator,
+} = require("../../4.-Controllers/4.1.-Admin/teacherPatchController");
+
+
+const patchCoordinatorHandler = async (req, res) => {
   const coordinatorId = req.params.id;
-  res.status(200).send(`Coordinador No ${coordinatorId} patcheado por admin`);
+  const dataToUpdate = req.body;
+
+  const result = await patchCoordinator(coordinatorId, dataToUpdate);
+
+  if (result.success) {
+    res.status(200).json({ message: result.message });
+  } else {
+    res.status(404).json({ message: result.message });
+  }
 };
 
 const patchUserHandler = (req, res) => {
@@ -8,26 +33,49 @@ const patchUserHandler = (req, res) => {
   res.status(200).send(`Usuario no ${userId} patcheado por admin`);
 };
 
-const patchGroupHandler = (req, res) => {
+const patchGroupHandler = async (req, res) => {
   const groupId = req.params.id;
-  res.status(200).send(`Grupo no ${groupId} patcheado por admin`);
+  const dataToUpdate = req.body;
+
+  const result = await patchGroup(groupId, dataToUpdate);
+
+  if (result.success) {
+    res.status(200).json({ message: result.message });
+  } else {
+    res.status(404).json({ message: result.message });
+  }
 };
 
-const patchTeacherHandler = (req, res) => {
+const patchTeacherHandler = async (req, res) => {
   const teacherId = req.params.id;
-  res.status(200).send(`Profesor no ${teacherId} patcheado por admin`);
+  const dataToUpdate = req.body;
+
+  const result = await patchCollaborator(teacherId, dataToUpdate);
+
+  if (result.success) {
+    res.status(200).json({ message: result.message });
+  } else {
+    res.status(404).json({ message: result.message });
+  }
 };
 
-const patchContractHandler = (req, res) => {
+const patchContractHandler = async (req, res) => {
   const contractId = req.params.id;
-  res.status(200).send(`Contrato no ${contractId} patcheado por admin`);
-};
+  const dataToUpdate = req.body;
 
+  const result = await patchContract(contractId, dataToUpdate);
+
+  if (result.success) {
+    res.status(200).json({ message: result.message });
+  } else {
+    res.status(404).json({ message: result.message });
+  }
+};
 
 module.exports = {
-  patchCoordinatorHandler, 
-  patchUserHandler, 
-  patchGroupHandler, 
-  patchTeacherHandler, 
-  patchContractHandler
-}
+  patchCoordinatorHandler,
+  patchUserHandler,
+  patchGroupHandler,
+  patchTeacherHandler,
+  patchContractHandler,
+};

@@ -5,9 +5,10 @@ const GroupModel = (sequelize) => {
     'Group',
     {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
+        allowNull: false,
         primaryKey: true,
-        autoIncrement: true
+        defaultValue: DataTypes.UUIDV4,
       },
       groupName: {
         type: DataTypes.STRING,
@@ -15,7 +16,9 @@ const GroupModel = (sequelize) => {
       },
       cuentameCode: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
+
       },
       address: {
         type: DataTypes.STRING,

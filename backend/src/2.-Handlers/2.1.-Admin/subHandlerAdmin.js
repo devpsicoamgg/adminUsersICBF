@@ -7,6 +7,7 @@ const {
   delAdminHandlerCoordinator,
   delAdminHandlerGroup,
   delAdminHandlerTeacher,
+  delAdminHandlerContract
 } = delAdminHandlers;
 
 const {
@@ -38,6 +39,7 @@ const {
 } = patchAdminHandlers;
 
 module.exports = {
+  delAdminHandlerContract,
   delAdminHandlerCoordinator,
   delAdminHandlerGroup,
   delAdminHandlerTeacher,
