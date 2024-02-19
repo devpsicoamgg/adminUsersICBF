@@ -111,6 +111,7 @@ const createCoordinatorHandler = async (req, res) => {
 
 const createTeacherHandler = async (req, res) => {
   const coordinatorId = req.body.coordinatorId;
+  const contractId = req.body.contractId;
   const {
     firstName,
     secondName,
@@ -155,7 +156,8 @@ const createTeacherHandler = async (req, res) => {
       phone,
       email,
       role,
-      coordinatorId
+      coordinatorId, 
+      contractId
     );
     console.log("Respuesta de la creación docente:", response);
     res

@@ -7,16 +7,20 @@ const {
 } = require("../../4.-Controllers/4.2.-CoordinatorsControllers/4.1.2.-GettersControllers/coordinatorsGetController");
 
 const {
-  getAllGroups, getGroupById 
+  getAllGroups,
+  getGroupById,
 } = require("../../4.-Controllers/4.2.-CoordinatorsControllers/4.1.2.-GettersControllers/groupGetController");
 
+const {
+  getAllMembersTeamIntervention,
+  getMemberTeamInterventionById,
+} = require("../../4.-Controllers/4.2.-CoordinatorsControllers/4.1.2.-GettersControllers/teachersGetController");
 
 const getContractByIdHandlerCoordinators = async (req, res) => {
-  const contractId = req.params.id; 
-  const coordinatorId = req.body.coordinatorId; 
-
+  const contractId = req.params.id;
+  const coordinatorId = req.body.coordinatorId;
   try {
-    const result = await getContractById(contractId, coordinatorId); 
+    const result = await getContractById(contractId, coordinatorId);
     res.status(200).json(result);
   } catch (error) {
     console.error("Error in handler to get contract by ID", error);
@@ -38,11 +42,10 @@ const getAllCoordinatorsByCoordinator = async (req, res) => {
     res.status(500).json({
       success: false,
       error: "Internal server error",
-      details: error.message
+      details: error.message,
     });
   }
 };
-
 
 const getAllGroupsHandlerCoordinators = async (req, res) => {
   const coordinatorId = req.body.coordinatorId;
@@ -50,7 +53,10 @@ const getAllGroupsHandlerCoordinators = async (req, res) => {
     const result = await getAllGroups(coordinatorId);
     res.status(200).json(result);
   } catch (error) {
-    console.error("Error en el controlador para obtener todos los grupos", error);
+    console.error(
+      "Error en el controlador para obtener todos los grupos",
+      error
+    );
     res.status(500).json({
       success: false,
       error: "Error interno del servidor",
@@ -75,8 +81,22 @@ const getGroupByIdHandlerCoordinators = async (req, res) => {
   }
 };
 
-const getAllTeachersHandlerCoordinators = (req, res) => {
-  res.status(200).send(`TODOS LOS TEACHERS POR COORDI`);
+const getAllTeachersHandlerCoordinators = async (req, res) => {
+  const coordinatorId = req.body.coordinatorId;
+  try {
+    const result = await getAllMembersTeamIntervention(coordinatorId);
+    res.status(200).json(result);
+  } catch (error) {
+    console.error(
+      "Error en el controlador para obtener todos los grupos",
+      error
+    );
+    res.status(500).json({
+      success: false,
+      error: "Error interno del servidor",
+      details: error.message,
+    });
+  }
 };
 
 const getTeacherByIdHandlerCoordinators = (req, res) => {
@@ -84,23 +104,33 @@ const getTeacherByIdHandlerCoordinators = (req, res) => {
   res.status(200).send(`Profesor no ${teacherId} POR COORDI`);
 };
 
-
 const getAllUsersHandlerCoordinators = (req, res) => {
   res.status(200).send(`TODOS LOS USUARIOS POR COORDI`);
 };
 
-const getUserByIdHandlerCoordinators = (req, res) => {
-  const userId = req.params.id;
-  res.status(200).send(`Usuario no ${userId} POR COORDI`);
+const getUserByIdHandlerCoordinators = async (req, res) => {
+  const groupId = req.params.id;
+  const coordinatorId = req.body.coordinatorId;
+  try {
+    const result = await getMemberTeamInterventionById(groupId, coordinatorId);
+    res.status(200).json(result);
+  } catch (error) {
+    console.error("Error in handler to get contract by ID", error);
+    res.status(500).json({
+      success: false,
+      error: "Internal server error",
+      details: error.message,
+    });
+  }
 };
 
 module.exports = {
-getAllGroupsHandlerCoordinators, 
-getAllUsersHandlerCoordinators, 
-getUserByIdHandlerCoordinators, 
-getContractByIdHandlerCoordinators, 
-getGroupByIdHandlerCoordinators, 
-getAllTeachersHandlerCoordinators, 
-getTeacherByIdHandlerCoordinators,
-getAllCoordinatorsByCoordinator,
-}
+  getAllGroupsHandlerCoordinators,
+  getAllUsersHandlerCoordinators,
+  getUserByIdHandlerCoordinators,
+  getContractByIdHandlerCoordinators,
+  getGroupByIdHandlerCoordinators,
+  getAllTeachersHandlerCoordinators,
+  getTeacherByIdHandlerCoordinators,
+  getAllCoordinatorsByCoordinator,
+};

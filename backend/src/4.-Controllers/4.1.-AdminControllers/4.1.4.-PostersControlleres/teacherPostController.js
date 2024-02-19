@@ -20,7 +20,8 @@ const createTeamIntervention = async (
   phone,
   email,
   role,
-  coordinatorId
+  coordinatorId,
+  contractId
 ) => {
   const randomPassword = generateRandomPassword();
 
@@ -41,6 +42,7 @@ const createTeamIntervention = async (
       role,
       password: randomPassword,
       coordinatorId,
+      contractId,
     });
 
     await sendEmail(

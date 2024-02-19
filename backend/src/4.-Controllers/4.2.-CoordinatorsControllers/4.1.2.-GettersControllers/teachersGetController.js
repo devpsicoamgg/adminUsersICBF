@@ -7,45 +7,44 @@ console.log(
 );
 
 
-const getAllMembersTeamIntervention = async () => {
+const getAllMembersTeamIntervention = async (coordinatorId) => {
   try {
-    const teachers = await TeamIntervention.findAll();
+    const groups = await TeamIntervention.findAll({
+      where: { coordinatorId: coordinatorId }, 
+    });
     return {
       success: true,
-      data: teachers,
+      data: groups,
     };
   } catch (error) {
-    console.error(
-      "Error al obtener los miembros del equipo de intervención: " +
-        error.message
-    );
-    return { success: false, message: "Internal several error" };
+    console.error("Error al obtener los grupos: " + error.message);
+    return { success: false, message: "Error interno del servidor" };
   }
-};
+}; 
 
-const getMemberTeamInterventionById = async (teacherId) => {
+const getMemberTeamInterventionById = async (groupId, coordinatorId) => {
   try {
-    const teacher = await TeamIntervention.findByPk(teacherId);
-
-    if (!teacher) {
+    const group = await Group.findByPk(groupId, {
+      where: { coordinatorId: coordinatorId }
+    });
+    
+    if (!group) {
       return {
         success: false,
-        message: `Miembro del equipo de intervención con ID ${teacherId} no encontrado`,
+        message: `Grupo con ID ${groupId} no encontrado`,
       };
     }
 
     return {
       success: true,
-      data: teacher,
+      data: group,
     };
   } catch (error) {
-    console.error(
-      "Error al obtener el miembro del equipo de intervencipon con ID: " +
-        error.message
-    );
+    console.error("Error al obtener el coordinador con ID: " + error.message);
     return { success: false, message: "Internal server error" };
   }
 };
+
 
 module.exports = {
   getAllMembersTeamIntervention,
