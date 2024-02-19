@@ -37,6 +37,17 @@ const GroupModel = (sequelize) => {
         allowNull: true,
         defaultValue: [],
       },
+
+      isActive: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: true,
+      }, 
+      createdInDb: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: true,
+      },
     },
     { timestamps: false }
   );

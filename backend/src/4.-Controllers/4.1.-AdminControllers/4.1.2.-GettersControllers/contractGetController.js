@@ -1,10 +1,6 @@
-const { Contract } = require("../../3.-DataBase/dataBaseConfig");
+const { Contract } = require("../../../3.-DataBase/dataBaseConfig");
 
-console.log(
-  "Controller 📥GET levantado para acciones en",
-  Contract,
-  "y contractById"
-);
+console.log("Controller 📥GET en ADMIN-ROUTE ➡️", Contract, "y contractById");
 
 const getAllContracts = async () => {
   try {

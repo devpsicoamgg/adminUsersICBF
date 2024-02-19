@@ -1,6 +1,6 @@
-const { Contract } = require("../../3.-DataBase/dataBaseConfig");
+const { Contract } = require("../../../3.-DataBase/dataBaseConfig");
 
-console.log("Controller 📤POST levantado para acciones en", Contract);
+console.log("Controller 📤POST en ADMIN-ROUTE ➡️", Contract);
 
 const createContractInformation = async (
   areaMisionalIcbf,

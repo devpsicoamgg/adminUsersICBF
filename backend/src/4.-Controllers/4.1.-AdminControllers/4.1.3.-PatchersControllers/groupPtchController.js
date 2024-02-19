@@ -1,6 +1,6 @@
-const { Group } = require("../../3.-DataBase/dataBaseConfig");
+const { Group } = require("../../../3.-DataBase/dataBaseConfig");
 
-console.log("Controller 🛠️ PATCH levantado para acciones en", Group);
+console.log("Controller 🛠️ PATCH en ADMIN-ROUTE ➡️", Group);
 
 const patchGroup = async (groupId, dataToUpdate) => {
   try {

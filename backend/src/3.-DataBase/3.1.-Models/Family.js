@@ -91,6 +91,16 @@ const FamilyModel = (sequelize) => {
         defaultValue: [],
       },
 
+      isActive: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: true,
+      }, 
+      createdInDb: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: true,
+      },
     },
     { timestamps: true }
   );

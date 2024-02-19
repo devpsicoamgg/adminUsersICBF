@@ -1,10 +1,6 @@
-const { Group } = require("../../3.-DataBase/dataBaseConfig");
+const { Group } = require("../../../3.-DataBase/dataBaseConfig");
 
-console.log(
-  "Controller 📥GET levantado para acciones en",
-  Group,
-  "y groupById"
-);
+console.log("Controller 📥GET en ADMIN-ROUTE ➡️", Group, "y groupById");
 
 const getAllGroups = async () => {
   try {

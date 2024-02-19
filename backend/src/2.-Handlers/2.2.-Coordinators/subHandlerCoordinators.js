@@ -8,6 +8,7 @@ const {
   getAllUsersHandlerCoordinators,
   getUserByIdHandlerCoordinators,
   getContractByIdHandlerCoordinators,
+  getAllCoordinatorsByCoordinator,
   getGroupByIdHandlerCoordinators,
   getAllTeachersHandlerCoordinators,
   getTeacherByIdHandlerCoordinators,
@@ -46,4 +47,5 @@ module.exports = {
   patchTeacherHandlerCoordinators,
   createGroupHandlerCoordinators,
   createTeacherHandlerCoordinators,
+  getAllCoordinatorsByCoordinator,
 };

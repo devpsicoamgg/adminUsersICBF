@@ -1,6 +1,6 @@
-const { TeamIntervention } = require("../../3.-DataBase/dataBaseConfig");
+const { TeamIntervention } = require("../../../3.-DataBase/dataBaseConfig");
 
-console.log("Controller 🛠️ PATCH levantado para acciones en", TeamIntervention);
+console.log("Controller 🛠️ PATCH en ADMIN-ROUTE ➡️", TeamIntervention);
 
 const patchCollaborator = async (teacherId, dataToUpdate) => {
   try {

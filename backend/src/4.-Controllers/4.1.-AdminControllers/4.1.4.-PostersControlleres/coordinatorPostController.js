@@ -1,8 +1,10 @@
-const { generateRandomPassword } = require("../../5.-Utils/passwordUtils.js");
-const { Coordinator } = require("../../3.-DataBase/dataBaseConfig.js");
-const sendEmail = require("../../6.-Mail/sendEmail.js");
+const {
+  generateRandomPassword,
+} = require("../../../5.-Utils/passwordUtils.js");
+const { Coordinator } = require("../../../3.-DataBase/dataBaseConfig.js");
+const sendEmail = require("../../../6.-Mail/sendEmail.js");
 
-console.log("Controller 📤POST levantado para acciones en", Coordinator);
+console.log("Controller 📤POST en ADMIN-ROUTE ➡️", Coordinator);
 
 const createCoordinator = async (
   firstName,

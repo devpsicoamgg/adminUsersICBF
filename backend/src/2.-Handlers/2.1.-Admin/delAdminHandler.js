@@ -1,18 +1,18 @@
 const {
   deleteContract,
-} = require("../../4.-Controllers/4.1.-DeletersControllers/contractDelController");
+} = require("../../4.-Controllers/4.1.-AdminControllers/4.1.1-DeletersControllers/contractDelController");
 
 const {
   deleteGroup,
-} = require("../../4.-Controllers/4.1.-DeletersControllers/groupDelController");
+} = require("../../4.-Controllers/4.1.-AdminControllers/4.1.1-DeletersControllers/groupDelController");
 
 const {
   deleteCoordinator,
-} = require("../../4.-Controllers/4.1.-DeletersControllers/coordinatorDelController");
+} = require("../../4.-Controllers/4.1.-AdminControllers/4.1.1-DeletersControllers/coordinatorDelController");
 
 const {
   deleteCollaborator,
-} = require("../../4.-Controllers/4.1.-DeletersControllers/teacherDelController");
+} = require("../../4.-Controllers/4.1.-AdminControllers/4.1.1-DeletersControllers/teacherDelController");
 
 const delAdminHandlerContract = async (req, res) => {
   const contractId = req.params.id;

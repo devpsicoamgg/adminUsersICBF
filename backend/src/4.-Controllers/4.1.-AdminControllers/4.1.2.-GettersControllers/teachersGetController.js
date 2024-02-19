@@ -1,7 +1,7 @@
-const { TeamIntervention } = require("../../3.-DataBase/dataBaseConfig");
+const { TeamIntervention } = require("../../../3.-DataBase/dataBaseConfig");
 
 console.log(
-  "Controller 📥GET levantado para acciones en",
+  "Controller 📥GET en ADMIN-ROUTE ➡️",
   TeamIntervention,
   "y teacherById"
 );

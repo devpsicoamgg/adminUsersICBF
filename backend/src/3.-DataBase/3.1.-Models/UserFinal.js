@@ -187,7 +187,11 @@ const UserFinalModel = (sequelize) => {
         allowNull: true,
         defaultValue: [],
       },
-
+      isActive: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: true,
+      }
       
     },
     { timestamps: true }

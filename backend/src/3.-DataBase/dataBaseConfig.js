@@ -29,27 +29,34 @@ const { Contract, Family, Group, TeamIntervention, UserFinal, Coordinator } =
 
 Contract.hasMany(Coordinator, { foreignKey: "contractId" });
 Coordinator.belongsTo(Contract, { foreignKey: "contractId" });
+Contract.hasMany(Group, { foreignKey: "contractId" });
+Group.belongsTo(Contract, { foreignKey: "contractId" });
+Contract.hasMany(TeamIntervention, { foreignKey: "contractId" });
+TeamIntervention.belongsTo(Contract, { foreignKey: "contractId" });
+Contract.hasMany(UserFinal, { foreignKey: "contractId" });
+UserFinal.belongsTo(Contract, { foreignKey: "contractId" });
 
-Coordinator.hasMany(TeamIntervention, {
-  foreignKey: "coordinatorId",
-});
-TeamIntervention.belongsTo(Coordinator, {
-  foreignKey: "coordinatorId",
-});
+
+Coordinator.hasMany(TeamIntervention, { foreignKey: "coordinatorId" });
+TeamIntervention.belongsTo(Coordinator, { foreignKey: "coordinatorId" });
+Coordinator.hasMany(Group, { foreignKey: "coordinatorId" });
+Group.belongsTo(Coordinator, { foreignKey: "coordinatorId" });
+Coordinator.hasMany(UserFinal, { foreignKey: "coordinatorId" });
+UserFinal.belongsTo(Coordinator, { foreignKey: "coordinatorId" });
+
 
 TeamIntervention.hasMany(Group, { foreignKey: "teamInterventionId" });
-Group.belongsTo(TeamIntervention, {
-  foreignKey: "teamInterventionId",
-});
 
 Group.hasMany(UserFinal, { foreignKey: "groupId" });
 UserFinal.belongsTo(Group, { foreignKey: "groupId" });
 
+UserFinal.hasMany(TeamIntervention, { foreignKey: "userId" });
+TeamIntervention.belongsTo(UserFinal, { foreignKey: "userId" });
+
 Family.hasMany(UserFinal, { foreignKey: "familyId" });
 UserFinal.belongsTo(Family, { foreignKey: "familyId" });
 
-
 module.exports = {
-...sequelize.models,
+  ...sequelize.models,
   sequelize,
 };

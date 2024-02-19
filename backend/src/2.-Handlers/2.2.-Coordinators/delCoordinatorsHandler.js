@@ -1,3 +1,7 @@
+
+
+
+
 const deleteGroupHandlerCoordinators = (req, res) => {
   const groupId = req.params.id;
   res.status(200).send(`Grupo no ${groupId} eliminado por coordi`);

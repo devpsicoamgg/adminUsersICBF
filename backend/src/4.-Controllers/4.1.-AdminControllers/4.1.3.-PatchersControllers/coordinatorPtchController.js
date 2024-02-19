@@ -1,6 +1,6 @@
-const { Coordinator } = require("../../3.-DataBase/dataBaseConfig");
+const { Coordinator } = require("../../../3.-DataBase/dataBaseConfig");
 
-console.log("Controller 🛠️ PATCH levantado para acciones en", Coordinator);
+console.log("Controller 🛠️ PATCH en ADMIN-ROUTE ➡️", Coordinator);
 
 const patchCoordinator = async (coordinatorId, dataToUpdate) => {
   try {

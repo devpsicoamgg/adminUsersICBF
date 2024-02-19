@@ -1,10 +1,6 @@
-const { Coordinator } = require("../../3.-DataBase/dataBaseConfig");
+const { Coordinator } = require("../../../3.-DataBase/dataBaseConfig");
 
-console.log(
-  "Controller 📥GET levantado para acciones en",
-  Coordinator,
-  "y coordiById"
-);
+console.log("Controller 📥GET en ADMIN-ROUTE ➡️", Coordinator, "y coordiById");
 
 const getAllCoordinators = async () => {
   try {

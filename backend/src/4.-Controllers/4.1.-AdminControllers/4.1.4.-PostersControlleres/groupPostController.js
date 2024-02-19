@@ -1,13 +1,15 @@
-const { Group } = require("../../3.-DataBase/dataBaseConfig");
+const { Group } = require("../../../3.-DataBase/dataBaseConfig");
 
-console.log("Controller 📤POST levantado para acciones en", Group);
+console.log("Controller 📤POST en ADMIN-ROUTE ➡️", Group);
 
 const createGroup = async (
   groupName,
   cuentameCode,
   address,
   municipality,
-  neighborhood
+  neighborhood, 
+  contractId, 
+  coordinatorId,
 ) => {
   return await Group.create({
     groupName,
@@ -15,6 +17,8 @@ const createGroup = async (
     address,
     municipality,
     neighborhood,
+    contractId, 
+    coordinatorId,
   });
 };
 

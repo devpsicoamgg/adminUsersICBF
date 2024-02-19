@@ -77,7 +77,7 @@ const CoordinatorModel = (sequelize) => {
         allowNull: true,
       },
 
-      // Gender and SISBEN Information
+      // Gender 
       gender: {
         type: DataTypes.STRING,
         allowNull: true,
@@ -103,12 +103,6 @@ const CoordinatorModel = (sequelize) => {
       ethnicity: {
         type: DataTypes.STRING,
         allowNull: true,
-      },
-
-      createdInDb: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: true,
       },
 
       status: {
@@ -242,6 +236,18 @@ const CoordinatorModel = (sequelize) => {
         allowNull: true,
         defaultValue: [],
       },
+
+      createdInDb: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: true,
+      },
+
+      isActive: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: true,
+      }
 
     },
     { timestamps: true}
