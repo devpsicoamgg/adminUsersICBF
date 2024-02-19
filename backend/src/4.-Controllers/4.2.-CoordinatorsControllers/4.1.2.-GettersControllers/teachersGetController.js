@@ -6,6 +6,7 @@ console.log(
   "y teacherById"
 );
 
+
 const getAllMembersTeamIntervention = async () => {
   try {
     const teachers = await TeamIntervention.findAll();

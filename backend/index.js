@@ -6,6 +6,6 @@ const { PORT_SERVER } = process.env;
 
 
 server.listen(PORT_SERVER, () => {
-  sequelize.sync({force: false})
+  sequelize.sync({force: true})
   console.log(`Server is live & listening on port 🎉 ${PORT_SERVER} 🎈`);
 });

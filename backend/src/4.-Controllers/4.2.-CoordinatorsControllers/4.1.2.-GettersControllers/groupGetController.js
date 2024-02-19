@@ -2,35 +2,28 @@ const { Group } = require("../../../3.-DataBase/dataBaseConfig");
 
 console.log("Controller 📥GET en ADMIN-ROUTE ➡️", Group, "y groupById");
 
-const getAllGroups = = async (contractId) => {
+const getAllGroups = async (coordinatorId) => {
   try {
-    const coordinators = await Group.findAll({
-      where: { contractId: contractId },
-      attributes: [
-        'id',
-        'firstName',
-        'secondName',
-        'firstLastName',
-        'secondLastName',
-        'nataleDate',
-        'phone',
-        'email'
-      ]
+    const groups = await Group.findAll({
+      where: { coordinatorId: coordinatorId }, 
     });
     return {
       success: true,
-      data: coordinators,
+      data: groups,
     };
   } catch (error) {
-    console.error("Error al obtener los coordinadores: " + error.message);
-    return { success: false, message: "Internal several error" };
+    console.error("Error al obtener los grupos: " + error.message);
+    return { success: false, message: "Error interno del servidor" };
   }
-};
+}; 
 
-const getGroupById = async (groupId) => {
+
+const getGroupById = async (groupId, coordinatorId) => {
   try {
-    const group = await Group.findByPk(groupId);
-
+    const group = await Group.findByPk(groupId, {
+      where: { coordinatorId: coordinatorId }
+    });
+    
     if (!group) {
       return {
         success: false,
