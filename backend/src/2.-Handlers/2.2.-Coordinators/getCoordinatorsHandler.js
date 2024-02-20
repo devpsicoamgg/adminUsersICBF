@@ -88,7 +88,7 @@ const getAllTeachersHandlerCoordinators = async (req, res) => {
     res.status(200).json(result);
   } catch (error) {
     console.error(
-      "Error en el controlador para obtener todos los grupos",
+      "Error en el controlador para obtener todos los docentes ",
       error
     );
     res.status(500).json({
@@ -99,29 +99,29 @@ const getAllTeachersHandlerCoordinators = async (req, res) => {
   }
 };
 
-const getTeacherByIdHandlerCoordinators = (req, res) => {
-  const teacherId = req.params.id;
-  res.status(200).send(`Profesor no ${teacherId} POR COORDI`);
-};
-
-const getAllUsersHandlerCoordinators = (req, res) => {
-  res.status(200).send(`TODOS LOS USUARIOS POR COORDI`);
-};
-
-const getUserByIdHandlerCoordinators = async (req, res) => {
+const getTeacherByIdHandlerCoordinators = async (req, res) => {
   const groupId = req.params.id;
   const coordinatorId = req.body.coordinatorId;
   try {
     const result = await getMemberTeamInterventionById(groupId, coordinatorId);
     res.status(200).json(result);
   } catch (error) {
-    console.error("Error in handler to get contract by ID", error);
+    console.error("Error in handler to get teacher by ID", error);
     res.status(500).json({
       success: false,
       error: "Internal server error",
       details: error.message,
     });
   }
+};
+
+const getAllUsersHandlerCoordinators = (req, res) => {
+  res.status(200).send(`TODOS LOS USUARIOS POR COORDI`);
+};
+
+const getUserByIdHandlerCoordinators  = (req, res) => {
+  const teacherId = req.params.id;
+  res.status(200).send(`Profesor no ${teacherId} POR COORDI`);
 };
 
 module.exports = {

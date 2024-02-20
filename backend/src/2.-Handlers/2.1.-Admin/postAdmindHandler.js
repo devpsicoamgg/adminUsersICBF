@@ -26,8 +26,6 @@ const createContractHandler = async (req, res) => {
     spots,
   } = req.body;
 
-  console.log("Datos recibidos:", req.body);
-
   try {
     const response = await createContractInformation(
       areaMisionalIcbf,
@@ -41,10 +39,10 @@ const createContractHandler = async (req, res) => {
       legalRepresentative,
       spots
     );
-    console.log("Respuesta de la creación del contrato:", response);
+
     res
       .status(200)
-      .send(`Crear un contrato por admin A ${legalRepresentative}`);
+      .send(`Contrato creado para la respresentación legal de  ${legalRepresentative} ${response} `);
   } catch (error) {
     console.error("Error al crear el contrato:", error);
     res.status(400).json({ error: error.message });
@@ -67,7 +65,7 @@ const createCoordinatorHandler = async (req, res) => {
     email,
     role,
   } = req.body;
-  console.log("Datos recibidos:", req.body);
+
 
   const birthDate = new Date(nataleDate);
   const today = new Date();
@@ -100,10 +98,9 @@ const createCoordinatorHandler = async (req, res) => {
       contractId
     );
 
-    console.log("Respuesta recibida", response);
     res
       .status(200)
-      .send(`Crear un coordinador por admin A ${firstName} ${firstLastName}`);
+      .send(`Crear un coordinador por admin ${firstName} ${firstLastName} ${response}`);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -126,7 +123,7 @@ const createTeacherHandler = async (req, res) => {
     email,
     role,
   } = req.body;
-  console.log("Datos recibidos:", req.body);
+
 
   const birthDate = new Date(nataleDate);
   const today = new Date();
@@ -159,10 +156,8 @@ const createTeacherHandler = async (req, res) => {
       coordinatorId, 
       contractId
     );
-    console.log("Respuesta de la creación docente:", response);
     res
-      .status(200)
-      .send(`Crear un colbaorador por admoin ${firstName} ${firstLastName}`);
+      .status(200).send(`Colaborador creado por administración ${firstName} ${firstLastName} ${response} `);
   } catch (error) {
     console.error("Error al crear el colaborador:", error);
     res.status(400).json({ error: error.message });
@@ -179,7 +174,7 @@ const createGroupHandler = async (req, res) => {
     contractId,
     coordinatorId,
   } = req.body;
-  console.log("Datos recibidos:", req.body);
+
   try {
     const response = await createGroup(
       groupName,
@@ -190,8 +185,7 @@ const createGroupHandler = async (req, res) => {
       contractId,
       coordinatorId
     );
-    console.log("Respuesta de la creación del grupo:", response);
-    res.status(200).send(`Crear un grupo por admin A ${groupName}`);
+    res.status(200).send(`Crear un grupo por admin A ${groupName} response: ${response}`);
   } catch (error) {
     console.error("Error al crear el grupo:", error);
     res.status(400).json({ error: error.message });

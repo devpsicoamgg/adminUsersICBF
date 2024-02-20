@@ -44,8 +44,14 @@ const patchCollaborator = async (teacherId, dataToUpdate) => {
       message: `Colaborador actualizado exitosamente ${teacherId}`,
     };
   } catch (error) {
-    console.error("Error al actualizar el colaborador: " + error.message);
-    return { success: false, message: "Internal several error" };
+    console.error("Error al actualizar el colaborador: ");
+    return {
+      success: false,
+      message:
+        "Internal several error to update the teacher Id N° " +
+        teacherId +
+        error.message,
+    };
   }
 };
 

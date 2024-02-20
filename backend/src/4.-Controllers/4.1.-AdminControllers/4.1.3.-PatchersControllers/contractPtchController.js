@@ -41,8 +41,7 @@ const patchContract = async (contractId, dataToUpdate) => {
       message: `Contrato actualizado exitosamente ${contractId}`,
     };
   } catch (error) {
-    console.error("Error al actualizar el contrato: " + error.message);
-    return { success: false, message: "Internal several error" };
+    return { success: false, message: "Internal several error to update de contract" + error.message};
   }
 };
 

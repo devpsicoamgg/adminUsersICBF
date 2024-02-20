@@ -69,8 +69,7 @@ const createTeamIntervention = async (
 
     return teamInterventionUser;
   } catch (error) {
-    console.error("Error al crear el colaborador:", error);
-    throw new Error("No se pudo crear el colaborador");
+    throw new Error("No se pudo crear el colaborador" + error);
   }
 };
 

@@ -12,22 +12,27 @@ const getAllGroups = async (coordinatorId) => {
       data: groups,
     };
   } catch (error) {
-    console.error("Error al obtener los grupos: " + error.message);
-    return { success: false, message: "Error interno del servidor" };
+    console.error("Error al obtener los grupos" );
+    return { success: false, message: "Error interno del servidor" + error.message + coordinatorId };
   }
 }; 
 
 
 const getGroupById = async (groupId, coordinatorId) => {
   try {
-    const group = await Group.findByPk(groupId, {
-      where: { coordinatorId: coordinatorId }
-    });
-    
+    const group = await Group.findByPk(groupId);
+
     if (!group) {
       return {
         success: false,
         message: `Grupo con ID ${groupId} no encontrado`,
+      };
+    }
+
+    if (group.coordinatorId !== coordinatorId) {
+      return {
+        success: false,
+        message: `El grupo con ID ${groupId} no pertenece al coordinador con ID ${coordinatorId}`,
       };
     }
 
@@ -36,8 +41,7 @@ const getGroupById = async (groupId, coordinatorId) => {
       data: group,
     };
   } catch (error) {
-    console.error("Error al obtener el coordinador con ID: " + error.message);
-    return { success: false, message: "Internal server error" };
+    return { success: false, message: "Error interno del servidor: " + error.message };
   }
 };
 

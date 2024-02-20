@@ -10,8 +10,7 @@ const getAllCoordinators = async () => {
       data: coordinators,
     };
   } catch (error) {
-    console.error("Error al obtener los coordinadores: " + error.message);
-    return { success: false, message: "Internal several error" };
+    return { success: false, message: "Internal several error to get all coordinators" + error.message };
   }
 };
 
@@ -31,8 +30,7 @@ const getCoordinatorById = async (coordinatorId) => {
       data: coordinator,
     };
   } catch (error) {
-    console.error("Error al obtener el coordinador con ID: " + error.message);
-    return { success: false, message: "Internal server error" };
+    return { success: false, message: "Internal server error to get coordinator by Id N°" + coordinatorId+ error.message };
   }
 };
 

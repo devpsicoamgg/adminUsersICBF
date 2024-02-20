@@ -10,8 +10,7 @@ const getAllGroups = async () => {
       data: groups,
     };
   } catch (error) {
-    console.error("Error al obtener los grupos: " + error.message);
-    return { success: false, message: "Internal several error" };
+    return { success: false, message: "Internal several error to get all groups" + error.message };
   }
 };
 
@@ -31,8 +30,7 @@ const getGroupById = async (groupId) => {
       data: group,
     };
   } catch (error) {
-    console.error("Error al obtener el coordinador con ID: " + error.message);
-    return { success: false, message: "Internal server error" };
+    return { success: false, message: "Internal server error to get group by Id N°" + groupId + error.message};
   }
 };
 

@@ -48,8 +48,8 @@ const getContractById = async (contractId, coordinatorId) => {
       data: contract,
     };
   } catch (error) {
-    console.error("Error al obtener el contrato por ID: " + error.message);
-    return { success: false, message: "Internal server error" };
+    console.error("Error al obtener el contrato por ID: " );
+    return { success: false, message: "Internal server error" + error.message + coordinatorId + contractId };
   }
 };
 

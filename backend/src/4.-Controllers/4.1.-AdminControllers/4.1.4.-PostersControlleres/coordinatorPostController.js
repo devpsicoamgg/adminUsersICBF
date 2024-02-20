@@ -67,8 +67,7 @@ const createCoordinator = async (
 
     return coordinator;
   } catch (error) {
-    console.error("Error al crear el coordinador:", error);
-    throw new Error("No se pudo crear el coordinador");
+    throw new Error("No se pudo crear el coordinador" + error );
   }
 };
 

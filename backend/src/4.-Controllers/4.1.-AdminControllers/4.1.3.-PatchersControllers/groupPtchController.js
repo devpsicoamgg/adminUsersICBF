@@ -43,8 +43,7 @@ const patchGroup = async (groupId, dataToUpdate) => {
       message: `Group actualizado exitosamente ${groupId}`,
     };
   } catch (error) {
-    console.error("Error al actualizar el grupo: " + error.message);
-    return { success: false, message: "Internal several error" };
+    return { success: false, message: "Internal several error to update the group N°" + groupId + error.message };
   }
 };
 

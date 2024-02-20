@@ -29,8 +29,8 @@ const getAllCoordinatorsByContractId = async (contractId) => {
       data: coordinators,
     };
   } catch (error) {
-    console.error("Error al obtener los coordinadores: " + error.message);
-    return { success: false, message: "Error interno del servidor" };
+    console.error("Error al obtener los coordinadores: " );
+    return { success: false, message: "Error interno del servidor" + error.message + contractId };
   }
 };
 

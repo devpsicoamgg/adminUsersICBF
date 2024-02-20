@@ -14,11 +14,8 @@ const getAllMembersTeamIntervention = async () => {
       data: teachers,
     };
   } catch (error) {
-    console.error(
-      "Error al obtener los miembros del equipo de intervención: " +
-        error.message
-    );
-    return { success: false, message: "Internal several error" };
+    return { success: false, message: "Internal several error" +
+    error.message};
   }
 };
 
@@ -38,11 +35,8 @@ const getMemberTeamInterventionById = async (teacherId) => {
       data: teacher,
     };
   } catch (error) {
-    console.error(
-      "Error al obtener el miembro del equipo de intervencipon con ID: " +
-        error.message
-    );
-    return { success: false, message: "Internal server error" };
+    return { success: false, message: "Internal server error to get teacher by Id N° " +  teacherId +
+    error.message };
   }
 };
 

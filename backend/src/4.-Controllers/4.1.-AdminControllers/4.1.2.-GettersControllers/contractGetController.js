@@ -10,8 +10,7 @@ const getAllContracts = async () => {
       data: contracts,
     };
   } catch (error) {
-    console.error("Error al obtener los contratos: " + error.message);
-    return { success: false, message: "Internal several error" };
+    return { success: false, message: "Internal several error to get contract" + error.message };
   }
 };
 
@@ -31,8 +30,7 @@ const getContractById = async (contractId) => {
       data: contract,
     };
   } catch (error) {
-    console.error("Error al obtener el contrato por ID: " + error.message);
-    return { success: false, message: "Internal server error" };
+    return { success: false, message: "Internal server error to get contract by Id" + contractId + error.message };
   }
 };
 
