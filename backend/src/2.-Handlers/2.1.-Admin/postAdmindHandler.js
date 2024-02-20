@@ -100,7 +100,7 @@ const createCoordinatorHandler = async (req, res) => {
 
     res
       .status(200)
-      .send(`Crear un coordinador por admin ${firstName} ${firstLastName} ${response}`);
+      .send(response);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -157,7 +157,7 @@ const createTeacherHandler = async (req, res) => {
       contractId
     );
     res
-      .status(200).send(`Colaborador creado por administración ${firstName} ${firstLastName} ${response} `);
+      .status(200).send(response);
   } catch (error) {
     console.error("Error al crear el colaborador:", error);
     res.status(400).json({ error: error.message });
@@ -185,7 +185,7 @@ const createGroupHandler = async (req, res) => {
       contractId,
       coordinatorId
     );
-    res.status(200).send(`Crear un grupo por admin A ${groupName} response: ${response}`);
+    res.status(200).send(response);
   } catch (error) {
     console.error("Error al crear el grupo:", error);
     res.status(400).json({ error: error.message });

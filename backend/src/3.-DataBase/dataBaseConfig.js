@@ -71,21 +71,21 @@ UserFinal.belongsTo(Coordinator, { foreignKey: "coordinatorId" });
 
 // TeamIntervention - Group (Uno a muchos):
 // Un colaborador puede tener muchos grupos.
-TeamIntervention.hasMany(Group, { foreignKey: "teamInterventionId" });
+TeamIntervention.hasMany(Group, { foreignKey: "groupId" });
 // Un grupo puede tener muchas TeamIntervention.
-Group.hasMany(TeamIntervention, { foreignKey: "teamInterventionId" });
+Group.hasMany(TeamIntervention, { foreignKey: "groupId" });
 
 // TeamIntervention - UserFinal (Uno a muchos):
 // Una intervención de equipo puede tener muchos usuarios finales.
-TeamIntervention.hasMany(UserFinal, { foreignKey: "teamInterventionId" });
+TeamIntervention.hasMany(UserFinal, { foreignKey: "userFinalId" });
 // Un usuario final puede tener varios teamIntervention.
 UserFinal.hasMany(TeamIntervention, { foreignKey: "teamInterventionId" });
 
 // UserFinal - Family (Muchos a uno):
 // Un usuario puede tenr varios miembros de familia.
 UserFinal.hasMany(Family, { foreignKey: "familyId" });
-// Una familia puede tener muchos usuarios finales.
-Family.hasMany(UserFinal, { foreignKey: "familyId" });
+// Una familia belongs to finales.
+Family.belongsTo(UserFinal, { foreignKey: "userFinalId" });
 
 
 module.exports = {

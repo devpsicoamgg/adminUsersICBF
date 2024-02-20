@@ -1,20 +1,20 @@
 const {
   getContractById,
-} = require("../../4.-Controllers/4.2.-CoordinatorsControllers/4.1.2.-GettersControllers/contractGetController");
+} = require("../../4.-Controllers/4.2.-CoordinatorsControllers/4.2.2.-GettersControllers/contractGetController");
 
 const {
   getAllCoordinatorsByContractId,
-} = require("../../4.-Controllers/4.2.-CoordinatorsControllers/4.1.2.-GettersControllers/coordinatorsGetController");
+} = require("../../4.-Controllers/4.2.-CoordinatorsControllers/4.2.2.-GettersControllers/coordinatorsGetController");
 
 const {
   getAllGroups,
   getGroupById,
-} = require("../../4.-Controllers/4.2.-CoordinatorsControllers/4.1.2.-GettersControllers/groupGetController");
+} = require("../../4.-Controllers/4.2.-CoordinatorsControllers/4.2.2.-GettersControllers/groupGetController");
 
 const {
   getAllMembersTeamIntervention,
   getMemberTeamInterventionById,
-} = require("../../4.-Controllers/4.2.-CoordinatorsControllers/4.1.2.-GettersControllers/teachersGetController");
+} = require("../../4.-Controllers/4.2.-CoordinatorsControllers/4.2.2.-GettersControllers/teachersGetController");
 
 const getContractByIdHandlerCoordinators = async (req, res) => {
   const contractId = req.params.id;

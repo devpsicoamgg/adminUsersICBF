@@ -22,6 +22,10 @@ const createCoordinator = async (
   role,
   contractId
 ) => {
+
+  if (!contractId) {
+    throw new Error("contractId son obligatorios para crear un grupo");
+  }
   const randomPassword = generateRandomPassword();
 
   try {

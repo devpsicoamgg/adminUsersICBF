@@ -45,6 +45,10 @@ const createTeamIntervention = async (
       contractId,
     });
 
+    if (!contractId || !coordinatorId) {
+      throw new Error("contractId y coordinatorId son obligatorios para crear un docente");
+    }
+
     await sendEmail(
       email,
       `${firstName} te damos una cálida bienvenida`,
