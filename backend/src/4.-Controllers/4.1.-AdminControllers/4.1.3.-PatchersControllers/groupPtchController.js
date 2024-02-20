@@ -1,6 +1,6 @@
 const { Group } = require("../../../3.-DataBase/dataBaseConfig");
 
-console.log("Controller 🛠️ PATCH en ADMIN-ROUTE ➡️", Group);
+console.log("Controller 🛠️ PATCH en 1️⃣  - ADMIN-ROUTE - ➡️", Group);
 
 const patchGroup = async (groupId, dataToUpdate) => {
   try {
@@ -43,7 +43,13 @@ const patchGroup = async (groupId, dataToUpdate) => {
       message: `Group actualizado exitosamente ${groupId}`,
     };
   } catch (error) {
-    return { success: false, message: "Internal several error to update the group N°" + groupId + error.message };
+    return {
+      success: false,
+      message:
+        "Internal several error to update the group N°" +
+        groupId +
+        error.message,
+    };
   }
 };
 

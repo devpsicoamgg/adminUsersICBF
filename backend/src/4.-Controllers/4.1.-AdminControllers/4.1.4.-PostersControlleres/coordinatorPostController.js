@@ -4,7 +4,7 @@ const {
 const { Coordinator } = require("../../../3.-DataBase/dataBaseConfig.js");
 const sendEmail = require("../../../6.-Mail/sendEmail.js");
 
-console.log("Controller 📤POST en ADMIN-ROUTE ➡️", Coordinator);
+console.log("Controller 📤POST en 1️⃣  - ADMIN-ROUTE - ➡️", Coordinator);
 
 const createCoordinator = async (
   firstName,
@@ -22,7 +22,6 @@ const createCoordinator = async (
   role,
   contractId
 ) => {
-
   if (!contractId) {
     throw new Error("contractId son obligatorios para crear un grupo");
   }
@@ -71,7 +70,7 @@ const createCoordinator = async (
 
     return coordinator;
   } catch (error) {
-    throw new Error("No se pudo crear el coordinador" + error );
+    throw new Error("No se pudo crear el coordinador" + error);
   }
 };
 

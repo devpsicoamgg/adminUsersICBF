@@ -1,6 +1,6 @@
 const { Group } = require("../../../3.-DataBase/dataBaseConfig");
 
-console.log("Controller 📥GET en ADMIN-ROUTE ➡️", Group, "y groupById");
+console.log("Controller 📥GET en 1️⃣  - ADMIN-ROUTE - ➡️", Group, "y groupById");
 
 const getAllGroups = async () => {
   try {
@@ -10,7 +10,10 @@ const getAllGroups = async () => {
       data: groups,
     };
   } catch (error) {
-    return { success: false, message: "Internal several error to get all groups" + error.message };
+    return {
+      success: false,
+      message: "Internal several error to get all groups" + error.message,
+    };
   }
 };
 
@@ -30,7 +33,11 @@ const getGroupById = async (groupId) => {
       data: group,
     };
   } catch (error) {
-    return { success: false, message: "Internal server error to get group by Id N°" + groupId + error.message};
+    return {
+      success: false,
+      message:
+        "Internal server error to get group by Id N°" + groupId + error.message,
+    };
   }
 };
 

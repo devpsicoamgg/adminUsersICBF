@@ -1,6 +1,10 @@
 const { Coordinator } = require("../../../3.-DataBase/dataBaseConfig");
 
-console.log("Controller 📥GET en ADMIN-ROUTE ➡️", Coordinator, "y coordiById");
+console.log(
+  "Controller 📥GET en 1️⃣  - ADMIN-ROUTE - ➡️",
+  Coordinator,
+  "y coordiById"
+);
 
 const getAllCoordinators = async () => {
   try {
@@ -10,7 +14,10 @@ const getAllCoordinators = async () => {
       data: coordinators,
     };
   } catch (error) {
-    return { success: false, message: "Internal several error to get all coordinators" + error.message };
+    return {
+      success: false,
+      message: "Internal several error to get all coordinators" + error.message,
+    };
   }
 };
 
@@ -30,7 +37,13 @@ const getCoordinatorById = async (coordinatorId) => {
       data: coordinator,
     };
   } catch (error) {
-    return { success: false, message: "Internal server error to get coordinator by Id N°" + coordinatorId+ error.message };
+    return {
+      success: false,
+      message:
+        "Internal server error to get coordinator by Id N°" +
+        coordinatorId +
+        error.message,
+    };
   }
 };
 

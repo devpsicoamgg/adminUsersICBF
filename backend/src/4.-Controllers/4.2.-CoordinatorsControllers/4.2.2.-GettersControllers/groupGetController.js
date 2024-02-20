@@ -1,22 +1,24 @@
 const { Group } = require("../../../3.-DataBase/dataBaseConfig");
 
-console.log("Controller 📥GET en ADMIN-ROUTE ➡️", Group, "y groupById");
+console.log("Controller 📥GET en 2️⃣  - COORDI-ROUTE -➡️", Group, "y groupById");
 
 const getAllGroups = async (coordinatorId) => {
   try {
     const groups = await Group.findAll({
-      where: { coordinatorId: coordinatorId }, 
+      where: { coordinatorId: coordinatorId },
     });
     return {
       success: true,
       data: groups,
     };
   } catch (error) {
-    console.error("Error al obtener los grupos" );
-    return { success: false, message: "Error interno del servidor" + error.message + coordinatorId };
+    console.error("Error al obtener los grupos");
+    return {
+      success: false,
+      message: "Error interno del servidor" + error.message + coordinatorId,
+    };
   }
-}; 
-
+};
 
 const getGroupById = async (groupId, coordinatorId) => {
   try {
@@ -41,7 +43,10 @@ const getGroupById = async (groupId, coordinatorId) => {
       data: group,
     };
   } catch (error) {
-    return { success: false, message: "Error interno del servidor: " + error.message };
+    return {
+      success: false,
+      message: "Error interno del servidor: " + error.message,
+    };
   }
 };
 

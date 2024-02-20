@@ -1,28 +1,36 @@
-const { Contract, Coordinator } = require("../../../3.-DataBase/dataBaseConfig");
+const {
+  Contract,
+  Coordinator,
+} = require("../../../3.-DataBase/dataBaseConfig");
 
 console.log(
-  "Controller 📥GET levantado para acciones en",
+  "Controller 📥GET en 2️⃣  - COORDI-ROUTE -➡️",
   Contract,
-  "y contractById"
+  Coordinator
 );
 
 const checkCoordinatorContractAccess = async (coordinatorId, contractId) => {
   try {
     const coordinator = await Coordinator.findByPk(coordinatorId, {
-      include: [{ model: Contract, where: { id: contractId } }]
+      include: [{ model: Contract, where: { id: contractId } }],
     });
 
     return coordinator ? true : false;
   } catch (error) {
-    console.error("Error al verificar el acceso del coordinador al contrato:", error.message);
-    return false; 
+    console.error(
+      "Error al verificar el acceso del coordinador al contrato:",
+      error.message
+    );
+    return false;
   }
 };
 
 const getContractById = async (contractId, coordinatorId) => {
   try {
-  
-    const hasAccess = await checkCoordinatorContractAccess(coordinatorId, contractId);
+    const hasAccess = await checkCoordinatorContractAccess(
+      coordinatorId,
+      contractId
+    );
 
     if (!hasAccess) {
       return {
@@ -31,7 +39,6 @@ const getContractById = async (contractId, coordinatorId) => {
       };
     }
 
-  
     const contract = await Contract.findByPk(contractId, {
       attributes: { exclude: ["modificaciones", "updatedAt", "createdAt"] },
     });
@@ -48,8 +55,12 @@ const getContractById = async (contractId, coordinatorId) => {
       data: contract,
     };
   } catch (error) {
-    console.error("Error al obtener el contrato por ID: " );
-    return { success: false, message: "Internal server error" + error.message + coordinatorId + contractId };
+    console.error("Error al obtener el contrato por ID: ");
+    return {
+      success: false,
+      message:
+        "Internal server error" + error.message + coordinatorId + contractId,
+    };
   }
 };
 

@@ -1,6 +1,10 @@
 const { Contract } = require("../../../3.-DataBase/dataBaseConfig");
 
-console.log("Controller 📥GET en ADMIN-ROUTE ➡️", Contract, "y contractById");
+console.log(
+  "Controller 📥GET en 1️⃣  - ADMIN-ROUTE - ➡️",
+  Contract,
+  "y contractById"
+);
 
 const getAllContracts = async () => {
   try {
@@ -10,7 +14,10 @@ const getAllContracts = async () => {
       data: contracts,
     };
   } catch (error) {
-    return { success: false, message: "Internal several error to get contract" + error.message };
+    return {
+      success: false,
+      message: "Internal several error to get contract" + error.message,
+    };
   }
 };
 
@@ -30,7 +37,13 @@ const getContractById = async (contractId) => {
       data: contract,
     };
   } catch (error) {
-    return { success: false, message: "Internal server error to get contract by Id" + contractId + error.message };
+    return {
+      success: false,
+      message:
+        "Internal server error to get contract by Id" +
+        contractId +
+        error.message,
+    };
   }
 };
 

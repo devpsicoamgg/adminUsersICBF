@@ -1,6 +1,6 @@
 const { Group } = require("../../../3.-DataBase/dataBaseConfig");
-
-console.log("Controller ⛔DELETE en ADMIN-ROUTE ➡️", Group);
+console.log("Controller ⛔DELETE en 2️⃣  - COORDI-ROUTE -➡️", Group);
+console.log("______________________________________________________________pollo")
 
 const deleteGroup = async (groupId) => {
   try {

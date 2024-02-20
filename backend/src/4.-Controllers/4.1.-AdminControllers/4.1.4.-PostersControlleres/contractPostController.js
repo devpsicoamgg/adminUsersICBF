@@ -1,6 +1,6 @@
 const { Contract } = require("../../../3.-DataBase/dataBaseConfig");
 
-console.log("Controller 📤POST en ADMIN-ROUTE ➡️", Contract);
+console.log("Controller 📤POST en 1️⃣  - ADMIN-ROUTE - ➡️", Contract);
 
 const createContractInformation = async (
   areaMisionalIcbf,

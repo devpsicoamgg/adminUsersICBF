@@ -1,6 +1,6 @@
 const { Coordinator } = require("../../../3.-DataBase/dataBaseConfig");
 
-console.log("Controller ⛔DELETE en ADMIN-ROUTE ➡️", Coordinator);
+console.log("Controller ⛔DELETE en 1️⃣  - ADMIN-ROUTE - ➡️", Coordinator);
 
 const deleteCoordinator = async (coordinatorId) => {
   try {

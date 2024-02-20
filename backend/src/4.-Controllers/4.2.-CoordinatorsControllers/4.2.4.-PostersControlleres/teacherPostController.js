@@ -4,8 +4,7 @@ const {
 
 const { TeamIntervention } = require("../../../3.-DataBase/dataBaseConfig.js");
 const sendEmail = require("../../../6.-Mail/sendEmail.js");
-
-console.log("Controller 📤POST en ADMIN-ROUTE ➡️", TeamIntervention);
+console.log("Controller 📤POST en 2️⃣  - COORDI-ROUTE -➡️", TeamIntervention);
 
 const createTeamIntervention = async ({
   firstName,
@@ -57,9 +56,11 @@ const createTeamIntervention = async ({
   contractId,
   groupId,
 }) => {
-console.log(edad)
+  console.log(edad);
   if (!contractId || !coordinatorId || !groupId) {
-    throw new Error("contractId, coordinatorId y groupId son obligatorios para crear un grupo");
+    throw new Error(
+      "contractId, coordinatorId y groupId son obligatorios para crear un grupo"
+    );
   }
 
   const randomPassword = generateRandomPassword();
@@ -144,6 +145,5 @@ console.log(edad)
     throw new Error("No se pudo crear el colaborador" + error);
   }
 };
-
 
 module.exports = { createTeamIntervention };

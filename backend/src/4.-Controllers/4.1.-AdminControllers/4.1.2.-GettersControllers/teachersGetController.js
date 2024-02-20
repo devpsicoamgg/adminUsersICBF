@@ -1,7 +1,7 @@
 const { TeamIntervention } = require("../../../3.-DataBase/dataBaseConfig");
 
 console.log(
-  "Controller 📥GET en ADMIN-ROUTE ➡️",
+  "Controller 📥GET en 1️⃣  - ADMIN-ROUTE - ➡️",
   TeamIntervention,
   "y teacherById"
 );
@@ -14,8 +14,10 @@ const getAllMembersTeamIntervention = async () => {
       data: teachers,
     };
   } catch (error) {
-    return { success: false, message: "Internal several error" +
-    error.message};
+    return {
+      success: false,
+      message: "Internal several error" + error.message,
+    };
   }
 };
 
@@ -35,8 +37,13 @@ const getMemberTeamInterventionById = async (teacherId) => {
       data: teacher,
     };
   } catch (error) {
-    return { success: false, message: "Internal server error to get teacher by Id N° " +  teacherId +
-    error.message };
+    return {
+      success: false,
+      message:
+        "Internal server error to get teacher by Id N° " +
+        teacherId +
+        error.message,
+    };
   }
 };
 

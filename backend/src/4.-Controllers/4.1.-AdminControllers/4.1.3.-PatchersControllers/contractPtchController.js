@@ -1,6 +1,6 @@
 const { Contract } = require("../../../3.-DataBase/dataBaseConfig");
 
-console.log("Controller 🛠️ PATCH en ADMIN-ROUTE ➡️", Contract);
+console.log("Controller 🛠️ PATCH en 1️⃣  - ADMIN-ROUTE - ➡️", Contract);
 
 const patchContract = async (contractId, dataToUpdate) => {
   try {
@@ -41,7 +41,10 @@ const patchContract = async (contractId, dataToUpdate) => {
       message: `Contrato actualizado exitosamente ${contractId}`,
     };
   } catch (error) {
-    return { success: false, message: "Internal several error to update de contract" + error.message};
+    return {
+      success: false,
+      message: "Internal several error to update de contract" + error.message,
+    };
   }
 };
 

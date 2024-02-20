@@ -1,6 +1,7 @@
 const { Contract } = require("../../../3.-DataBase/dataBaseConfig");
+console.log("RUTAS EN ADMIN___________________________________________________")
 
-console.log("Controller ⛔DELETE en ADMIN-ROUTE ➡️", Contract);
+console.log("Controller ⛔DELETE en 1️⃣  - ADMIN-ROUTE - ➡️", Contract);
 
 const deleteContract = async (contractId) => {
   try {

@@ -1,6 +1,6 @@
 const { Coordinator } = require("../../../3.-DataBase/dataBaseConfig");
 
-console.log("Controller 🛠️ PATCH en ADMIN-ROUTE ➡️", Coordinator);
+console.log("Controller 🛠️ PATCH en 1️⃣  - ADMIN-ROUTE - ➡️", Coordinator);
 
 const patchCoordinator = async (coordinatorId, dataToUpdate) => {
   try {
@@ -47,8 +47,14 @@ const patchCoordinator = async (coordinatorId, dataToUpdate) => {
       message: `Coordinator actualizado exitosamente ${coordinatorId}`,
     };
   } catch (error) {
-    console.error("Error al actualizar el coordinador: " );
-    return { success: false, message: "Internal several error to update the  coordinator N° "+ coordinatorId + error.message };
+    console.error("Error al actualizar el coordinador: ");
+    return {
+      success: false,
+      message:
+        "Internal several error to update the  coordinator N° " +
+        coordinatorId +
+        error.message,
+    };
   }
 };
 

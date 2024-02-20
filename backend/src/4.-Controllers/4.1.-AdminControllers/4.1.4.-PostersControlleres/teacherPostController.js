@@ -4,7 +4,7 @@ const {
 const { TeamIntervention } = require("../../../3.-DataBase/dataBaseConfig.js");
 const sendEmail = require("../../../6.-Mail/sendEmail.js");
 
-console.log("Controller 📤POST en ADMIN-ROUTE ➡️", TeamIntervention);
+console.log("Controller 📤POST en 1️⃣  - ADMIN-ROUTE - ➡️", TeamIntervention);
 
 const createTeamIntervention = async (
   firstName,
@@ -46,7 +46,9 @@ const createTeamIntervention = async (
     });
 
     if (!contractId || !coordinatorId) {
-      throw new Error("contractId y coordinatorId son obligatorios para crear un docente");
+      throw new Error(
+        "contractId y coordinatorId son obligatorios para crear un docente"
+      );
     }
 
     await sendEmail(

@@ -1,30 +1,32 @@
 const { TeamIntervention } = require("../../../3.-DataBase/dataBaseConfig");
 
 console.log(
-  "Controller 📥GET en ADMIN-ROUTE ➡️",
+  "Controller 📥GET en 2️⃣  - COORDI-ROUTE -➡️",
   TeamIntervention,
   "y teacherById"
 );
 
-
 const getAllMembersTeamIntervention = async (coordinatorId) => {
   try {
     const groups = await TeamIntervention.findAll({
-      where: { coordinatorId: coordinatorId }, 
+      where: { coordinatorId: coordinatorId },
     });
     return {
       success: true,
       data: groups,
     };
   } catch (error) {
-    return { success: false, message: "Error interno del servidor" + error.message };
+    return {
+      success: false,
+      message: "Error interno del servidor" + error.message,
+    };
   }
-}; 
+};
 
 const getMemberTeamInterventionById = async (teacherId, coordinatorId) => {
   try {
     const teacher = await TeamIntervention.findByPk(teacherId);
-    
+
     if (!teacher) {
       return {
         success: false,
@@ -44,11 +46,12 @@ const getMemberTeamInterventionById = async (teacherId, coordinatorId) => {
       data: teacher,
     };
   } catch (error) {
-    return { success: false, message: "Error interno del servidor: " + error.message };
+    return {
+      success: false,
+      message: "Error interno del servidor: " + error.message,
+    };
   }
 };
-
-
 
 module.exports = {
   getAllMembersTeamIntervention,
