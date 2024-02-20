@@ -57,10 +57,7 @@ const createTeamIntervention = async ({
   contractId,
   groupId,
 }) => {
-  console.log("contractId:", contractId);
-  console.log("coordinatorId:", coordinatorId);
-  console.log("groupId:", groupId);
-
+console.log(edad)
   if (!contractId || !coordinatorId || !groupId) {
     throw new Error("contractId, coordinatorId y groupId son obligatorios para crear un grupo");
   }

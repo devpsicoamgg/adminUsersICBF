@@ -7,14 +7,9 @@ const {
   createTeamIntervention,
 } = require("../../4.-Controllers/4.2.-CoordinatorsControllers/4.2.4.-PostersControlleres/teacherPostController");
 
-
 const createTeacherHandlerCoordinators = async (req, res) => {
   try {
     const { coordinatorId, contractId, groupId, ...userData } = req.body;
-
-    console.log("coordinatorId:", coordinatorId);
-    console.log("contractId:", contractId);
-    console.log("groupId:", groupId);
 
     const birthDate = new Date(userData.nataleDate);
     const today = new Date();
@@ -47,8 +42,6 @@ const createTeacherHandlerCoordinators = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
-
-
 
 const createGroupHandlerCoordinators = async (req, res) => {
   const {
