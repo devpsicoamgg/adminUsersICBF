@@ -1,6 +1,6 @@
 const { Contract } = require("../../../3.-DataBase/dataBaseConfig");
 
-console.log("Controller 🛠️ PATCH en 1️⃣  - ADMIN-ROUTE - ➡️", Contract);
+console.log("1️⃣.-Controller 🛠️ PATCH -ADMIN-ROUTE - ➡️", Contract);
 
 const patchContract = async (contractId, dataToUpdate) => {
   try {

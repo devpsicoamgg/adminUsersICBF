@@ -1,8 +1,10 @@
 const { TeamIntervention } = require("../../../3.-DataBase/dataBaseConfig");
 
-console.log("RUTAS EN COORDI___________________________________________________")
+console.log(
+  "RUTAS EN COORDI___________________________________________________"
+);
 
-console.log("Controller ⛔DELETE en 2️⃣  - COORDI-ROUTE -➡️", TeamIntervention);
+console.log("2️⃣.-Controller ⛔DELETE -COORDI-ROUTE -➡️", TeamIntervention);
 
 const deleteCollaborator = async (teamInterventionId, coordinatorId) => {
   try {

@@ -1,6 +1,6 @@
 const { Coordinator } = require("../../../3.-DataBase/dataBaseConfig");
 
-console.log("Controller 🛠️ PATCH en 1️⃣  - ADMIN-ROUTE - ➡️", Coordinator);
+console.log("1️⃣.-Controller 🛠️ PATCH -ADMIN-ROUTE - ➡️", Coordinator);
 
 const patchCoordinator = async (coordinatorId, dataToUpdate) => {
   try {

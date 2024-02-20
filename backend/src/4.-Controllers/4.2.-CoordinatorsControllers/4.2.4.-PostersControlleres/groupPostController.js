@@ -1,6 +1,6 @@
 const { Group } = require("../../../3.-DataBase/dataBaseConfig");
 
-console.log("Controller 📤POST en 2️⃣  - COORDI-ROUTE -➡️", Group);
+console.log("2️⃣.-Controller 📤POST -COORDI-ROUTE -➡️", Group);
 
 const createGroup = async (
   groupName,
