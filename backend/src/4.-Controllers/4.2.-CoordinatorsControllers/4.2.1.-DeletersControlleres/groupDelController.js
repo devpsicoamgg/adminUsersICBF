@@ -1,11 +1,15 @@
 const { Group } = require("../../../3.-DataBase/dataBaseConfig");
 console.log("2️⃣.-Controller ⛔DELETE -COORDI-ROUTE -➡️", Group);
 
-const deleteGroup = async (groupId) => {
+const deleteGroup = async (groupId, coordinatorId) => {
   try {
     const group = await Group.findByPk(groupId);
     if (!group) {
-      throw new Error("Contrato no encontrado");
+      throw new Error("Grupo no encontrado");
+    }
+
+    if (group.coordinatorId !== coordinatorId) {
+      throw new Error("El coordinador no tiene permisos suficientes para eliminar el grupo");
     }
 
     await group.destroy({
@@ -19,5 +23,6 @@ const deleteGroup = async (groupId) => {
     throw new Error("Error al eliminar el grupo: " + error.message);
   }
 };
+
 
 module.exports = { deleteGroup };

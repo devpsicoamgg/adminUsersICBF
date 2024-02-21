@@ -18,6 +18,7 @@ const {
   patchUserHandlerCoordinators,
   patchGroupHandlerCoordinators,
   patchTeacherHandlerCoordinators,
+  patchCoordinatorHandlerCoordinators,
 } = ptchCoordinatorsHandler;
 
 const {
@@ -45,6 +46,7 @@ module.exports = {
   patchUserHandlerCoordinators,
   patchGroupHandlerCoordinators,
   patchTeacherHandlerCoordinators,
+  patchCoordinatorHandlerCoordinators,
   createGroupHandlerCoordinators,
   createTeacherHandlerCoordinators,
   getAllCoordinatorsByCoordinator,
