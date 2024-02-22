@@ -1,122 +1,82 @@
+const { UserFinal } = require("../../../3.-DataBase/dataBaseConfig.js");
 
+console.log("3️⃣.-Controller 📤POST -TEACHERS-ROUTE-➡️ ", UserFinal);
 
-const { TeamIntervention } = require("../../../3.-DataBase/dataBaseConfig.js");
+const createFinalUser = async (userData) => {
+  const {
+    contractId,
+    coordinatorId,
+    groupId,
+    teacherId,
+    firstName,
+    firstLastName,
+    kindDoc,
+    numberDoc,
+    birthDepartment,
+    birthMunicipality,
+    nataleDate,
+    disability,
+    gender,
+    healthSystemAffiliation,
+    ethnicity,
+    entryDate,
+    maritalStatus,
+    sisbenNumber,
+    regimen,
+    kindHealthSystem,
+    occupation,
+    ...otherData
+  } = userData;
 
-console.log("2️⃣.-Controller 📤POST -COORDI-ROUTE-➡️ ", TeamIntervention);
-
-const createTeamIntervention = async ({
-  firstName,
-  secondName,
-  firstLastName,
-  secondLastName,
-  kindDoc,
-  numberDoc,
-  nataleDate,
-  edad,
-  gender,
-  entryDate,
-  phone,
-  email,
-  role,
-  updatedAt,
-  createdAt,
-  birthDepartment,
-  birthMunicipality,
-  maritalStatus,
-  healthSystemAffiliation,
-  regimen,
-  kindHealthSystem,
-  ethnicity,
-  reasonForLeaving,
-  exitDate,
-  maxEducationalLevel,
-  kindFormation,
-  typeOfFormation,
-  lastYearHighSchool,
-  highSchoolCompletionDate,
-  university,
-  lastLevelEducationDate,
-  postgraduateTitle,
-  trainingNeeds,
-  experienceWorkingEarlyChildhood,
-  accessToGoodsServices,
-  computer,
-  internetAccess,
-  contractType,
-  communityMother,
-  healthSocialSecurity,
-  eps,
-  arl,
-  pensionFund,
-  compensationFund,
-  imgDoc,
-  coordinatorId,
-  contractId,
-  groupId,
-}) => {
-  console.log(edad);
-  if (!contractId || !coordinatorId || !groupId) {
-    throw new Error(
-      "contractId, coordinatorId y groupId son obligatorios para crear un grupo"
-    );
+  if (
+    !contractId ||
+    !coordinatorId ||
+    !groupId ||
+    !teacherId ||
+    !firstName ||
+    !firstLastName ||
+    !kindDoc ||
+    !numberDoc ||
+    !birthDepartment ||
+    !birthMunicipality ||
+    !nataleDate ||
+    !gender ||
+    !healthSystemAffiliation ||
+    !ethnicity ||
+    !entryDate ||
+    !maritalStatus ||
+    !sisbenNumber ||
+    !regimen ||
+    !kindHealthSystem ||
+    !occupation
+  ) {
+    throw new Error("Los campos obligatorios no pueden estar vacíos");
   }
 
-  try {
-    const teamInterventionUser = await TeamIntervention.create({
-      firstName,
-      secondName,
-      firstLastName,
-      secondLastName,
-      kindDoc,
-      numberDoc,
-      nataleDate,
-      edad,
-      gender,
-      entryDate,
-      phone,
-      email,
-      role,
-      updatedAt,
-      createdAt,
-      birthDepartment,
-      birthMunicipality,
-      maritalStatus,
-      healthSystemAffiliation,
-      regimen,
-      kindHealthSystem,
-      ethnicity,
-      reasonForLeaving,
-      exitDate,
-      maxEducationalLevel,
-      kindFormation,
-      typeOfFormation,
-      lastYearHighSchool,
-      highSchoolCompletionDate,
-      university,
-      lastLevelEducationDate,
-      postgraduateTitle,
-      trainingNeeds,
-      experienceWorkingEarlyChildhood,
-      accessToGoodsServices,
-      computer,
-      internetAccess,
-      contractType,
-      communityMother,
-      healthSocialSecurity,
-      eps,
-      arl,
-      pensionFund,
-      compensationFund,
-      imgDoc,
-      coordinatorId,
-      contractId,
-      groupId,
-    });
-
- 
-
-    return teamInterventionUser;
- 
+  return await UserFinal.create({
+    ...otherData,
+    contractId,
+    coordinatorId,
+    groupId,
+    teacherId,
+    firstName,
+    firstLastName,
+    kindDoc,
+    numberDoc,
+    birthDepartment,
+    birthMunicipality,
+    nataleDate,
+    disability,
+    gender,
+    healthSystemAffiliation,
+    ethnicity,
+    entryDate,
+    maritalStatus,
+    sisbenNumber,
+    regimen,
+    kindHealthSystem,
+    occupation,
+  });
 };
 
-module.exports = { createTeamIntervention };
+module.exports = { createFinalUser };
