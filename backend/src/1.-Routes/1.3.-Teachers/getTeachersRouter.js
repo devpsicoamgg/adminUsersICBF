@@ -12,7 +12,7 @@ const {
 
 const getTeachersRouter = Router();
 
-getTeachersRouter.get("/coordinators/", getAllCoordinatorsHandlerTeachers);
+getTeachersRouter.get("/coordinators/:id", getAllCoordinatorsHandlerTeachers);
 getTeachersRouter.get("/users", getAllUsersHandlerTeachers);
 getTeachersRouter.get("/users/:id", getUserByIdHandlerTeachers);
 getTeachersRouter.get("/contract/:id", getContractByIdHandlerTeachers);
