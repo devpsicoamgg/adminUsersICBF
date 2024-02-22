@@ -15,6 +15,7 @@ const createFinalUser = async (userData) => {
     birthDepartment,
     birthMunicipality,
     nataleDate,
+    age,
     disability,
     gender,
     healthSystemAffiliation,
@@ -25,7 +26,6 @@ const createFinalUser = async (userData) => {
     regimen,
     kindHealthSystem,
     occupation,
-    ...otherData
   } = userData;
 
   if (
@@ -54,7 +54,6 @@ const createFinalUser = async (userData) => {
   }
 
   return await UserFinal.create({
-    ...otherData,
     contractId,
     coordinatorId,
     groupId,
@@ -66,6 +65,7 @@ const createFinalUser = async (userData) => {
     birthDepartment,
     birthMunicipality,
     nataleDate,
+    age,
     disability,
     gender,
     healthSystemAffiliation,

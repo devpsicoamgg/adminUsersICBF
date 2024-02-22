@@ -59,6 +59,11 @@ const UserFinalModel = (sequelize) => {
         allowNull: false,
       },
 
+      age: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+
       // Marital and Disability Information
       maritalStatus: {
         type: DataTypes.STRING,
