@@ -1,8 +1,10 @@
 const getCoordinatorsHandler = require("./getCoordinatorsHandler");
 
 const {
-  getAllCoordinatorsHandlerTeachers,
   getContractByIdHandlerTeachers,
+  getAllCoordinatorsHandlerTeachers,
+  getAllGroupsHandlerTeachers, 
+  getGroupById
   
 } = getTeachersHandler;
 
@@ -10,4 +12,6 @@ const {
 module.exports = {
   getAllCoordinatorsHandlerTeachers,
   getContractByIdHandlerTeachers,
+  getAllGroupsHandlerTeachers,
+  getGroupById
 };

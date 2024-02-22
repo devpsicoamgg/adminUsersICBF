@@ -1,4 +1,7 @@
-const { Group } = require("../../../3.-DataBase/dataBaseConfig");
+const {
+  Group,
+  TeamIntervention,
+} = require("../../../3.-DataBase/dataBaseConfig");
 
 console.log("2️⃣.-Controller 📥GET -COORDI-ROUTE -➡️", Group, "y groupById");
 
@@ -6,6 +9,35 @@ const getAllGroups = async (coordinatorId) => {
   try {
     const groups = await Group.findAll({
       where: { coordinatorId: coordinatorId },
+      attributes: [
+        "id",
+        "groupName",
+        "cuentameCode",
+        "address",
+        "municipality",
+        "neighborhood",
+        "isActive",
+        "contractId",
+        "coordinatorId",
+      ],
+      include: {
+        model: TeamIntervention,
+        attributes: [
+          "id",
+          "firstName",
+          "secondName",
+          "secondLastName",
+          "kindDoc",
+          "numberDoc",
+          "nataleDate",
+          "phone",
+          "email",
+          "eps",
+          "arl",
+          "role",
+          "isActive",
+        ],
+      },
     });
     return {
       success: true,
@@ -22,7 +54,26 @@ const getAllGroups = async (coordinatorId) => {
 
 const getGroupById = async (groupId, coordinatorId) => {
   try {
-    const group = await Group.findByPk(groupId);
+    const group = await Group.findByPk(groupId, {
+      include: {
+        model: TeamIntervention,
+        attributes: [
+          "id",
+          "firstName",
+          "secondName",
+          "secondLastName",
+          "kindDoc",
+          "numberDoc",
+          "nataleDate",
+          "phone",
+          "email",
+          "eps",
+          "arl",
+          "role",
+          "isActive",
+        ],
+      },
+    });
 
     if (!group) {
       return {
