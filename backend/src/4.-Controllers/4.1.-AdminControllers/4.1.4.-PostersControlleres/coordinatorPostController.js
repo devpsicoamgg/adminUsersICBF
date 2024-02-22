@@ -4,7 +4,7 @@ const {
 const { Coordinator } = require("../../../3.-DataBase/dataBaseConfig.js");
 const sendEmail = require("../../../6.-Mail/sendEmail.js");
 
-console.log("1️⃣.-Controller 📤POST -ADMIN-ROUTE - ➡️", Coordinator);
+console.log("1️⃣.-Controller 📤POST -ADMIN-ROUTE-➡️ ", Coordinator);
 
 const createCoordinator = async (
   firstName,

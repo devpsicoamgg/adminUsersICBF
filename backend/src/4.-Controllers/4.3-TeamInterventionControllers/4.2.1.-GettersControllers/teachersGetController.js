@@ -1,7 +1,7 @@
 const { TeamIntervention } = require("../../../3.-DataBase/dataBaseConfig");
 
 console.log(
-  "2️⃣.-Controller 📥GET -COORDI-ROUTE -➡️",
+  "2️⃣.-Controller 🚚GET -TEACHERS-ROUTE-➡️ ",
   TeamIntervention,
   "y teacherById"
 );
@@ -32,8 +32,6 @@ const getAllMembersTeamIntervention = async (contractId) => {
     };
   }
 };
-
-
 
 module.exports = {
   getAllMembersTeamIntervention,

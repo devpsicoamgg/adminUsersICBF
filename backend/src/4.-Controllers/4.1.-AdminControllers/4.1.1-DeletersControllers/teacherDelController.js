@@ -1,6 +1,6 @@
 const { TeamIntervention } = require("../../../3.-DataBase/dataBaseConfig");
 
-console.log("1️⃣.-Controller ⛔DELETE -ADMIN-ROUTE - ➡️", TeamIntervention);
+console.log("1️⃣.-Controller ⛔DELETE -ADMIN-ROUTE-➡️ ", TeamIntervention);
 
 const deleteCollaborator = async (teamInterventionId) => {
   try {

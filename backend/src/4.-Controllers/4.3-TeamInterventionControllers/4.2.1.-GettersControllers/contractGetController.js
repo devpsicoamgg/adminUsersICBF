@@ -4,11 +4,11 @@ const {
 } = require("../../../3.-DataBase/dataBaseConfig");
 
 console.log("RUTAS EN TEACHERS_______________________________");
-console.log("3️⃣.-Controller 📥GET -TEACHERS-ROUTE -➡️", Contract, Coordinator);
+console.log("3️⃣.-Controller 🚚GET -TEACHERS-ROUTE-➡️ ", Contract, Coordinator);
 
 const checkCoordinatorContractAccess = async (coordinatorId, contractId) => {
-  console.log("elId del coordi", coordinatorId)
-  console.log("elId del contrato", contractId)
+  console.log("elId del coordi", coordinatorId);
+  console.log("elId del contrato", contractId);
   try {
     const coordinator = await Coordinator.findByPk(coordinatorId, {
       include: [{ model: Contract, where: { id: contractId } }],

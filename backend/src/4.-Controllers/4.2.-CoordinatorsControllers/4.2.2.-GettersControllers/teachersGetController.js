@@ -1,7 +1,7 @@
 const { TeamIntervention } = require("../../../3.-DataBase/dataBaseConfig");
 
 console.log(
-  "2️⃣.-Controller 📥GET -COORDI-ROUTE -➡️",
+  "2️⃣.-Controller 🚚GET -COORDI-ROUTE-➡️ ",
   TeamIntervention,
   "y teacherById"
 );

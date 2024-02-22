@@ -1,7 +1,7 @@
 const { Coordinator } = require("../../../3.-DataBase/dataBaseConfig");
 
 console.log(
-  "1️⃣.-Controller 📥GET -ADMIN-ROUTE - ➡️",
+  "1️⃣.-Controller 🚚GET -ADMIN-ROUTE-➡️ ",
   Coordinator,
   "y coordiById"
 );

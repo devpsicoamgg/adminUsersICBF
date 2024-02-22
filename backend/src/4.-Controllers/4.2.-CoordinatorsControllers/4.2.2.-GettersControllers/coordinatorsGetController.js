@@ -3,7 +3,7 @@ const {
   Contract,
 } = require("../../../3.-DataBase/dataBaseConfig");
 
-console.log("2️⃣.-Controller 📥GET -COORDI-ROUTE - ➡️", Coordinator, Contract);
+console.log("2️⃣.-Controller 🚚GET -COORDI-ROUTE-➡️ ", Coordinator, Contract);
 
 const getAllCoordinatorsByContractId = async (contractId) => {
   try {

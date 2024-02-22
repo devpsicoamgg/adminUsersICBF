@@ -1,6 +1,6 @@
 const { TeamIntervention } = require("../../../3.-DataBase/dataBaseConfig");
 
-console.log("2️⃣.-Controller 🛠️ PATCH -COORDI-ROUTE - ➡️", TeamIntervention);
+console.log("2️⃣.-Controller 🛠️ PATCH -COORDI-ROUTE-➡️ ", TeamIntervention);
 
 const patchCollaboratorByCoordi = async (teacherId, dataToUpdate) => {
   try {
@@ -31,7 +31,6 @@ const patchCollaboratorByCoordi = async (teacherId, dataToUpdate) => {
       numCamposModificados: numCamposModificados,
       modificacionesCoordinadorRealizadas: modifiedFields,
     };
-
 
     let modificaciones = teacher.modificaciones || [];
     modificaciones.push(modificationInfo);

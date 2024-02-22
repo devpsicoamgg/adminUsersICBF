@@ -1,6 +1,6 @@
 const { Group } = require("../../../3.-DataBase/dataBaseConfig");
 
-console.log("1️⃣.-Controller 📥GET -ADMIN-ROUTE - ➡️", Group, "y groupById");
+console.log("1️⃣.-Controller 🚚GET -ADMIN-ROUTE-➡️ ", Group, "y groupById");
 
 const getAllGroups = async () => {
   try {

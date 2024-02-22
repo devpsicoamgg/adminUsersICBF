@@ -1,6 +1,6 @@
 const { Group } = require("../../../3.-DataBase/dataBaseConfig");
 
-console.log("2️⃣.-Controller 🛠️ PATCH -COORDI-ROUTE - ➡️", Group);
+console.log("2️⃣.-Controller 🛠️ PATCH -COORDI-ROUTE-➡️ ", Group);
 
 const patchGroupByCoordi = async (groupId, dataToUpdate) => {
   try {
@@ -32,7 +32,6 @@ const patchGroupByCoordi = async (groupId, dataToUpdate) => {
       numCamposModificados: numCamposModificados,
       modificacionesCoordinadorRealizadas: modifiedFields,
     };
-
 
     let modificaciones = group.modificaciones || [];
     modificaciones.push(modificationInfo);

@@ -1,10 +1,8 @@
-const {
-  generateRandomPassword,
-} = require("../../../5.-Utils/passwordUtils.js");
+
 
 const { TeamIntervention } = require("../../../3.-DataBase/dataBaseConfig.js");
-const sendEmail = require("../../../6.-Mail/sendEmail.js");
-console.log("2️⃣.-Controller 📤POST -COORDI-ROUTE -➡️", TeamIntervention);
+
+console.log("2️⃣.-Controller 📤POST -COORDI-ROUTE-➡️ ", TeamIntervention);
 
 const createTeamIntervention = async ({
   firstName,
@@ -63,8 +61,6 @@ const createTeamIntervention = async ({
     );
   }
 
-  const randomPassword = generateRandomPassword();
-
   try {
     const teamInterventionUser = await TeamIntervention.create({
       firstName,
@@ -115,35 +111,12 @@ const createTeamIntervention = async ({
       coordinatorId,
       contractId,
       groupId,
-      password: randomPassword,
     });
 
-    await sendEmail(
-      email,
-      `${firstName} te damos una cálida bienvenida`,
-      `
-      <p> ${firstName} Tu contraseña es: <strong style="background-color: #00FF00;">${randomPassword}</strong></p>
-      Los datos de tu registro son:
-      <p>Te damos la bienvenida al sistema. A continuación, encontrarás los detalles de tu registro:</p>
-      <ul>
-        <li>Nombre: ${firstName} ${secondName}</li>
-        <li>Apellidos: ${firstLastName} ${secondLastName}</li>
-        <li>Tipo de documento: ${kindDoc}</li>
-        <li>Número de documento: ${numberDoc}</li>
-        <li>Rol: ${role}</li>
-        <li>Fecha de entrada: ${entryDate}</li>
-        <li>Teléfono: ${phone}</li>
-        <li>Correo electrónico: ${email}</li>
-      </ul>
-      
-      <p>Si tienes alguna pregunta, no dudes en contactarnos.</p>
-    `
-    );
+ 
 
     return teamInterventionUser;
-  } catch (error) {
-    throw new Error("No se pudo crear el colaborador" + error);
-  }
+ 
 };
 
 module.exports = { createTeamIntervention };

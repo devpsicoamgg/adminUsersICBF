@@ -4,7 +4,7 @@ console.log(
   "RUTAS EN COORDI___________________________________________________"
 );
 
-console.log("2️⃣.-Controller ⛔DELETE -COORDI-ROUTE -➡️", TeamIntervention);
+console.log("2️⃣.-Controller ⛔DELETE -COORDI-ROUTE-➡️ ", TeamIntervention);
 
 const deleteCollaborator = async (teamInterventionId, coordinatorId) => {
   try {

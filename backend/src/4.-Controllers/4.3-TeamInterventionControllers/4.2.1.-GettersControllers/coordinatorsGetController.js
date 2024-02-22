@@ -1,6 +1,15 @@
-const { Coordinator, Contract, Group } = require("../../../3.-DataBase/dataBaseConfig");
+const {
+  Coordinator,
+  Contract,
+  Group,
+} = require("../../../3.-DataBase/dataBaseConfig");
 
-console.log("2️⃣.-Controller 📥GET -TEACHERS-ROUTE - ➡️", Coordinator, Contract, Group);
+console.log(
+  "2️⃣.-Controller 🚚GET -TEACHERS-ROUTE-➡️ ",
+  Coordinator,
+  Contract,
+  Group
+);
 
 const getAllCoordinatorsByContractId = async (contractId) => {
   try {
@@ -34,10 +43,10 @@ const getAllCoordinatorsByContractId = async (contractId) => {
           "address",
           "municipality",
           "neighborhood",
-          "isActive"
+          "isActive",
         ],
       });
-      coordinator.dataValues.groups = groups || []; 
+      coordinator.dataValues.groups = groups || [];
     }
 
     return {
