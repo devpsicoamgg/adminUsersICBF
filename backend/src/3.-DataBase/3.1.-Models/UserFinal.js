@@ -142,19 +142,18 @@ const UserFinalModel = (sequelize) => {
         allowNull: true,
       },
 
+      systemCuentameAnnotations: {
+        type: DataTypes.ARRAY(DataTypes.TEXT),
+        allowNull: true,
+      },
+
       // Modification History and Database Status
       modificationHistory: {
-        type: DataTypes.ARRAY(DataTypes.JSONB),
+        type: DataTypes.ARRAY(DataTypes.JSON),
         allowNull: true,
       },
 
       createdInDb: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: true,
-      },
-
-      status: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: true,
@@ -171,15 +170,13 @@ const UserFinalModel = (sequelize) => {
         allowNull: true,
       },
 
-
-       photo: {
-        type: DataTypes.STRING, 
+      photo: {
+        type: DataTypes.STRING,
         allowNull: true,
       },
 
-      
       imgDoc: {
-        type: DataTypes.STRING, 
+        type: DataTypes.STRING,
         allowNull: true,
       },
 
@@ -187,18 +184,20 @@ const UserFinalModel = (sequelize) => {
         type: DataTypes.DATE,
         allowNull: true,
       },
+
       modificaciones: {
         type: DataTypes.ARRAY(DataTypes.JSON),
         allowNull: true,
         defaultValue: [],
       },
+
       isActive: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: true,
-      }
-      
+      },
     },
+
     { timestamps: true }
   );
 

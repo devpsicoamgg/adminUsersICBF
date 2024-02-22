@@ -10,6 +10,12 @@ const FamilyModel = (sequelize) => {
         primaryKey: true,
         defaultValue: DataTypes.UUIDV4,
       },
+
+      finalUserRelationship: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+
       // Personal Information
       firstName: {
         type: DataTypes.STRING,
@@ -50,6 +56,12 @@ const FamilyModel = (sequelize) => {
         type: DataTypes.DATEONLY,
         allowNull: false,
       },
+
+      edad: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+
       // Gender and SISBEN Information
       gender: {
         type: DataTypes.STRING,
@@ -72,13 +84,6 @@ const FamilyModel = (sequelize) => {
         type: DataTypes.ENUM("Cotizante", "Beneficiario"),
         allowNull: true,
       },
-
-
-      role: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-
 
       imgDoc: {
         type: DataTypes.STRING, 

@@ -12,6 +12,11 @@ const CoordinatorModel = (sequelize) => {
         defaultValue: DataTypes.UUIDV4,
       },
 
+      role: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+
       // Personal Information
       firstName: {
         type: DataTypes.STRING,
@@ -217,11 +222,6 @@ const CoordinatorModel = (sequelize) => {
         allowNull: true,
       },
 
-      role: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-
       password: {
         type: DataTypes.STRING, 
         allowNull: false,
@@ -231,6 +231,7 @@ const CoordinatorModel = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
+      
       modificaciones: {
         type: DataTypes.ARRAY(DataTypes.JSON),
         allowNull: true,
@@ -247,6 +248,12 @@ const CoordinatorModel = (sequelize) => {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: true,
+      }, 
+
+      lastAccess: {
+        type: DataTypes.ARRAY(DataTypes.JSON),
+        allowNull: false,
+        defaultValue: [],
       }
 
     },

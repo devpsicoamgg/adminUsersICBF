@@ -12,6 +12,11 @@ const TeamInterventionModel = (sequelize) => {
         defaultValue: DataTypes.UUIDV4,
       },
 
+      role: {
+        type: DataTypes.STRING,
+        allowNull: false, 
+      },
+
       // Personal Information
       firstName: {
         type: DataTypes.STRING,
@@ -101,13 +106,6 @@ const TeamInterventionModel = (sequelize) => {
       ethnicity: {
         type: DataTypes.STRING,
         allowNull: true,
-      },
-
-
-      createdInDb: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: true,
       },
 
       status: {
@@ -220,11 +218,6 @@ const TeamInterventionModel = (sequelize) => {
         allowNull: true,
       },
 
-      role: {
-        type: DataTypes.STRING,
-        allowNull: false, 
-      },
-
       password: {
         type: DataTypes.STRING, 
         allowNull: false,
@@ -234,6 +227,7 @@ const TeamInterventionModel = (sequelize) => {
         type: DataTypes.STRING, 
         allowNull: true,
       },
+
       modificaciones: {
         type: DataTypes.ARRAY(DataTypes.JSON),
         allowNull: true,
@@ -244,9 +238,21 @@ const TeamInterventionModel = (sequelize) => {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: true,
-      }
+      },
+      
+      createdInDb: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: true,
+      },
 
+      lastAccess: {
+        type: DataTypes.ARRAY(DataTypes.JSON),
+        allowNull: false,
+        defaultValue: [],
+      }
     },
+
     { timestamps: true }
   );
 
