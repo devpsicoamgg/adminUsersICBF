@@ -21,9 +21,9 @@ const patchCoordinatorHandlerCoordinators = async (req, res) => {
   const result = await patchCoordinator(coordinatorId, dataToUpdate);
 
   if (result.success) {
-    res.status(200).json({ message: result.message });
+    res.status(200).json(result);
   } else {
-    res.status(404).json({ message: result.message });
+    res.status(404).json({ message: result.message, result });
   }
 };
 
@@ -40,9 +40,9 @@ const patchGroupHandlerCoordinators = async (req, res) => {
   const result = await patchGroupByCoordi(groupId, dataToUpdate);
 
   if (result.success) {
-    res.status(200).json({ message: result.message });
+    res.status(200).json(result);
   } else {
-    res.status(404).json({ message: result.message });
+    res.status(404).json({ message: result.message, result });
   }
 };
 
@@ -53,9 +53,9 @@ const patchTeacherHandlerCoordinators = async (req, res) => {
   const result = await patchCollaboratorByCoordi(teacherId, dataToUpdate);
 
   if (result.success) {
-    res.status(200).json({ message: result.message });
+    res.status(200).json(result);
   } else {
-    res.status(404).json({ message: result.message });
+    res.status(404).json({ message: result.message, result });
   }
 };
 

@@ -1,17 +1,19 @@
-const getCoordinatorsHandler = require("./getCoordinatorsHandler");
+const getCoordinatorsHandler = require("./getTeachersHandler");
 
 const {
-  getContractByIdHandlerTeachers,
-  getAllCoordinatorsHandlerTeachers,
-  getAllGroupsHandlerTeachers, 
-  getGroupById
-  
+  getContractById, 
+  getAllCoordinatorsByContractId,
+  getAllMembersTeamIntervention, 
+  getAllGroups, 
+  getGroupById, 
 } = getTeachersHandler;
 
 
+
 module.exports = {
-  getAllCoordinatorsHandlerTeachers,
-  getContractByIdHandlerTeachers,
-  getAllGroupsHandlerTeachers,
-  getGroupById
+  getContractById, 
+  getAllCoordinatorsByContractId,
+  getAllMembersTeamIntervention, 
+  getAllGroups, 
+  getGroupById, 
 };

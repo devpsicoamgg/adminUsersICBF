@@ -51,11 +51,7 @@ Contract.hasMany(UserFinal, { foreignKey: "contractId" });
 // Un usuario final pertenece a un solo contrato.
 UserFinal.belongsTo(Contract, { foreignKey: "contractId" });
 
-// Coordinator - TeamIntervention (Uno a muchos):
-// Un coordinador puede tener muchos colaboradores.
-Coordinator.hasMany(TeamIntervention, { foreignKey: "coordinatorId" });
-// Un colaborador pertenece a un solo coordinador.
-TeamIntervention.belongsTo(Coordinator, { foreignKey: "coordinatorId" });
+// COORDINADORES - TeamIntervention (Uno a muchos):
 
 // Coordinator - Group (Uno a muchos):
 // Un coordinador puede tener muchos grupos.
@@ -63,30 +59,43 @@ Coordinator.hasMany(Group, { foreignKey: "coordinatorId" });
 // Un grupo pertenece a un solo coordinador.
 Group.belongsTo(Coordinator, { foreignKey: "coordinatorId" });
 
+// Un coordinador puede tener muchos colaboradores.
+Coordinator.hasMany(TeamIntervention, { foreignKey: "coordinatorId" });
+// Un colaborador pertenece a un solo coordinador.
+TeamIntervention.belongsTo(Coordinator, { foreignKey: "coordinatorId" });
+
 // Coordinator - UserFinal (Uno a muchos):
 // Un coordinador puede tener muchos usuarios finales.
 Coordinator.hasMany(UserFinal, { foreignKey: "coordinatorId" });
 // Un usuario final pertenece a un solo coordinador.
 UserFinal.belongsTo(Coordinator, { foreignKey: "coordinatorId" });
 
+//DOCENTES
 // TeamIntervention - Group (Uno a muchos):
 // Un colaborador puede tener muchos grupos.
 TeamIntervention.hasMany(Group, { foreignKey: "groupId" });
-// Un grupo puede tener muchas TeamIntervention.
-Group.hasMany(TeamIntervention, { foreignKey: "groupId" });
+// Un grupo puede tener un docente.
+Group.belongsTo(TeamIntervention, { foreignKey: "groupId" });
 
 // TeamIntervention - UserFinal (Uno a muchos):
 // Una intervención de equipo puede tener muchos usuarios finales.
 TeamIntervention.hasMany(UserFinal, { foreignKey: "userFinalId" });
 // Un usuario final puede tener varios teamIntervention.
-UserFinal.hasMany(TeamIntervention, { foreignKey: "teamInterventionId" });
+UserFinal.belongsTo(TeamIntervention, { foreignKey: "userFinalId" });
+
 
 // UserFinal - Family (Muchos a uno):
 // Un usuario puede tenr varios miembros de familia.
-UserFinal.hasMany(Family, { foreignKey: "familyId" });
+UserFinal.hasMany(Family, { foreignKey: "userFinalId" });
 // Una familia belongs to finales.
 Family.belongsTo(UserFinal, { foreignKey: "userFinalId" });
 
+
+// UserFinal - Family (Muchos a uno):
+// Un usuario pertenece a un grupo.
+UserFinal.belongsTo(Group, { foreignKey: "groupId" });
+// Un grupo tiene varios usuarios finales.
+Group.hasMany(UserFinal, { foreignKey: "groupId" });
 
 module.exports = {
   ...sequelize.models,

@@ -15,7 +15,7 @@ const createTeacherHandlerCoordinators = async (req, res) => {
     const today = new Date();
     const diff = today.getTime() - birthDate.getTime();
     const ageDate = new Date(diff);
-    const edad = Math.abs(ageDate.getUTCFullYear() - 1970);
+    const age = Math.abs(ageDate.getUTCFullYear() - 1970);
 
     const coordinator = await Coordinator.findByPk(coordinatorId);
     if (!coordinator) {
@@ -33,13 +33,13 @@ const createTeacherHandlerCoordinators = async (req, res) => {
       coordinatorId,
       contractId,
       groupId,
-      edad,
+      age,
     });
 
     res.status(200).send(response);
   } catch (error) {
     console.error("Error al crear el profesor:", error);
-    res.status(400).json({ error: error.message });
+    res.status(400).json({ error: error.message, error });
   }
 };
 
@@ -67,7 +67,7 @@ const createGroupHandlerCoordinators = async (req, res) => {
     res.status(200).send(response);
   } catch (error) {
     console.error("Error al crear el grupo:", error);
-    res.status(400).json({ error: error.message });
+    res.status(400).json({ error: error.message, error });
   }
 };
 

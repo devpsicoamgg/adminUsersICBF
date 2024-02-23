@@ -63,7 +63,7 @@ const TeamInterventionModel = (sequelize) => {
         type: DataTypes.DATEONLY,
         allowNull: true,
       },
-      edad: {
+      age: {
         type: DataTypes.STRING,
         allowNull: false,
       },

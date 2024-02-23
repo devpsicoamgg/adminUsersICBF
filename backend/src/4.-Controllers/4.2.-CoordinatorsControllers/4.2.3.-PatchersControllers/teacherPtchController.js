@@ -11,7 +11,6 @@ const patchCollaboratorByCoordi = async (teacherId, dataToUpdate) => {
         message: `Teacher with id N° ${teacherId} not found`,
       };
     }
-
     const previousTeacherData = { ...teacher.get() };
     await teacher.update(dataToUpdate);
     const modifiedFields = {};
@@ -41,7 +40,7 @@ const patchCollaboratorByCoordi = async (teacherId, dataToUpdate) => {
 
     return {
       success: true,
-      message: `Colaborador actualizado exitosamente ${teacherId}`,
+      modificaciones: modificaciones
     };
   } catch (error) {
     console.error("Error al actualizar el colaborador: ");
