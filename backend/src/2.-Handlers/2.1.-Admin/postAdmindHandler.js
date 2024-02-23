@@ -42,7 +42,7 @@ const createContractHandler = async (req, res) => {
 
     res
       .status(200)
-      .send(`Contrato creado para la respresentación legal de  ${legalRepresentative} ${response} `);
+      .send(response);
   } catch (error) {
     console.error("Error al crear el contrato:", error);
     res.status(400).json({ error: error.message });

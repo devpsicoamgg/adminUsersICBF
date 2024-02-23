@@ -38,7 +38,9 @@ const patchContract = async (contractId, dataToUpdate) => {
 
     return {
       success: true,
-      message: `Contrato actualizado exitosamente ${contractId}`,
+      message: `Contrato actualizado exitosamente ${contractId} con las siguientes modoficaciones escenciales`,
+      modificaciones: modificaciones, 
+      contract: contract,
     };
   } catch (error) {
     return {

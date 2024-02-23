@@ -45,6 +45,7 @@ const patchCoordinator = async (coordinatorId, dataToUpdate) => {
     return {
       success: true,
       message: `Coordinator actualizado exitosamente ${coordinatorId}`,
+      modificaciones: modificaciones
     };
   } catch (error) {
     console.error("Error al actualizar el coordinador: ");

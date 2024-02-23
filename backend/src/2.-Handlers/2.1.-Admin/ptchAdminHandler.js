@@ -21,9 +21,9 @@ const patchCoordinatorHandler = async (req, res) => {
   const result = await patchCoordinator(coordinatorId, dataToUpdate);
 
   if (result.success) {
-    res.status(200).json({ message: result.message });
+    res.status(200).json(result);
   } else {
-    res.status(404).json({ message: result.message });
+    res.status(404).json({ message: result.message, result });
   }
 };
 
@@ -39,9 +39,9 @@ const patchGroupHandler = async (req, res) => {
   const result = await patchGroup(groupId, dataToUpdate);
 
   if (result.success) {
-    res.status(200).json({ message: result.message });
+    res.status(200).json(result);
   } else {
-    res.status(404).json({ message: result.message });
+    res.status(404).json({ message: result.message, result });
   }
 };
 
@@ -52,9 +52,9 @@ const patchTeacherHandler = async (req, res) => {
   const result = await patchCollaborator(teacherId, dataToUpdate);
 
   if (result.success) {
-    res.status(200).json({ message: result.message });
+    res.status(200).json(result);
   } else {
-    res.status(404).json({ message: result.message });
+    res.status(404).json({ message: result.message, result });
   }
 };
 
@@ -65,9 +65,9 @@ const patchContractHandler = async (req, res) => {
   const result = await patchContract(contractId, dataToUpdate);
 
   if (result.success) {
-    res.status(200).json({ message: result.message });
+    res.status(200).json(result);
   } else {
-    res.status(404).json({ message: result.message });
+    res.status(404).json({ message: result.message, result });
   }
 };
 

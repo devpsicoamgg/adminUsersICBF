@@ -41,6 +41,7 @@ const patchGroup = async (groupId, dataToUpdate) => {
     return {
       success: true,
       message: `Group actualizado exitosamente ${groupId}`,
+      modificaciones: modificaciones,
     };
   } catch (error) {
     return {

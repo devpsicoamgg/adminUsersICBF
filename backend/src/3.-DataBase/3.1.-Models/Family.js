@@ -4,6 +4,7 @@ const FamilyModel = (sequelize) => {
   const Family = sequelize.define(
     "Family",
     {
+      
       id: {
         type: DataTypes.UUID,
         allowNull: false,
