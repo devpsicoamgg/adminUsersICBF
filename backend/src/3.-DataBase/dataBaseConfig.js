@@ -71,18 +71,16 @@ Coordinator.hasMany(UserFinal, { foreignKey: "coordinatorId" });
 UserFinal.belongsTo(Coordinator, { foreignKey: "coordinatorId" });
 
 //DOCENTES
-// TeamIntervention - Group (Uno a muchos):
+// TeamIntervention - Group (muchos a muchos):
 // Un colaborador puede tener muchos grupos.
 TeamIntervention.hasMany(Group, { foreignKey: "groupId" });
-// Un grupo puede tener un docente.
-Group.belongsTo(TeamIntervention, { foreignKey: "groupId" });
+// Un grupo puede tener varios docentes.
+Group.hasMany(TeamIntervention, { foreignKey: "groupId" });
 
-// TeamIntervention - UserFinal (Uno a muchos):
-// Una intervención de equipo puede tener muchos usuarios finales.
-TeamIntervention.hasMany(UserFinal, { foreignKey: "userFinalId" });
-// Un usuario final puede tener varios teamIntervention.
-UserFinal.belongsTo(TeamIntervention, { foreignKey: "userFinalId" });
-
+// TeamIntervention - UserFinal (mucho a muchos):
+// Un docente puede tener muchos usuarios finales.
+UserFinal.belongsTo(TeamIntervention, { foreignKey: 'teacherId' });
+TeamIntervention.hasMany(UserFinal, { foreignKey: 'teacherId' });
 
 // UserFinal - Family (Muchos a uno):
 // Un usuario puede tenr varios miembros de familia.

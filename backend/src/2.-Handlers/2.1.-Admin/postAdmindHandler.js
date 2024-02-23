@@ -40,9 +40,7 @@ const createContractHandler = async (req, res) => {
       spots
     );
 
-    res
-      .status(200)
-      .send(response);
+    res.status(200).send(response);
   } catch (error) {
     console.error("Error al crear el contrato:", error);
     res.status(400).json({ error: error.message });
@@ -66,12 +64,11 @@ const createCoordinatorHandler = async (req, res) => {
     role,
   } = req.body;
 
-
   const birthDate = new Date(nataleDate);
   const today = new Date();
   const diff = today.getTime() - birthDate.getTime();
   const ageDate = new Date(diff);
-  const edad = Math.abs(ageDate.getUTCFullYear() - 1970);
+  const age = Math.abs(ageDate.getUTCFullYear() - 1970);
 
   try {
     const contract = await Contract.findByPk(contractId);
@@ -89,7 +86,7 @@ const createCoordinatorHandler = async (req, res) => {
       kindDoc,
       numberDoc,
       nataleDate,
-      edad,
+      age,
       gender,
       entryDate,
       phone,
@@ -98,9 +95,7 @@ const createCoordinatorHandler = async (req, res) => {
       contractId
     );
 
-    res
-      .status(200)
-      .send(response);
+    res.status(200).send(response);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -109,6 +104,7 @@ const createCoordinatorHandler = async (req, res) => {
 const createTeacherHandler = async (req, res) => {
   const coordinatorId = req.body.coordinatorId;
   const contractId = req.body.contractId;
+  const groupId = req.body.groupId;
   const {
     firstName,
     secondName,
@@ -123,7 +119,6 @@ const createTeacherHandler = async (req, res) => {
     email,
     role,
   } = req.body;
-
 
   const birthDate = new Date(nataleDate);
   const today = new Date();
@@ -153,11 +148,11 @@ const createTeacherHandler = async (req, res) => {
       phone,
       email,
       role,
-      coordinatorId, 
-      contractId
+      coordinatorId,
+      contractId,
+      groupId
     );
-    res
-      .status(200).send(response);
+    res.status(200).send(response);
   } catch (error) {
     console.error("Error al crear el colaborador:", error);
     res.status(400).json({ error: error.message });

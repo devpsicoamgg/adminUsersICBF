@@ -2,7 +2,12 @@ const {
   generateRandomPassword,
 } = require("../../../5.-Utils/passwordUtils.js");
 
-const { TeamIntervention } = require("../../../3.-DataBase/dataBaseConfig.js");
+const {
+  TeamIntervention,
+  Contract,
+  Group,
+  Coordinator,
+} = require("../../../3.-DataBase/dataBaseConfig.js");
 const sendEmail = require("../../../6.-Mail/sendEmail.js");
 console.log("2️⃣.-Controller 📤POST -COORDI-ROUTE-➡️ ", TeamIntervention);
 
@@ -56,11 +61,27 @@ const createTeamIntervention = async ({
   contractId,
   groupId,
 }) => {
-  console.log(edad);
+  console.log(age);
   if (!contractId || !coordinatorId || !groupId) {
     throw new Error(
       "contractId, coordinatorId y groupId son obligatorios para crear un grupo"
     );
+  }
+
+  const contractExists = await Contract.findByPk(contractId);
+  const coordinatorExists = await Coordinator.findByPk(coordinatorId);
+  const groupExists = await Group.findByPk(groupId);
+
+  if (!contractExists) {
+    throw new Error("El ID contractId no existe en su tabla correspondiente");
+  }
+  if (!coordinatorExists) {
+    throw new Error(
+      "El ID coordinatorId no existe en su tabla correspondiente"
+    );
+  }
+  if (!groupExists) {
+    throw new Error("El ID groupId no existe en su tabla correspondiente");
   }
 
   const randomPassword = generateRandomPassword();

@@ -104,7 +104,7 @@ const createFamilyMemberHandlerTeachers = async (req, res) => {
     const today = new Date();
     const diff = today.getTime() - birthDate.getTime();
     const ageDate = new Date(diff);
-    const edad = Math.abs(ageDate.getUTCFullYear() - 1970);
+    const age = Math.abs(ageDate.getUTCFullYear() - 1970);
 
     const response = await createFamilyMemberByUser({
       contractId,
@@ -129,7 +129,7 @@ const createFamilyMemberHandlerTeachers = async (req, res) => {
       regimen,
       kindHealthSystem,
       occupation,
-      edad,
+      age,
       finalUserRelationship,
     });
 

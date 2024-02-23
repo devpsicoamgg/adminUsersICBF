@@ -1,4 +1,11 @@
-const { Family } = require("../../../3.-DataBase/dataBaseConfig.js");
+const {
+  Family,
+  Contract,
+  Coordinator,
+  Group,
+  TeamIntervention,
+  UserFinal,
+} = require("../../../3.-DataBase/dataBaseConfig.js");
 
 console.log("3️⃣.-Controller 📤POST -TEACHERS-ROUTE-➡️ ", Family);
 
@@ -15,7 +22,7 @@ const createFamilyMemberByUser = async (userData, userId) => {
     birthDepartment,
     birthMunicipality,
     nataleDate,
-    edad,
+    age,
     disability,
     gender,
     healthSystemAffiliation,
@@ -28,6 +35,19 @@ const createFamilyMemberByUser = async (userData, userId) => {
     occupation,
     finalUserRelationship,
   } = userData;
+
+  // Verificar la existencia de los IDs en las tablas correspondientes
+  const contractExists = await Contract.findByPk(contractId);
+  const coordinatorExists = await Coordinator.findByPk(coordinatorId);
+  const groupExists = await Group.findByPk(groupId);
+  const teacherExists = await UserFinal.findByPk(teacherId);
+
+  // Si algún ID no existe, lanzar un error
+  if (!contractExists || !coordinatorExists || !groupExists || !teacherExists) {
+    throw new Error(
+      "Alguno de los IDs proporcionados no existe en su tabla correspondiente"
+    );
+  }
 
   if (
     !contractId ||
@@ -67,7 +87,7 @@ const createFamilyMemberByUser = async (userData, userId) => {
     birthDepartment,
     birthMunicipality,
     nataleDate,
-    edad,
+    age,
     disability,
     gender,
     healthSystemAffiliation,

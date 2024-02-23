@@ -1,8 +1,8 @@
 const { DataTypes } = require("sequelize");
 
-const CoordinatorModel = (sequelize) => {
-  const Coordinator = sequelize.define(
-    "Coordinator",
+const TeamInterventionModel = (sequelize) => {
+  const TeamIntervention = sequelize.define(
+    "TeamIntervention",
     {
       // Primary key
       id: {
@@ -14,7 +14,7 @@ const CoordinatorModel = (sequelize) => {
 
       role: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: false, 
       },
 
       // Personal Information
@@ -63,14 +63,12 @@ const CoordinatorModel = (sequelize) => {
         type: DataTypes.DATEONLY,
         allowNull: true,
       },
-
       age: {
         type: DataTypes.STRING,
         allowNull: false,
       },
 
       // Marital and Disability Information
-
       maritalStatus: {
         type: DataTypes.STRING,
         allowNull: true,
@@ -82,7 +80,7 @@ const CoordinatorModel = (sequelize) => {
         allowNull: true,
       },
 
-      // Gender 
+      // Gender and SISBEN Information
       gender: {
         type: DataTypes.STRING,
         allowNull: true,
@@ -134,12 +132,10 @@ const CoordinatorModel = (sequelize) => {
       phone: {
         type: DataTypes.STRING,
         allowNull: true,
-        unique: true,
       },
       email: {
         type: DataTypes.STRING,
         allowNull: true,
-        unique: true,
       },
       maxEducationalLevel: {
         type: DataTypes.STRING,
@@ -226,41 +222,41 @@ const CoordinatorModel = (sequelize) => {
         type: DataTypes.STRING, 
         allowNull: false,
       },
-
+ 
       imgDoc: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING, 
         allowNull: true,
       },
-      
+
       modificaciones: {
         type: DataTypes.ARRAY(DataTypes.JSON),
         allowNull: true,
         defaultValue: [],
       },
-
+      
+      isActive: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: true,
+      },
+      
       createdInDb: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: true,
       },
 
-      isActive: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: true,
-      }, 
-
       lastAccess: {
         type: DataTypes.ARRAY(DataTypes.JSON),
         allowNull: false,
         defaultValue: [],
       }
-
     },
-    { timestamps: true}
+
+    { timestamps: true }
   );
 
-  return Coordinator;
+  return TeamIntervention;
 };
 
-module.exports = CoordinatorModel;
+module.exports = TeamInterventionModel;

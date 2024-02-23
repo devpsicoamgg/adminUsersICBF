@@ -58,7 +58,7 @@ const FamilyModel = (sequelize) => {
         allowNull: false,
       },
 
-      edad: {
+      age: {
         type: DataTypes.STRING,
         allowNull: false,
       },
