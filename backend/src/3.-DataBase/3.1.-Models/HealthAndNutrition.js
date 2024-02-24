@@ -1,8 +1,8 @@
 const { DataTypes } = require("sequelize");
 
-const TeamInterventionModel = (sequelize) => {
-  const TeamIntervention = sequelize.define(
-    "TeamIntervention",
+const HealthAndNutritionModel = (sequelize) => {
+  const HealthAndNutrition = sequelize.define(
+    "HealthAndNutrition",
     {
       // Primary key
       id: {
@@ -256,7 +256,7 @@ const TeamInterventionModel = (sequelize) => {
     { timestamps: true }
   );
 
-  return TeamIntervention;
+  return HealthAndNutrition;
 };
 
-module.exports = TeamInterventionModel;
+module.exports = HealthAndNutritionModel;

@@ -28,6 +28,9 @@ const {
   createContractHandler,
   createTeacherHandler,
   createGroupHandler,
+  createNutritionistHandler,
+  createPsySocialHandler, 
+  createAdministrativeHandler,
 } = postAdminHandlers;
 
 const {
@@ -56,7 +59,10 @@ module.exports = {
   createCoordinatorHandler,
   createContractHandler,
   createTeacherHandler,
+  createNutritionistHandler,
   createGroupHandler,
+  createPsySocialHandler, 
+  createAdministrativeHandler,
   patchCoordinatorHandler,
   patchUserHandler,
   patchGroupHandler,

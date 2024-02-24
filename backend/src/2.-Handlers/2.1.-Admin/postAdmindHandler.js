@@ -2,15 +2,32 @@ const { Contract, Coordinator } = require("../../3.-DataBase/dataBaseConfig");
 const {
   createContractInformation,
 } = require("../../4.-Controllers/4.1.-AdminControllers/4.1.4.-PostersControlleres/contractPostController");
+
 const {
   createCoordinator,
 } = require("../../4.-Controllers/4.1.-AdminControllers/4.1.4.-PostersControlleres/coordinatorPostController");
+
 const {
   createTeamIntervention,
 } = require("../../4.-Controllers/4.1.-AdminControllers/4.1.4.-PostersControlleres/teacherPostController");
+
 const {
   createGroup,
 } = require("../../4.-Controllers/4.1.-AdminControllers/4.1.4.-PostersControlleres/groupPostController");
+
+const {
+  createHealthAndNutrition,
+} = require("../../4.-Controllers/4.1.-AdminControllers/4.1.4.-PostersControlleres/HealthAndNutritionPostController");
+
+const {
+  createPsySocialCollaborator,
+} = require("../../4.-Controllers/4.1.-AdminControllers/4.1.4.-PostersControlleres/PsycoSocialPostController");
+
+const {
+  createAdministrativeCollaborator,
+} = require("../../4.-Controllers/4.1.-AdminControllers/4.1.4.-PostersControlleres/AdministrativeAssistantPostController");
+
+
 
 const createContractHandler = async (req, res) => {
   const {
@@ -159,6 +176,175 @@ const createTeacherHandler = async (req, res) => {
   }
 };
 
+const createNutritionistHandler = async (req, res) => {
+  const coordinatorId = req.body.coordinatorId;
+  const contractId = req.body.contractId;
+  const {
+    firstName,
+    secondName,
+    firstLastName,
+    secondLastName,
+    kindDoc,
+    numberDoc,
+    nataleDate,
+    gender,
+    entryDate,
+    phone,
+    email,
+    role,
+  } = req.body;
+
+  const birthDate = new Date(nataleDate);
+  const today = new Date();
+  const diff = today.getTime() - birthDate.getTime();
+  const ageDate = new Date(diff);
+  const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+
+  try {
+    const coordinator = await Coordinator.findByPk(coordinatorId);
+
+    if (!coordinator) {
+      console.error("Coordinador no encontrado");
+      return res.status(404).json({ error: "Coordinador no encontrado" });
+    }
+
+    const response = await createHealthAndNutrition(
+      firstName,
+      secondName,
+      firstLastName,
+      secondLastName,
+      kindDoc,
+      numberDoc,
+      nataleDate,
+      age,
+      gender,
+      entryDate,
+      phone,
+      email,
+      role,
+      coordinatorId,
+      contractId,
+    );
+    res.status(200).send(response);
+  } catch (error) {
+    console.error("Error al crear el nutricionista:", error);
+    res.status(400).json({ error: error.message });
+  }
+};
+
+const createPsySocialHandler = async (req, res) => {
+  const coordinatorId = req.body.coordinatorId;
+  const contractId = req.body.contractId;
+  const {
+    firstName,
+    secondName,
+    firstLastName,
+    secondLastName,
+    kindDoc,
+    numberDoc,
+    nataleDate,
+    gender,
+    entryDate,
+    phone,
+    email,
+    role,
+  } = req.body;
+
+  const birthDate = new Date(nataleDate);
+  const today = new Date();
+  const diff = today.getTime() - birthDate.getTime();
+  const ageDate = new Date(diff);
+  const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+
+  try {
+    const coordinator = await Coordinator.findByPk(coordinatorId);
+
+    if (!coordinator) {
+      console.error("Coordinador no encontrado");
+      return res.status(404).json({ error: "Coordinador no encontrado" });
+    }
+
+    const response = await createPsySocialCollaborator(
+      firstName,
+      secondName,
+      firstLastName,
+      secondLastName,
+      kindDoc,
+      numberDoc,
+      nataleDate,
+      age,
+      gender,
+      entryDate,
+      phone,
+      email,
+      role,
+      coordinatorId,
+      contractId,
+    );
+    res.status(200).send(response);
+  } catch (error) {
+    console.error("Error al crear el psicosocial:", error);
+    res.status(400).json({ error: error.message });
+  }
+};
+
+
+const createAdministrativeHandler = async (req, res) => {
+  const coordinatorId = req.body.coordinatorId;
+  const contractId = req.body.contractId;
+  const {
+    firstName,
+    secondName,
+    firstLastName,
+    secondLastName,
+    kindDoc,
+    numberDoc,
+    nataleDate,
+    gender,
+    entryDate,
+    phone,
+    email,
+    role,
+  } = req.body;
+
+  const birthDate = new Date(nataleDate);
+  const today = new Date();
+  const diff = today.getTime() - birthDate.getTime();
+  const ageDate = new Date(diff);
+  const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+
+  try {
+    const coordinator = await Coordinator.findByPk(coordinatorId);
+
+    if (!coordinator) {
+      console.error("Coordinador no encontrado");
+      return res.status(404).json({ error: "Coordinador no encontrado" });
+    }
+
+    const response = await createAdministrativeCollaborator(
+      firstName,
+      secondName,
+      firstLastName,
+      secondLastName,
+      kindDoc,
+      numberDoc,
+      nataleDate,
+      age,
+      gender,
+      entryDate,
+      phone,
+      email,
+      role,
+      coordinatorId,
+      contractId,
+    );
+    res.status(200).send(response);
+  } catch (error) {
+    console.error("Error al crear el psicosocial:", error);
+    res.status(400).json({ error: error.message });
+  }
+};
+
 const createGroupHandler = async (req, res) => {
   const {
     groupName,
@@ -192,4 +378,7 @@ module.exports = {
   createContractHandler,
   createTeacherHandler,
   createGroupHandler,
+  createNutritionistHandler,
+  createPsySocialHandler, 
+  createAdministrativeHandler
 };

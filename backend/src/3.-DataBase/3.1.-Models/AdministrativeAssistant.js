@@ -1,8 +1,8 @@
 const { DataTypes } = require("sequelize");
 
-const PsySocialModel = (sequelize) => {
-  const PsySocial = sequelize.define(
-    "PsySocial",
+const AdministrativeAssistantModel = (sequelize) => {
+  const AdministrativeAssistant = sequelize.define(
+    "AdministrativeAssistant",
     {
       // Primary key
       id: {
@@ -14,7 +14,7 @@ const PsySocialModel = (sequelize) => {
 
       role: {
         type: DataTypes.STRING,
-        allowNull: false, 
+        allowNull: false,
       },
 
       // Personal Information
@@ -219,12 +219,12 @@ const PsySocialModel = (sequelize) => {
       },
 
       password: {
-        type: DataTypes.STRING, 
+        type: DataTypes.STRING,
         allowNull: false,
       },
- 
+
       imgDoc: {
-        type: DataTypes.STRING, 
+        type: DataTypes.STRING,
         allowNull: true,
       },
 
@@ -233,13 +233,13 @@ const PsySocialModel = (sequelize) => {
         allowNull: true,
         defaultValue: [],
       },
-      
+
       isActive: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: true,
       },
-      
+
       createdInDb: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
@@ -250,13 +250,13 @@ const PsySocialModel = (sequelize) => {
         type: DataTypes.ARRAY(DataTypes.JSON),
         allowNull: false,
         defaultValue: [],
-      }
+      },
     },
 
     { timestamps: true }
   );
 
-  return PsySocial;
+  return AdministrativeAssistant;
 };
 
-module.exports = PsySocialModel;
+module.exports = AdministrativeAssistantModel;

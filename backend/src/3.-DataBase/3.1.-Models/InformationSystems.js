@@ -1,8 +1,8 @@
 const { DataTypes } = require("sequelize");
 
-const PsySocialModel = (sequelize) => {
-  const PsySocial = sequelize.define(
-    "PsySocial",
+const InformationSystemsModel = (sequelize) => {
+  const InformationSystems = sequelize.define(
+    "InformationSystems",
     {
       // Primary key
       id: {
@@ -256,7 +256,7 @@ const PsySocialModel = (sequelize) => {
     { timestamps: true }
   );
 
-  return PsySocial;
+  return InformationSystems;
 };
 
-module.exports = PsySocialModel;
+module.exports = InformationSystemsModel;
