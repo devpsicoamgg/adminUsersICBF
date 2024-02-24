@@ -16,12 +16,12 @@ const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME } = process.env;
 const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
   {
-    dialectOptions: {
+      dialectOptions: {
      ssl: {
        require: true,
        rejectUnauthorized: false,
      },
-    },
+    }, 
     logging: false,
     native: false,
   }
@@ -52,56 +52,46 @@ const {
 } = sequelize.models;
 
 // Contract - Coordinator (Uno a muchos):
-// Un contrato puede tener muchos coordinadores.
-// Un coordinador pertenece a un solo contrato.
 Contract.hasMany(Coordinator, { foreignKey: "contractId" });
+// Un coordinador pertenece a un solo contrato.
 Coordinator.belongsTo(Contract, { foreignKey: "contractId" });
 
 // Contract - Group (Uno a muchos):
-// Un contrato puede tener muchos grupos.
-// Un grupo pertenece a un solo contrato.
 Contract.hasMany(Group, { foreignKey: "contractId" });
+// Un grupo pertenece a un solo contrato.
 Group.belongsTo(Contract, { foreignKey: "contractId" });
 
 // Contract - TeamIntervention (Uno a muchos):
-// Un contrato puede tener muchos colaboradores.
-// Un colaborador pertenece a un solo contrato.
 Contract.hasMany(TeamIntervention, { foreignKey: "contractId" });
+// Un colaborador pertenece a un solo contrato.
 TeamIntervention.belongsTo(Contract, { foreignKey: "contractId" });
 
-// Contract - TeamIntervention (Uno a muchos):
-// Un contrato puede tener muchos colaboradores.
-// Un colaborador pertenece a un solo contrato.
+// Contract - Nutri (Uno a muchos):
 Contract.hasMany(HealthAndNutrition, { foreignKey: "contractId" });
+// Un Nutri pertenece a un solo contrato.
 HealthAndNutrition.belongsTo(Contract, { foreignKey: "contractId" });
 
-// Contract - TeamIntervention (Uno a muchos):
-// Un contrato puede tener muchos colaboradores.
-// Un colaborador pertenece a un solo contrato.
+// Contract - Admin (Uno a muchos):
 Contract.hasMany(AdministrativeAssistant, { foreignKey: "contractId" });
+// Un Admin pertenece a un solo contrato.
 AdministrativeAssistant.belongsTo(Contract, { foreignKey: "contractId" });
 
-// Contract - TeamIntervention (Uno a muchos):
-// Un contrato puede tener muchos colaboradores.
-// Un colaborador pertenece a un solo contrato.
+// Contract - Cuentame (Uno a muchos):
 Contract.hasMany(InformationSystems, { foreignKey: "contractId" });
+// Un Cuéntame pertenece a un solo contrato.
 InformationSystems.belongsTo(Contract, { foreignKey: "contractId" });
 
-// Contract - TeamIntervention (Uno a muchos):
-// Un contrato puede tener muchos colaboradores.
-// Un colaborador pertenece a un solo contrato.
+// Contract - psycosocial (Uno a muchos):
 Contract.hasMany(PsySocial, { foreignKey: "contractId" });
+// Un colaborador pertenece a un solo contrato.
 PsySocial.belongsTo(Contract, { foreignKey: "contractId" });
 
 // Contract - UserFinal (Uno a muchos):
-// Un contrato puede tener muchos usuarios finales.
 Contract.hasMany(UserFinal, { foreignKey: "contractId" });
 // Un usuario final pertenece a un solo contrato.
 UserFinal.belongsTo(Contract, { foreignKey: "contractId" });
 
-// COORDINADORES - TeamIntervention (Uno a muchos):
-// Coordinator - Group (Uno a muchos):
-// Un coordinador puede tener muchos grupos.
+// COORDINADORES - Group (Uno a muchos):
 Coordinator.hasMany(Group, { foreignKey: "coordinatorId" });
 // Un grupo pertenece a un solo coordinador.
 Group.belongsTo(Coordinator, { foreignKey: "coordinatorId" });
@@ -111,61 +101,33 @@ Coordinator.hasMany(TeamIntervention, { foreignKey: "coordinatorId" });
 // Un colaborador pertenece a un solo coordinador.
 TeamIntervention.belongsTo(Coordinator, { foreignKey: "coordinatorId" });
 
-// Un coordinador puede tener muchos colaboradores.
-Coordinator.hasMany(HealthAndNutrition, { foreignKey: "coordinatorId" });
-// Un colaborador pertenece a un solo coordinador.
-HealthAndNutrition.belongsTo(Coordinator, { foreignKey: "coordinatorId" });
-
-// Un coordinador puede tener muchos colaboradores.
-Coordinator.hasMany(PsySocial, { foreignKey: "coordinatorId" });
-// Un colaborador pertenece a un solo coordinador.
-PsySocial.belongsTo(Coordinator, { foreignKey: "coordinatorId" });
-
 // Coordinator - UserFinal (Uno a muchos):
 // Un coordinador puede tener muchos usuarios finales.
 Coordinator.hasMany(UserFinal, { foreignKey: "coordinatorId" });
 // Un usuario final pertenece a un solo coordinador.
 UserFinal.belongsTo(Coordinator, { foreignKey: "coordinatorId" });
 
-//DOCENTES
-// TeamIntervention - Group (muchos a muchos):
-// Un colaborador puede tener muchos grupos.
-TeamIntervention.hasMany(Group, { foreignKey: "groupId" });
-// Un grupo puede tener varios docentes.
-Group.hasMany(TeamIntervention, { foreignKey: "groupId" });
 
 //DOCENTES
 // TeamIntervention - Group (muchos a muchos):
 // Un colaborador puede tener muchos grupos.
-HealthAndNutrition.hasMany(Group, { foreignKey: "groupId" });
-// Un grupo puede tener varios docentes.
-Group.hasMany(HealthAndNutrition, { foreignKey: "groupId" });
-
-//DOCENTES
-// TeamIntervention - Group (muchos a muchos):
-// Un colaborador puede tener muchos grupos.
-PsySocial.hasMany(Group, { foreignKey: "groupId" });
-// Un grupo puede tener varios docentes.
-Group.hasMany(PsySocial, { foreignKey: "groupId" });
+TeamIntervention.belongsToMany(Group, { through: "TeamInterventionGroup" });
+Group.belongsToMany(TeamIntervention, { through: "TeamInterventionGroup" });
 
 // TeamIntervention - UserFinal (mucho a muchos):
 // Un docente puede tener muchos usuarios finales.
 UserFinal.belongsTo(TeamIntervention, { foreignKey: "teacherId" });
-TeamIntervention.hasMany(UserFinal, { foreignKey: "teacherId" });
+TeamIntervention.belongsTo(UserFinal, { foreignKey: "teacherId" });
 
-// TeamIntervention - UserFinal (mucho a muchos):
-// Un docente puede tener muchos usuarios finales.
-UserFinal.belongsToMany(HealthAndNutrition, {
-  through: "UserFinalHealthAndNutrition",
-});
-HealthAndNutrition.belongsToMany(UserFinal, {
-  through: "UserFinalHealthAndNutrition",
-});
+// TeamIntervention - HealthAndNutrition (mucho a muchos):
+// Un docente puede tener muchos usuarios finales de nutrición.
+HealthAndNutrition.belongsToMany(Group, { through: "HealthAndNutritionGroups" });
+Group.belongsToMany(HealthAndNutrition, { through: "HealthAndNutritionGroups" });
 
-// TeamIntervention - UserFinal (mucho a muchos):
-// Un docente puede tener muchos usuarios finales.
-UserFinal.belongsToMany(PsySocial, { through: "UserFinalPsySocial" });
-PsySocial.belongsToMany(UserFinal, { through: "UserFinalPsySocial" });
+// TeamIntervention - PsySocial (mucho a muchos):
+// Un docente puede tener muchos usuarios finales de psicosocial.
+PsySocial.belongsToMany(Group, { through: "PsySocialGroups" });
+Group.belongsToMany(PsySocial, { through: "PsySocialGroups" });
 
 // UserFinal - Family (Muchos a uno):
 // Un usuario puede tenr varios miembros de familia.

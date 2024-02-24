@@ -146,16 +146,41 @@ const createTeamIntervention = async ({
       <p> ${firstName} Tu contraseña es: <strong style="background-color: #00FF00;">${randomPassword}</strong></p>
       Los datos de tu registro son:
       <p>Te damos la bienvenida al sistema. A continuación, encontrarás los detalles de tu registro:</p>
-      <ul>
-        <li>Nombre: ${firstName} ${secondName}</li>
-        <li>Apellidos: ${firstLastName} ${secondLastName}</li>
-        <li>Tipo de documento: ${kindDoc}</li>
-        <li>Número de documento: ${numberDoc}</li>
-        <li>Rol: ${role}</li>
-        <li>Fecha de entrada: ${entryDate}</li>
-        <li>Teléfono: ${phone}</li>
-        <li>Correo electrónico: ${email}</li>
-      </ul>
+      <table border="1">
+      <tr>
+          <td><b>Nombre:</b></td>
+          <td>${firstName} ${secondName}</td>
+      </tr>
+      <tr>
+          <td><b>Apellidos:</b></td>
+          <td>${firstLastName} ${secondLastName}</td>
+      </tr>
+      <tr>
+          <td><b>Tipo de documento:</b></td>
+          <td>${kindDoc}</td>
+      </tr>
+      <tr>
+          <td><b>Número de documento:</b></td>
+          <td>${numberDoc}</td>
+      </tr>
+      <tr>
+          <td><b>Rol:</b></td>
+          <td>${role}</td>
+      </tr>
+      <tr>
+          <td><b>Fecha de entrada:</b></td>
+          <td>${entryDate}</td>
+      </tr>
+      <tr>
+          <td><b>Teléfono:</b></td>
+          <td>${phone}</td>
+      </tr>
+      <tr>
+          <td><b>Correo electrónico:</b></td>
+          <td>${email}</td>
+      </tr>
+  </table>
+  
       
       <p>Si tienes alguna pregunta, no dudes en contactarnos.</p>
     `

@@ -2,13 +2,13 @@ const { AdministrativeAssistant } = require("../../../3.-DataBase/dataBaseConfig
 
 console.log("2️⃣.-Controller 🛠️ PATCH -COORDI-ROUTE-➡️ ", AdministrativeAssistant);
 
-const patchAdministrativeAssistantByCoordi = async (administrativeAssistantId, dataToUpdate) => {
+const patchAdministrativeAssistantBySelf = async (administrativeAssistantId, dataToUpdate) => {
   try {
     const collaborator = await AdministrativeAssistant.findByPk(administrativeAssistantId);
     if (!collaborator) {
       return {
         success: false,
-        message: `Teacher with id N° ${teacherId} not found`,
+        message: `Administrative Assistant with id N° ${administrativeAssistantId} not found`,
       };
     }
 
@@ -27,9 +27,9 @@ const patchAdministrativeAssistantByCoordi = async (administrativeAssistantId, d
     const numCamposModificados = Object.keys(modifiedFields).length;
 
     const modificationInfo = {
-      fechaModificacionesCoordinador: new Date(),
+      fechaModificacionesAsistenteAdministrativo: new Date(),
       numCamposModificados: numCamposModificados,
-      modificacionesCoordinadorRealizadas: modifiedFields,
+      modificacionesAsistenteAdministrativoRealizadas: modifiedFields,
     };
 
     let modificaciones = collaborator.modificaciones || [];
@@ -55,4 +55,4 @@ const patchAdministrativeAssistantByCoordi = async (administrativeAssistantId, d
   }
 };
 
-module.exports = { patchAdministrativeAssistant };
+module.exports = { patchAdministrativeAssistantBySelf };

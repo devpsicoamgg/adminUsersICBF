@@ -1,15 +1,12 @@
 const {
   generateRandomPassword,
 } = require("../../../5.-Utils/passwordUtils.js");
-const {
-  Coordinator,
-  Contract,
-} = require("../../../3.-DataBase/dataBaseConfig.js");
+const { PsySocial, Contract, Coordinator, Group, } = require("../../../3.-DataBase/dataBaseConfig.js");
 const sendEmail = require("../../../6.-Mail/sendEmail.js");
 
-console.log("1️⃣.-Controller 📤POST -ADMIN-ROUTE-➡️ ", Coordinator);
+console.log("1️⃣.-Controller 📤POST -COORDI-ROUTE-➡️ ", PsySocial);
 
-const createCoordinator = async (
+const createPsySocialCollaborator = async (
   firstName,
   secondName,
   firstLastName,
@@ -23,21 +20,36 @@ const createCoordinator = async (
   phone,
   email,
   role,
-  contractId
+  coordinatorId,
+  contractId, 
+  groupId,
 ) => {
-  if (!contractId) {
-    throw new Error("contractId son obligatorios para crear un grupo");
+
+  if (!contractId || !coordinatorId || !groupId) {
+    throw new Error(
+      "contractId, coordinatorId groupId son obligatorios para crear un docente"
+    );
   }
 
   const contractExists = await Contract.findByPk(contractId);
+  const coordinatorExists = await Coordinator.findByPk(coordinatorId);
+  const groupExists = await Group.findByPk(groupId);
 
   if (!contractExists) {
-    throw new Error("Contrato no existe");
-  }
+    throw new Error("El ID contractId no existe en la tabla correspondiente");
+} 
+if (!coordinatorExists) {
+    throw new Error("El ID coordinatorId no existe en la tabla correspondiente");
+}
+if (!groupExists) {
+  throw new Error("El ID groupId no existe en su tabla correspondiente");
+}
+
+
   const randomPassword = generateRandomPassword();
 
   try {
-    const coordinator = await Coordinator.create({
+    const PsycoSocialUser = await PsySocial.create({
       firstName,
       secondName,
       firstLastName,
@@ -52,7 +64,9 @@ const createCoordinator = async (
       email,
       role,
       password: randomPassword,
-      contractId,
+      coordinatorId,
+      contractId, 
+      groupId,
     });
 
     await sendEmail(
@@ -117,10 +131,10 @@ const createCoordinator = async (
       `
     );
 
-    return coordinator;
+    return PsycoSocialUser;
   } catch (error) {
-    throw new Error("No se pudo crear el coordinador" + error);
+    throw new Error("No se pudo crear el colaborador " + error);
   }
 };
 
-module.exports = { createCoordinator };
+module.exports = { createPsySocialCollaborator };

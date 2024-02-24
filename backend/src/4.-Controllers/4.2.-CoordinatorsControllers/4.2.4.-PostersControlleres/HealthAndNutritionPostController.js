@@ -1,15 +1,12 @@
 const {
   generateRandomPassword,
 } = require("../../../5.-Utils/passwordUtils.js");
-const {
-  Coordinator,
-  Contract,
-} = require("../../../3.-DataBase/dataBaseConfig.js");
+const { HealthAndNutrition, Contract, Coordinator } = require("../../../3.-DataBase/dataBaseConfig.js");
 const sendEmail = require("../../../6.-Mail/sendEmail.js");
 
-console.log("1️⃣.-Controller 📤POST -ADMIN-ROUTE-➡️ ", Coordinator);
+console.log("1️⃣.-Controller 📤POST -ADMIN-ROUTE-➡️ ", HealthAndNutrition);
 
-const createCoordinator = async (
+const createHealthAndNutrition = async (
   firstName,
   secondName,
   firstLastName,
@@ -23,21 +20,25 @@ const createCoordinator = async (
   phone,
   email,
   role,
-  contractId
+  coordinatorId,
+  contractId, 
 ) => {
-  if (!contractId) {
-    throw new Error("contractId son obligatorios para crear un grupo");
-  }
 
   const contractExists = await Contract.findByPk(contractId);
+  const coordinatorExists = await Coordinator.findByPk(coordinatorId);
+
 
   if (!contractExists) {
-    throw new Error("Contrato no existe");
-  }
+    throw new Error("El ID contractId no existe en la tabla correspondiente");
+} 
+if (!coordinatorExists) {
+    throw new Error("El ID coordinatorId no existe en la tabla correspondiente");
+}
+
   const randomPassword = generateRandomPassword();
 
   try {
-    const coordinator = await Coordinator.create({
+    const healthAndNutritionUser = await HealthAndNutrition.create({
       firstName,
       secondName,
       firstLastName,
@@ -52,8 +53,15 @@ const createCoordinator = async (
       email,
       role,
       password: randomPassword,
-      contractId,
+      coordinatorId,
+      contractId
     });
+
+    if (!contractId || !coordinatorId ) {
+      throw new Error(
+        "contractId, coordinatorId group son obligatorios para crear un docente"
+      );
+    }
 
     await sendEmail(
       email,
@@ -117,10 +125,10 @@ const createCoordinator = async (
       `
     );
 
-    return coordinator;
+    return healthAndNutritionUser;
   } catch (error) {
-    throw new Error("No se pudo crear el coordinador" + error);
+    throw new Error("No se pudo crear el colaborador " + error);
   }
 };
 
-module.exports = { createCoordinator };
+module.exports = { createHealthAndNutrition };

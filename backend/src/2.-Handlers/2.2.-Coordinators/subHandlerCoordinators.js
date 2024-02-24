@@ -29,7 +29,8 @@ const {
 
 const { 
   createGroupHandlerCoordinators, 
-  createTeacherHandlerCoordinators 
+  createTeacherHandlerCoordinators, 
+  createPsySocialHandlerCoordinators,
 } = postCoordinatorsHandler;
 
 module.exports = {
@@ -42,6 +43,7 @@ module.exports = {
   getContractByIdHandlerCoordinators,
   getGroupByIdHandlerCoordinators,
   getAllTeachersHandlerCoordinators,
+  getAllCoordinatorsByCoordinator,
   getTeacherByIdHandlerCoordinators,
   patchUserHandlerCoordinators,
   patchGroupHandlerCoordinators,
@@ -49,5 +51,5 @@ module.exports = {
   patchCoordinatorHandlerCoordinators,
   createGroupHandlerCoordinators,
   createTeacherHandlerCoordinators,
-  getAllCoordinatorsByCoordinator,
+  createPsySocialHandlerCoordinators,
 };

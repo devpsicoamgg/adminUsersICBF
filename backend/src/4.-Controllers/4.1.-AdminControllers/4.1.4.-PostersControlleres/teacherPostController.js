@@ -1,7 +1,12 @@
 const {
   generateRandomPassword,
 } = require("../../../5.-Utils/passwordUtils.js");
-const { TeamIntervention, Contract, Coordinator, Group } = require("../../../3.-DataBase/dataBaseConfig.js");
+const {
+  TeamIntervention,
+  Contract,
+  Coordinator,
+  Group,
+} = require("../../../3.-DataBase/dataBaseConfig.js");
 const sendEmail = require("../../../6.-Mail/sendEmail.js");
 
 console.log("1️⃣.-Controller 📤POST -ADMIN-ROUTE-➡️ ", TeamIntervention);
@@ -21,10 +26,27 @@ const createTeamIntervention = async (
   email,
   role,
   coordinatorId,
-  contractId, 
+  contractId,
   groupId
 ) => {
   const randomPassword = generateRandomPassword();
+
+  const contractExists = await Contract.findByPk(contractId);
+  const coordinatorExists = await Coordinator.findByPk(coordinatorId);
+  const groupExists = await Group.findByPk(groupId);
+
+  if (!contractExists) {
+    throw new Error("El ID contractId no existe en la tabla correspondiente");
+  }
+  if (!coordinatorExists) {
+    throw new Error(
+      "El ID coordinatorId no existe en la tabla correspondiente"
+    );
+  }
+
+  if (!groupExists) {
+    throw new Error("El ID groupId no existe en la tabla correspondiente");
+  }
 
   try {
     const teamInterventionUser = await TeamIntervention.create({
@@ -44,7 +66,7 @@ const createTeamIntervention = async (
       password: randomPassword,
       coordinatorId,
       contractId,
-      groupId
+      groupId,
     });
 
     if (!contractId || !coordinatorId || !groupId) {
@@ -53,37 +75,46 @@ const createTeamIntervention = async (
       );
     }
 
-    const contractExists = await Contract.findByPk(contractId);
-    const coordinatorExists = await Coordinator.findByPk(coordinatorId);
-    const groupExists = await Group.findByPk(groupId);
-
-    if (!contractExists) {
-      throw new Error("El ID contractId no existe en la tabla correspondiente");
-  } 
-  if (!coordinatorExists) {
-      throw new Error("El ID coordinatorId no existe en la tabla correspondiente");
-  }
-
-  if (!groupExists) {
-      throw new Error("El ID groupId no existe en la tabla correspondiente");
-  }
-
-
     await sendEmail(
       email,
       `${firstName} te damos una cálida bienvenida`,
       `
       <p>Te damos la bienvenida al sistema. A continuación, encontrarás los detalles de tu registro:</p>
-      <ul>
-          <li><b> Nombre:</b> ${firstName} ${secondName}</li>
-          <li><b>Apellidos:</b> ${firstLastName} ${secondLastName}</li>
-          <li><b>Tipo de documento:</b> ${kindDoc}</li>
-          <li><b>Número de documento:</b> ${numberDoc}</li>
-          <li><b>Rol:</b> ${role}</li>
-          <li><b>Fecha de entrada:</b> ${entryDate}</li>
-          <li><b>Teléfono:</b> ${phone}</li>
-          <li><b>Correo electrónico:</b> ${email}</li>
-      </ul>
+      <table border="1">
+      <tr>
+          <td><b>Nombre:</b></td>
+          <td>${firstName} ${secondName}</td>
+      </tr>
+      <tr>
+          <td><b>Apellidos:</b></td>
+          <td>${firstLastName} ${secondLastName}</td>
+      </tr>
+      <tr>
+          <td><b>Tipo de documento:</b></td>
+          <td>${kindDoc}</td>
+      </tr>
+      <tr>
+          <td><b>Número de documento:</b></td>
+          <td>${numberDoc}</td>
+      </tr>
+      <tr>
+          <td><b>Rol:</b></td>
+          <td>${role}</td>
+      </tr>
+      <tr>
+          <td><b>Fecha de entrada:</b></td>
+          <td>${entryDate}</td>
+      </tr>
+      <tr>
+          <td><b>Teléfono:</b></td>
+          <td>${phone}</td>
+      </tr>
+      <tr>
+          <td><b>Correo electrónico:</b></td>
+          <td>${email}</td>
+      </tr>
+  </table>
+  
 
       <p>Tu contraseña es: </b>
       <strong style="
@@ -105,6 +136,8 @@ const createTeamIntervention = async (
       <p>Si tienes alguna pregunta, no dudes en contactarnos.</p>
       `
     );
+
+    await teamInterventionUser.setGroups([groupExists]);
 
     return teamInterventionUser;
   } catch (error) {

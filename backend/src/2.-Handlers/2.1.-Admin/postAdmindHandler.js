@@ -293,9 +293,7 @@ const createPsySocialHandler = async (req, res) => {
   }
 };
 
-
 const createAdministrativeHandler = async (req, res) => {
-  const coordinatorId = req.body.coordinatorId;
   const contractId = req.body.contractId;
   const {
     firstName,
@@ -319,11 +317,11 @@ const createAdministrativeHandler = async (req, res) => {
   const age = Math.abs(ageDate.getUTCFullYear() - 1970);
 
   try {
-    const coordinator = await Coordinator.findByPk(coordinatorId);
+    const contract = await Contract.findByPk(contractId);
 
-    if (!coordinator) {
-      console.error("Coordinador no encontrado");
-      return res.status(404).json({ error: "Coordinador no encontrado" });
+    if (!contract) {
+      console.error("Contrato no encontrado");
+      return res.status(404).json({ error: "Contrato no encontrado" });
     }
 
     const response = await createAdministrativeCollaborator(
@@ -340,7 +338,6 @@ const createAdministrativeHandler = async (req, res) => {
       phone,
       email,
       role,
-      coordinatorId,
       contractId,
     );
     res.status(200).send(response);
@@ -351,7 +348,6 @@ const createAdministrativeHandler = async (req, res) => {
 };
 
 const createInformationSystemsHandler = async (req, res) => {
-  const coordinatorId = req.body.coordinatorId;
   const contractId = req.body.contractId;
   const {
     firstName,
@@ -375,11 +371,11 @@ const createInformationSystemsHandler = async (req, res) => {
   const age = Math.abs(ageDate.getUTCFullYear() - 1970);
 
   try {
-    const coordinator = await Coordinator.findByPk(coordinatorId);
+    const contract = await Contract.findByPk(contractId);
 
-    if (!coordinator) {
-      console.error("Coordinador no encontrado");
-      return res.status(404).json({ error: "Coordinador no encontrado" });
+    if (!contract) {
+      console.error("Contrato no encontrado");
+      return res.status(404).json({ error: "contrato no encontrado" });
     }
 
     const response = await createInformationSystemsCollaborator(
@@ -396,7 +392,6 @@ const createInformationSystemsHandler = async (req, res) => {
       phone,
       email,
       role,
-      coordinatorId,
       contractId,
     );
     res.status(200).send(response);

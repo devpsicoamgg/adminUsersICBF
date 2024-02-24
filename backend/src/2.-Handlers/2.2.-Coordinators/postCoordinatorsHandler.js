@@ -1,11 +1,8 @@
 const { Coordinator } = require("../../3.-DataBase/dataBaseConfig");
-const {
-  createGroup,
-} = require("../../4.-Controllers/4.2.-CoordinatorsControllers/4.2.4.-PostersControlleres/groupPostController");
+const { createGroup } = require("../../4.-Controllers/4.2.-CoordinatorsControllers/4.2.4.-PostersControlleres/groupPostController");
+const { createTeamIntervention } = require("../../4.-Controllers/4.2.-CoordinatorsControllers/4.2.4.-PostersControlleres/teacherPostController");
+const { createPsySocialCollaborator } = require("../../4.-Controllers/4.2.-CoordinatorsControllers/4.2.4.-PostersControlleres/teacherPostController");
 
-const {
-  createTeamIntervention,
-} = require("../../4.-Controllers/4.2.-CoordinatorsControllers/4.2.4.-PostersControlleres/teacherPostController");
 
 const createTeacherHandlerCoordinators = async (req, res) => {
   try {
@@ -43,6 +40,42 @@ const createTeacherHandlerCoordinators = async (req, res) => {
   }
 };
 
+const createPsySocialHandlerCoordinators = async (req, res) => {
+  try {
+    const { coordinatorId, contractId, groupId, ...userData } = req.body;
+
+    const birthDate = new Date(userData.nataleDate);
+    const today = new Date();
+    const diff = today.getTime() - birthDate.getTime();
+    const ageDate = new Date(diff);
+    const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+
+    const collaborator = await Coordinator.findByPk(coordinatorId);
+    if (!collaborator) {
+      console.error("Coordinador no encontrado");
+      return res.status(404).json({ error: "Coordinador no encontrado" });
+    }
+
+    if (!contractId || !groupId) {
+      console.error("Grupo y contratos requeridos");
+      return res.status(404).json({ error: "Grupo y contrato requerido" });
+    }
+
+    const response = await createPsySocialHandlerCoordinators({
+      ...userData,
+      coordinatorId,
+      contractId,
+      groupId,
+      age,
+    });
+
+    res.status(200).send(response);
+  } catch (error) {
+    console.error("Error al crear el psicosocialñ{´{}}:", error);
+    res.status(400).json({ error: error.message, error });
+  }
+};
+
 const createGroupHandlerCoordinators = async (req, res) => {
   const {
     groupName,
@@ -74,4 +107,5 @@ const createGroupHandlerCoordinators = async (req, res) => {
 module.exports = {
   createGroupHandlerCoordinators,
   createTeacherHandlerCoordinators,
+  createPsySocialHandlerCoordinators,
 };
