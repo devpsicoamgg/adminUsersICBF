@@ -28,6 +28,11 @@ const {
 } = require("../../4.-Controllers/4.1.-AdminControllers/4.1.4.-PostersControlleres/AdministrativeAssistantPostController");
 
 
+const {
+  createInformationSystemsCollaborator,
+} = require("../../4.-Controllers/4.1.-AdminControllers/4.1.4.-PostersControlleres/informationSystemsPostController");
+
+
 
 const createContractHandler = async (req, res) => {
   const {
@@ -345,6 +350,62 @@ const createAdministrativeHandler = async (req, res) => {
   }
 };
 
+const createInformationSystemsHandler = async (req, res) => {
+  const coordinatorId = req.body.coordinatorId;
+  const contractId = req.body.contractId;
+  const {
+    firstName,
+    secondName,
+    firstLastName,
+    secondLastName,
+    kindDoc,
+    numberDoc,
+    nataleDate,
+    gender,
+    entryDate,
+    phone,
+    email,
+    role,
+  } = req.body;
+
+  const birthDate = new Date(nataleDate);
+  const today = new Date();
+  const diff = today.getTime() - birthDate.getTime();
+  const ageDate = new Date(diff);
+  const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+
+  try {
+    const coordinator = await Coordinator.findByPk(coordinatorId);
+
+    if (!coordinator) {
+      console.error("Coordinador no encontrado");
+      return res.status(404).json({ error: "Coordinador no encontrado" });
+    }
+
+    const response = await createInformationSystemsCollaborator(
+      firstName,
+      secondName,
+      firstLastName,
+      secondLastName,
+      kindDoc,
+      numberDoc,
+      nataleDate,
+      age,
+      gender,
+      entryDate,
+      phone,
+      email,
+      role,
+      coordinatorId,
+      contractId,
+    );
+    res.status(200).send(response);
+  } catch (error) {
+    console.error("Error al crear el colaborador cuéntame:", error);
+    res.status(400).json({ error: error.message });
+  }
+};
+
 const createGroupHandler = async (req, res) => {
   const {
     groupName,
@@ -380,5 +441,6 @@ module.exports = {
   createGroupHandler,
   createNutritionistHandler,
   createPsySocialHandler, 
-  createAdministrativeHandler
+  createAdministrativeHandler, 
+  createInformationSystemsHandler
 };

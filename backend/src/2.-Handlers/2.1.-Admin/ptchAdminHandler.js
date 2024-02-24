@@ -14,6 +14,23 @@ const {
   patchCollaborator,
 } = require("../../4.-Controllers/4.1.-AdminControllers/4.1.3.-PatchersControllers/teacherPtchController");
 
+const {
+  patchAdministrativeAssistant,
+} = require("../../4.-Controllers/4.1.-AdminControllers/4.1.3.-PatchersControllers/administrativePtchController");
+
+const {
+  patchPsySocial,
+} = require("../../4.-Controllers/4.1.-AdminControllers/4.1.3.-PatchersControllers/psySocialPtchController");
+
+const {
+  patchInformationSystems,
+} = require("../../4.-Controllers/4.1.-AdminControllers/4.1.3.-PatchersControllers/cuentamePtchController");
+
+const {
+  patchNutritionist,
+} = require("../../4.-Controllers/4.1.-AdminControllers/4.1.3.-PatchersControllers/nutritionPtchController");
+
+
 const patchCoordinatorHandler = async (req, res) => {
   const coordinatorId = req.params.id;
   const dataToUpdate = req.body;
@@ -58,6 +75,58 @@ const patchTeacherHandler = async (req, res) => {
   }
 };
 
+const patchPsyHandler = async (req, res) => {
+  const psyId = req.params.id;
+  const dataToUpdate = req.body;
+
+  const result = await patchPsySocial(psyId, dataToUpdate);
+
+  if (result.success) {
+    res.status(200).json(result);
+  } else {
+    res.status(404).json({ message: result.message, result });
+  }
+};
+
+const patchAdministrativeAssistantHandler = async (req, res) => {
+  const administrativeAssistantId = req.params.id;
+  const dataToUpdate = req.body;
+
+  const result = await patchAdministrativeAssistant(administrativeAssistantId, dataToUpdate);
+
+  if (result.success) {
+    res.status(200).json(result);
+  } else {
+    res.status(404).json({ message: result.message, result });
+  }
+};
+
+const patchCuentameHandler = async (req, res) => {
+  const cuentameId = req.params.id;
+  const dataToUpdate = req.body;
+
+  const result = await   patchInformationSystems(cuentameId, dataToUpdate);
+
+  if (result.success) {
+    res.status(200).json(result);
+  } else {
+    res.status(404).json({ message: result.message, result });
+  }
+};
+
+const patchNutriHandler = async (req, res) => {
+  const nutryId = req.params.id;
+  const dataToUpdate = req.body;
+
+  const result = await patchNutritionist(nutryId, dataToUpdate);
+
+  if (result.success) {
+    res.status(200).json(result);
+  } else {
+    res.status(404).json({ message: result.message, result });
+  }
+};
+
 const patchContractHandler = async (req, res) => {
   const contractId = req.params.id;
   const dataToUpdate = req.body;
@@ -77,4 +146,8 @@ module.exports = {
   patchGroupHandler,
   patchTeacherHandler,
   patchContractHandler,
+  patchAdministrativeAssistantHandler,
+  patchPsyHandler, 
+  patchCuentameHandler, 
+  patchNutriHandler,
 };

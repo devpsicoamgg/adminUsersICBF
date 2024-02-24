@@ -7,7 +7,11 @@ const {
   delAdminHandlerCoordinator,
   delAdminHandlerGroup,
   delAdminHandlerTeacher,
-  delAdminHandlerContract
+  delAdminHandlerContract, 
+  delAdminHandlerAdministrativeAssistant,
+  delAdminHandlerCuentameCollaborator,
+  delAdminHandlerNutriCollaborator,
+  delAdminHandlerPsyCollaborator
 } = delAdminHandlers;
 
 const {
@@ -31,6 +35,7 @@ const {
   createNutritionistHandler,
   createPsySocialHandler, 
   createAdministrativeHandler,
+  createInformationSystemsHandler,
 } = postAdminHandlers;
 
 const {
@@ -39,6 +44,10 @@ const {
   patchGroupHandler,
   patchTeacherHandler,
   patchContractHandler,
+  patchAdministrativeAssistantHandler,
+  patchPsyHandler,
+  patchCuentameHandler,
+  patchNutriHandler,
 } = patchAdminHandlers;
 
 module.exports = {
@@ -46,6 +55,10 @@ module.exports = {
   delAdminHandlerCoordinator,
   delAdminHandlerGroup,
   delAdminHandlerTeacher,
+  delAdminHandlerAdministrativeAssistant,
+  delAdminHandlerCuentameCollaborator,
+  delAdminHandlerNutriCollaborator,
+  delAdminHandlerPsyCollaborator,
   getCoordinatorsHandlerAdmin,
   getCoordinatorByIdHandlerAdmin,
   getUsersHandlerAdmin,
@@ -63,9 +76,14 @@ module.exports = {
   createGroupHandler,
   createPsySocialHandler, 
   createAdministrativeHandler,
+  createInformationSystemsHandler,
   patchCoordinatorHandler,
   patchUserHandler,
   patchGroupHandler,
   patchTeacherHandler,
   patchContractHandler,
+  patchAdministrativeAssistantHandler,
+  patchPsyHandler,
+  patchCuentameHandler,
+  patchNutriHandler,
 };

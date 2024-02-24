@@ -14,6 +14,22 @@ const {
   deleteCollaborator,
 } = require("../../4.-Controllers/4.1.-AdminControllers/4.1.1-DeletersControllers/teacherDelController");
 
+const {
+  deleteAdministrative,
+} = require("../../4.-Controllers/4.1.-AdminControllers/4.1.1-DeletersControllers/administrativeDelController");
+
+const {
+  deleteCuentameCollaborator,
+} = require("../../4.-Controllers/4.1.-AdminControllers/4.1.1-DeletersControllers/cuentameDelController");
+
+const {
+  deleteNutriCollaborator,
+} = require("../../4.-Controllers/4.1.-AdminControllers/4.1.1-DeletersControllers/nutritionDelController");
+
+const {
+  deletePsyCollaborator,
+} = require("../../4.-Controllers/4.1.-AdminControllers/4.1.1-DeletersControllers/psySocialDelController");
+
 const delAdminHandlerContract = async (req, res) => {
   const contractId = req.params.id;
   try {
@@ -94,9 +110,93 @@ const delAdminHandlerTeacher = async (req, res) => {
   }
 };
 
+const delAdminHandlerAdministrativeAssistant = async (req, res) => {
+  const admiColaId = req.params.id;
+  try {
+    const deleteEmploy = await deleteAdministrative(admiColaId);
+    res.status(200).json({
+      message: "Colaborador Eliminado correctamente",
+      Colaborador: deleteEmploy,
+    });
+  } catch (error) {
+    console.error("Error in the employee delete handler:", error);
+    //si err xq no existe
+    if (error.message === "Employee not found") {
+      res.status(404).json({ error: "Employee found" });
+    } else {
+      //si err x interno
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  }
+};
+
+const delAdminHandlerCuentameCollaborator = async (req, res) => {
+  const cuentameId = req.params.id;
+  try {
+    const deleteEmploy = await deleteCuentameCollaborator(cuentameId);
+    res.status(200).json({
+      message: "Colaborador Eliminado correctamente",
+      Colaborador: deleteEmploy,
+    });
+  } catch (error) {
+    console.error("Error in the employee delete handler:", error);
+    //si err xq no existe
+    if (error.message === "Employee not found") {
+      res.status(404).json({ error: "Employee found" });
+    } else {
+      //si err x interno
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  }
+};
+
+const delAdminHandlerNutriCollaborator = async (req, res) => {
+  const cuentameId = req.params.id;
+  try {
+    const deleteEmploy = await deleteNutriCollaborator(cuentameId);
+    res.status(200).json({
+      message: "Colaborador Eliminado correctamente",
+      Colaborador: deleteEmploy,
+    });
+  } catch (error) {
+    console.error("Error in the employee delete handler:", error);
+    //si err xq no existe
+    if (error.message === "Employee not found") {
+      res.status(404).json({ error: "Employee found" });
+    } else {
+      //si err x interno
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  }
+};
+
+const delAdminHandlerPsyCollaborator = async (req, res) => {
+  const psyId = req.params.id;
+  try {
+    const deleteEmploy = await deletePsyCollaborator(psyId);
+    res.status(200).json({
+      message: "Colaborador Eliminado correctamente",
+      Colaborador: deleteEmploy,
+    });
+  } catch (error) {
+    console.error("Error in the employee delete handler:", error);
+    //si err xq no existe
+    if (error.message === "Employee not found") {
+      res.status(404).json({ error: "Employee found" });
+    } else {
+      //si err x interno
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  }
+};
+
 module.exports = {
   delAdminHandlerCoordinator,
   delAdminHandlerGroup,
   delAdminHandlerTeacher,
   delAdminHandlerContract,
+  delAdminHandlerAdministrativeAssistant,
+  delAdminHandlerCuentameCollaborator,
+  delAdminHandlerNutriCollaborator,
+  delAdminHandlerPsyCollaborator
 };
