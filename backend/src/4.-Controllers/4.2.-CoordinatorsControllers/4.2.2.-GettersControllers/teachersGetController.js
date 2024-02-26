@@ -30,14 +30,14 @@ const getMemberTeamInterventionById = async (teacherId, coordinatorId) => {
     if (!teacher) {
       return {
         success: false,
-        message: `Grupo con ID ${teacherId} no encontrado`,
+        message: `Docente con ID ${teacherId} no encontrado`,
       };
     }
 
     if (teacher.coordinatorId !== coordinatorId) {
       return {
         success: false,
-        message: `El grupo con ID ${teacherId} no pertenece al coordinador con ID ${coordinatorId}`,
+        message: `El Docente con ID ${teacherId} no pertenece al coordinador con ID ${coordinatorId}`,
       };
     }
 

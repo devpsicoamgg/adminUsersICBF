@@ -19,6 +19,7 @@ const {
   patchGroupHandlerCoordinators,
   patchTeacherHandlerCoordinators,
   patchCoordinatorHandlerCoordinators,
+  patchNutriHandlerCoordinators,
 } = ptchCoordinatorsHandler;
 
 const {
@@ -30,7 +31,8 @@ const {
 const { 
   createGroupHandlerCoordinators, 
   createTeacherHandlerCoordinators, 
-  createPsySocialHandlerCoordinators,
+  createPsySocialHandlerCoordinator, 
+  createNutriHandlerCoordinator,
 } = postCoordinatorsHandler;
 
 module.exports = {
@@ -49,7 +51,9 @@ module.exports = {
   patchGroupHandlerCoordinators,
   patchTeacherHandlerCoordinators,
   patchCoordinatorHandlerCoordinators,
+  patchNutriHandlerCoordinators,
   createGroupHandlerCoordinators,
   createTeacherHandlerCoordinators,
-  createPsySocialHandlerCoordinators,
+  createPsySocialHandlerCoordinator, 
+  createNutriHandlerCoordinator
 };

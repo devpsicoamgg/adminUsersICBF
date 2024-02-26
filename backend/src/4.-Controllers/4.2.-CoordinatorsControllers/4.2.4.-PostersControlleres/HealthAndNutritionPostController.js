@@ -1,12 +1,12 @@
 const {
   generateRandomPassword,
 } = require("../../../5.-Utils/passwordUtils.js");
-const { HealthAndNutrition, Contract, Coordinator } = require("../../../3.-DataBase/dataBaseConfig.js");
+const { HealthAndNutrition, Contract, Coordinator, Group } = require("../../../3.-DataBase/dataBaseConfig.js");
 const sendEmail = require("../../../6.-Mail/sendEmail.js");
 
-console.log("1️⃣.-Controller 📤POST -ADMIN-ROUTE-➡️ ", HealthAndNutrition);
+console.log("1️⃣.-Controller 📤POST -COORDI-ROUTE-➡️ ", HealthAndNutrition);
 
-const createHealthAndNutrition = async (
+const createHealthAndNutritionByCoordinator = async (
   firstName,
   secondName,
   firstLastName,
@@ -22,17 +22,21 @@ const createHealthAndNutrition = async (
   role,
   coordinatorId,
   contractId, 
+  groupId,
 ) => {
 
   const contractExists = await Contract.findByPk(contractId);
   const coordinatorExists = await Coordinator.findByPk(coordinatorId);
-
+  const groupExists = await Group.findByPk(groupId);
 
   if (!contractExists) {
     throw new Error("El ID contractId no existe en la tabla correspondiente");
 } 
 if (!coordinatorExists) {
     throw new Error("El ID coordinatorId no existe en la tabla correspondiente");
+}
+if (!groupExists) {
+  throw new Error("El ID groupId no existe en su tabla correspondiente");
 }
 
   const randomPassword = generateRandomPassword();
@@ -54,7 +58,8 @@ if (!coordinatorExists) {
       role,
       password: randomPassword,
       coordinatorId,
-      contractId
+      contractId, 
+      groupId,
     });
 
     if (!contractId || !coordinatorId ) {
@@ -62,6 +67,8 @@ if (!coordinatorExists) {
         "contractId, coordinatorId group son obligatorios para crear un docente"
       );
     }
+
+    await healthAndNutritionUser.addGroup(groupId);
 
     await sendEmail(
       email,
@@ -131,4 +138,4 @@ if (!coordinatorExists) {
   }
 };
 
-module.exports = { createHealthAndNutrition };
+module.exports = { createHealthAndNutritionByCoordinator };

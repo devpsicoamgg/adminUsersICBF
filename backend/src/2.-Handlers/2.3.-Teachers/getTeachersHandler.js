@@ -31,7 +31,6 @@ const getContractByIdHandlerTeachers = async (req, res) => {
   }
 };
 
-
 const getAllCoordinatorsHandlerTeachers = async (req, res) => {
   try {
     const contractId = req.params.id;
@@ -46,7 +45,6 @@ const getAllCoordinatorsHandlerTeachers = async (req, res) => {
     });
   }
 };
-
 
 const getAllGroupsHandlerTeachers = async (req, res) => {
   const coordinatorId = req.body.coordinatorId;
@@ -81,7 +79,6 @@ const getGroupByIdHandlerTeachers = async (req, res) => {
     });
   }
 };
-
 
 const getAllTeachersHandlerTeachers = async (req, res) => {
   const contractId = req.body.contractId;

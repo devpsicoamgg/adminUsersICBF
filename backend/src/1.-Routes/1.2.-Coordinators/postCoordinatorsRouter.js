@@ -3,13 +3,15 @@ const { Router } = require("express");
 const {
   createGroupHandlerCoordinators,
   createTeacherHandlerCoordinators,
-  createPsySocialHandlerCoordinators
+  createPsySocialHandlerCoordinator, 
+  createNutriHandlerCoordinator
 } = require("../../2.-Handlers/2.2.-Coordinators/subHandlerCoordinators");
 
 const postCoordinatorsRouter = Router();
 
 postCoordinatorsRouter.post("/teachers", createTeacherHandlerCoordinators);
 postCoordinatorsRouter.post("/groups", createGroupHandlerCoordinators);
-postCoordinatorsRouter.post("/psysocial", createPsySocialHandlerCoordinators);
+postCoordinatorsRouter.post("/psysocial", createPsySocialHandlerCoordinator);
+postCoordinatorsRouter.post("/nutri", createNutriHandlerCoordinator);
 
 module.exports = postCoordinatorsRouter;

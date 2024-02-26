@@ -1,6 +1,6 @@
 const { InformationSystems } = require("../../../3.-DataBase/dataBaseConfig");
 
-console.log("2️⃣.-Controller 🛠️ PATCH -ADMIN-ROUTE-➡️ ", InformationSystems);
+console.log("2️⃣.-Controller 🛠️ PATCH -COORDI-ROUTE-➡️ ", InformationSystems);
 
 const patchInformationSystems = async (cuentameId, dataToUpdate) => {
   try {

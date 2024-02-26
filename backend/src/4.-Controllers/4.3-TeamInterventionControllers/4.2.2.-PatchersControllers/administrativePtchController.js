@@ -1,6 +1,6 @@
 const { AdministrativeAssistant } = require("../../../3.-DataBase/dataBaseConfig");
 
-console.log("2️⃣.-Controller 🛠️ PATCH -COORDI-ROUTE-➡️ ", AdministrativeAssistant);
+console.log("2️⃣.-Controller 🛠️ PATCH -TEACHER-ROUTE-➡️ ", AdministrativeAssistant);
 
 const patchAdministrativeAssistantBySelf = async (administrativeAssistantId, dataToUpdate) => {
   try {
@@ -12,14 +12,14 @@ const patchAdministrativeAssistantBySelf = async (administrativeAssistantId, dat
       };
     }
 
-    const previousTeacherData = { ...collaborator.get() };
+    const previousCollaboratorData = { ...collaborator.get() };
     await collaborator.update(dataToUpdate);
     const modifiedFields = {};
     for (const key of Object.keys(dataToUpdate)) {
-      if (previousTeacherData[key] !== teacher[key]) {
+      if (previousCollaboratorData[key] !== collaborator[key]) {
         modifiedFields[key] = {
-          valor_anterior: previousTeacherData[key],
-          valor_actual: teacher[key],
+          valor_anterior: previousCollaboratorData[key],
+          valor_actual: previousCollaboratorData[key],
         };
       }
     }
@@ -42,6 +42,7 @@ const patchAdministrativeAssistantBySelf = async (administrativeAssistantId, dat
     return {
       success: true,
       message: `Asistente administrativo actualizado exitosamente ${administrativeAssistantId}`,
+      modificaciones: modificaciones,
     };
   } catch (error) {
     console.error("Error al actualizar el asistente administrativo: ");

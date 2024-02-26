@@ -8,6 +8,10 @@ const {
   getGroupById, 
 } = getTeachersHandler;
 
+const {
+  patchAdministrativeAssistantHandler
+} = patchTeachersHandler;
+
 
 
 module.exports = {
@@ -16,4 +20,5 @@ module.exports = {
   getAllMembersTeamIntervention, 
   getAllGroups, 
   getGroupById, 
+  patchAdministrativeAssistantHandler
 };

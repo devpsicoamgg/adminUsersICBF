@@ -27,7 +27,6 @@ const {
   createAdministrativeCollaborator,
 } = require("../../4.-Controllers/4.1.-AdminControllers/4.1.4.-PostersControlleres/AdministrativeAssistantPostController");
 
-
 const {
   createInformationSystemsCollaborator,
 } = require("../../4.-Controllers/4.1.-AdminControllers/4.1.4.-PostersControlleres/informationSystemsPostController");
