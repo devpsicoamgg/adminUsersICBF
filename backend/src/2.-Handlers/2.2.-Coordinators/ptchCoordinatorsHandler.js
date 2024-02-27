@@ -2,11 +2,9 @@ const {
   patchCoordinator,
 } = require("../../4.-Controllers/4.2.-CoordinatorsControllers/4.2.3.-PatchersControllers/coordinatorPtchController");
 
-
 const {
   patchGroupByCoordi,
 } = require("../../4.-Controllers/4.2.-CoordinatorsControllers/4.2.3.-PatchersControllers/groupPtchController");
-
 
 const {
   patchCollaboratorByCoordi,
@@ -21,10 +19,17 @@ const {
 } = require("../../4.-Controllers/4.2.-CoordinatorsControllers/4.2.3.-PatchersControllers/psySocialPtchController");
 
 
-
 const patchCoordinatorHandlerCoordinators = async (req, res) => {
   const coordinatorId = req.params.id;
   const dataToUpdate = req.body;
+
+  const birthDate = new Date(dataToUpdate.nataleDate);
+  const today = new Date();
+  const diff = today.getTime() - birthDate.getTime();
+  const ageDate = new Date(diff);
+  const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+  
+  dataToUpdate.age = age;
 
   const result = await patchCoordinator(coordinatorId, dataToUpdate);
 
@@ -34,7 +39,6 @@ const patchCoordinatorHandlerCoordinators = async (req, res) => {
     res.status(404).json({ message: result.message, result });
   }
 };
-
 
 const patchUserHandlerCoordinators = (req, res) => {
   const userId = req.params.id;
@@ -59,6 +63,14 @@ const patchNutriHandlerCoordinators = async (req, res) => {
   const groupId = req.body.groupId;
   const dataToUpdate = req.body;
 
+  const birthDate = new Date(dataToUpdate.nataleDate);
+  const today = new Date();
+  const diff = today.getTime() - birthDate.getTime();
+  const ageDate = new Date(diff);
+  const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+  
+  dataToUpdate.age = age;
+
   const result = await patchNutritionistByCoordi(nutryId, dataToUpdate, groupId);;
 
   if (result.success) {
@@ -72,7 +84,37 @@ const patchTeacherHandlerCoordinators = async (req, res) => {
   const teacherId = req.params.id;
   const dataToUpdate = req.body;
 
+  const birthDate = new Date(dataToUpdate.nataleDate);
+  const today = new Date();
+  const diff = today.getTime() - birthDate.getTime();
+  const ageDate = new Date(diff);
+  const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+  
+  dataToUpdate.age = age;
+
   const result = await patchCollaboratorByCoordi(teacherId, dataToUpdate);
+
+  if (result.success) {
+    res.status(200).json(result);
+  } else {
+    res.status(404).json({ message: result.message, result });
+  }
+};
+
+const patchPsySocHandlerCoordinators = async (req, res) => {
+  const psyId = req.params.id;
+  const groupId = req.body.groupId;
+  const dataToUpdate = req.body;
+
+  const birthDate = new Date(dataToUpdate.nataleDate);
+  const today = new Date();
+  const diff = today.getTime() - birthDate.getTime();
+  const ageDate = new Date(diff);
+  const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+
+  dataToUpdate.age = age;
+
+  const result = await patchPsySocialByCoordi(psyId, dataToUpdate, groupId);;
 
   if (result.success) {
     res.status(200).json(result);
@@ -87,4 +129,5 @@ module.exports = {
   patchTeacherHandlerCoordinators, 
   patchCoordinatorHandlerCoordinators,
   patchNutriHandlerCoordinators,
+  patchPsySocHandlerCoordinators
 }

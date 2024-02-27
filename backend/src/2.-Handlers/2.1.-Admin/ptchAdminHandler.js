@@ -35,6 +35,14 @@ const patchCoordinatorHandler = async (req, res) => {
   const coordinatorId = req.params.id;
   const dataToUpdate = req.body;
 
+  const birthDate = new Date(dataToUpdate.nataleDate);
+  const today = new Date();
+  const diff = today.getTime() - birthDate.getTime();
+  const ageDate = new Date(diff);
+  const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+
+  dataToUpdate.age = age;
+
   const result = await patchCoordinator(coordinatorId, dataToUpdate);
 
   if (result.success) {
@@ -66,6 +74,14 @@ const patchTeacherHandler = async (req, res) => {
   const teacherId = req.params.id;
   const dataToUpdate = req.body;
 
+  const birthDate = new Date(dataToUpdate.nataleDate);
+  const today = new Date();
+  const diff = today.getTime() - birthDate.getTime();
+  const ageDate = new Date(diff);
+  const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+
+  dataToUpdate.age = age;
+
   const result = await patchCollaborator(teacherId, dataToUpdate);
 
   if (result.success) {
@@ -78,6 +94,14 @@ const patchTeacherHandler = async (req, res) => {
 const patchPsyHandler = async (req, res) => {
   const psyId = req.params.id;
   const dataToUpdate = req.body;
+  
+  const birthDate = new Date(dataToUpdate.nataleDate);
+  const today = new Date();
+  const diff = today.getTime() - birthDate.getTime();
+  const ageDate = new Date(diff);
+  const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+
+  dataToUpdate.age = age;
 
   const result = await patchPsySocial(psyId, dataToUpdate);
 
@@ -92,6 +116,14 @@ const patchAdministrativeAssistantHandler = async (req, res) => {
   const administrativeAssistantId = req.params.id;
   const dataToUpdate = req.body;
 
+  const birthDate = new Date(dataToUpdate.nataleDate);
+  const today = new Date();
+  const diff = today.getTime() - birthDate.getTime();
+  const ageDate = new Date(diff);
+  const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+
+  dataToUpdate.age = age;
+
   const result = await patchAdministrativeAssistant(administrativeAssistantId, dataToUpdate);
 
   if (result.success) {
@@ -105,6 +137,14 @@ const patchCuentameHandler = async (req, res) => {
   const cuentameId = req.params.id;
   const dataToUpdate = req.body;
 
+  const birthDate = new Date(dataToUpdate.nataleDate);
+  const today = new Date();
+  const diff = today.getTime() - birthDate.getTime();
+  const ageDate = new Date(diff);
+  const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+
+  dataToUpdate.age = age;
+
   const result = await   patchInformationSystems(cuentameId, dataToUpdate);
 
   if (result.success) {
@@ -117,6 +157,14 @@ const patchCuentameHandler = async (req, res) => {
 const patchNutriHandler = async (req, res) => {
   const nutryId = req.params.id;
   const dataToUpdate = req.body;
+
+  const birthDate = new Date(dataToUpdate.nataleDate);
+  const today = new Date();
+  const diff = today.getTime() - birthDate.getTime();
+  const ageDate = new Date(diff);
+  const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+
+  dataToUpdate.age = age;
 
   const result = await patchNutritionist(nutryId, dataToUpdate);
 

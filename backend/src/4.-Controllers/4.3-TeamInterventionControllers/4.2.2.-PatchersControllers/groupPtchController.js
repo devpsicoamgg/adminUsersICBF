@@ -2,7 +2,7 @@ const { Group } = require("../../../3.-DataBase/dataBaseConfig");
 
 console.log("2️⃣.-Controller 🛠️ PATCH -COORDI-ROUTE-➡️ ", Group);
 
-const patchGroupByCoordi = async (groupId, dataToUpdate) => {
+const patchGroupByTeacher = async (groupId, dataToUpdate) => {
   try {
     const group = await Group.findByPk(groupId);
     if (!group) {
@@ -12,11 +12,21 @@ const patchGroupByCoordi = async (groupId, dataToUpdate) => {
       };
     }
 
+    const allowedProperties = ["address", "neighborhood"];
+    const filteredDataToUpdate = {};
+    for (const key in dataToUpdate) {
+      if (allowedProperties.includes(key)) {
+        filteredDataToUpdate[key] = dataToUpdate[key];
+      } else {
+        throw new Error(`El perfil del docente no permite modificar el campo '${key}'`);
+      }
+    }
+
     const previousGroupData = { ...group.get() };
-    await group.update(dataToUpdate);
+    await group.update(filteredDataToUpdate);
 
     const modifiedFields = {};
-    for (const key of Object.keys(dataToUpdate)) {
+    for (const key of Object.keys(filteredDataToUpdate)) {
       if (previousGroupData[key] !== group[key]) {
         modifiedFields[key] = {
           valor_anterior: previousGroupData[key],
@@ -28,9 +38,9 @@ const patchGroupByCoordi = async (groupId, dataToUpdate) => {
     const numCamposModificados = Object.keys(modifiedFields).length;
 
     const modificationInfo = {
-      fechaModificacionesCoordinador: new Date(),
+      fechaModificacionesDocentes: new Date(),
       numCamposModificados: numCamposModificados,
-      modificacionesCoordinadorRealizadas: modifiedFields,
+      modificacionesDocentesRealizadas: modifiedFields,
     };
 
     let modificaciones = group.modificaciones || [];
@@ -41,6 +51,7 @@ const patchGroupByCoordi = async (groupId, dataToUpdate) => {
     return {
       success: true,
       message: `Group actualizado exitosamente ${groupId}`,
+      modificaciones: modificaciones,
     };
   } catch (error) {
     return {
@@ -53,4 +64,4 @@ const patchGroupByCoordi = async (groupId, dataToUpdate) => {
   }
 };
 
-module.exports = { patchGroupByCoordi };
+module.exports = { patchGroupByTeacher };

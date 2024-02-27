@@ -1,25 +1,26 @@
-const { TeamIntervention } = require("../../../3.-DataBase/dataBaseConfig");
+const { HealthAndNutrition } = require("../../../3.-DataBase/dataBaseConfig");
 
-console.log("2️⃣.-Controller 🛠️ PATCH -COORDI-ROUTE-➡️ ", TeamIntervention);
+console.log("2️⃣.-Controller 🛠️ PATCH -TEACHER-ROUTE-➡️ ", HealthAndNutrition);
 
-const patchCollaboratorByCoordi = async (teacherId, dataToUpdate) => {
+const patchNutriBySelf = async (nutriId, dataToUpdate) => {
   try {
-    const teacher = await TeamIntervention.findByPk(teacherId);
-    if (!teacher) {
+    console.log('Buscando colaborador por ID:', nutriId);
+    const collaborator = await HealthAndNutrition.findByPk(nutriId);
+    if (!collaborator) {
       return {
         success: false,
-        message: `Teacher with id N° ${teacherId} not found`,
+        message: `Teacher Nutrition with id N° ${nutriId} not found`,
       };
     }
 
-    const previousTeacherData = { ...teacher.get() };
-    await teacher.update(dataToUpdate);
+    const previousCollaboratorData = { ...collaborator.get() };
+    await collaborator.update(dataToUpdate);
     const modifiedFields = {};
     for (const key of Object.keys(dataToUpdate)) {
-      if (previousTeacherData[key] !== teacher[key]) {
+      if (previousCollaboratorData[key] !== collaborator[key]) {
         modifiedFields[key] = {
-          valor_anterior: previousTeacherData[key],
-          valor_actual: teacher[key],
+          valor_anterior: previousCollaboratorData[key],
+          valor_actual: collaborator[key],
         };
       }
     }
@@ -27,32 +28,30 @@ const patchCollaboratorByCoordi = async (teacherId, dataToUpdate) => {
     const numCamposModificados = Object.keys(modifiedFields).length;
 
     const modificationInfo = {
-      fechaModificacionesCoordinador: new Date(),
+      fechaModificacionesNutricion: new Date(),
       numCamposModificados: numCamposModificados,
-      modificacionesCoordinadorRealizadas: modifiedFields,
+      modificacionesNutricionRealizadas: modifiedFields,
     };
 
-    let modificaciones = teacher.modificaciones || [];
+    let modificaciones = collaborator.modificaciones || [];
     modificaciones.push(modificationInfo);
-    await TeamIntervention.update(
-      { modificaciones },
-      { where: { id: teacherId } }
-    );
+    await collaborator.update({ modificaciones });
 
     return {
       success: true,
-      message: `Colaborador actualizado exitosamente ${teacherId}`,
+      message: `Colaborador nutri actualizado exitosamente ${nutriId}`,
+      modificaciones: modificaciones,
     };
   } catch (error) {
-    console.error("Error al actualizar el colaborador: ");
+    console.error("Error al actualizar el colaborador: ", error);
     return {
       success: false,
       message:
-        "Internal several error to update the teacher Id N° " +
-        teacherId +
+        "Internal several error to update the teacher nutri Id N° " +
+        nutriId +
         error.message,
     };
   }
 };
 
-module.exports = { patchCollaboratorByCoordi };
+module.exports = { patchNutriBySelf };

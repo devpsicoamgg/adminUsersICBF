@@ -2,7 +2,7 @@ const { TeamIntervention } = require("../../../3.-DataBase/dataBaseConfig");
 
 console.log("2️⃣.-Controller 🛠️ PATCH -COORDI-ROUTE-➡️ ", TeamIntervention);
 
-const patchCollaboratorByCoordi = async (teacherId, dataToUpdate) => {
+const patchTeacherBySelf = async (teacherId, dataToUpdate) => {
   try {
     const teacher = await TeamIntervention.findByPk(teacherId);
     if (!teacher) {
@@ -27,9 +27,9 @@ const patchCollaboratorByCoordi = async (teacherId, dataToUpdate) => {
     const numCamposModificados = Object.keys(modifiedFields).length;
 
     const modificationInfo = {
-      fechaModificacionesCoordinador: new Date(),
+      fechaModificacionesPorDocente: new Date(),
       numCamposModificados: numCamposModificados,
-      modificacionesCoordinadorRealizadas: modifiedFields,
+      modificacionesPorDocenteRealizadas: modifiedFields,
     };
 
     let modificaciones = teacher.modificaciones || [];
@@ -42,6 +42,7 @@ const patchCollaboratorByCoordi = async (teacherId, dataToUpdate) => {
     return {
       success: true,
       message: `Colaborador actualizado exitosamente ${teacherId}`,
+      modificaciones: modificaciones,
     };
   } catch (error) {
     console.error("Error al actualizar el colaborador: ");
@@ -55,4 +56,4 @@ const patchCollaboratorByCoordi = async (teacherId, dataToUpdate) => {
   }
 };
 
-module.exports = { patchCollaboratorByCoordi };
+module.exports = { patchTeacherBySelf };

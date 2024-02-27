@@ -14,6 +14,10 @@ const {
   getAllGroups, getGroupById
 } = require("../../4.-Controllers/4.3-TeamInterventionControllers/4.2.1.-GettersControllers/groupGetController")
 
+const { 
+  getAllUsersByGroup, getUserById
+} = require("../../4.-Controllers/4.3-TeamInterventionControllers/4.2.1.-GettersControllers/usersGetController")
+
 
 const getContractByIdHandlerTeachers = async (req, res) => {
   const contractId = req.params.id;
@@ -67,6 +71,8 @@ const getAllGroupsHandlerTeachers = async (req, res) => {
 const getGroupByIdHandlerTeachers = async (req, res) => {
   const groupId = req.params.id;
   const coordinatorId = req.body.coordinatorId;
+  console.log(coordinatorId, "coordi");
+  console.log(groupId, "grupo");
   try {
     const result = await getGroupById(groupId, coordinatorId);
     res.status(200).json(result);
@@ -98,13 +104,35 @@ const getAllTeachersHandlerTeachers = async (req, res) => {
   }
 };
 
-const getAllUsersHandlerTeachers = (req, res) => {
-  res.status(200).send(`TODOS LOS USUARIOS por teacher`);
+const getAllUsersHandlerTeachers = async (req, res) => {
+  const groupId = req.body.groupId; 
+
+  console.log("groupId recibido en getAllUsersHandlerTeachers:", groupId);
+
+  try {
+    const result = await getAllUsersByGroup(groupId); 
+
+    console.log("Resultado de getAllUsersByGroup:", result);
+
+    res.status(result.status).json(result.data); 
+  } catch (error) {
+    console.error("Error al obtener usuarios por grupo:", error);
+    res.status(500).json({ message: "Error interno del servidor" });
+  }
 };
 
-const getUserByIdHandlerTeachers = (req, res) => {
+const getUserByIdHandlerTeachers = async (req, res) => {
   const userId = req.params.id;
-  res.status(200).send(`Usuario no ${userId} por teacher`);
+  const teacherId = req.body.teacherId;
+  console.log("UserId:", userId);
+  console.log("TeacherId:", teacherId);
+  try {
+    const result = await getUserById(userId, teacherId); 
+    res.status(result.status).json(result.data); 
+  } catch (error) {
+    console.error("Error al obtener usuario por ID:", error);
+    res.status(500).json({ message: "Error interno del servidor" });
+  }
 };
 
 

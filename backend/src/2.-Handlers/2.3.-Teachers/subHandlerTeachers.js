@@ -6,10 +6,16 @@ const {
   getAllMembersTeamIntervention, 
   getAllGroups, 
   getGroupById, 
+  getAllUsersHandlerTeachers,
+
 } = getTeachersHandler;
 
 const {
-  patchAdministrativeAssistantHandler
+  patchAdministrativeAssistantHandler, 
+  patchCuentameHandler, 
+  patchNutriHandler,
+  patchTeacherHandlerTeachers,
+  patchUserHandlerTeachers,
 } = patchTeachersHandler;
 
 
@@ -20,5 +26,10 @@ module.exports = {
   getAllMembersTeamIntervention, 
   getAllGroups, 
   getGroupById, 
-  patchAdministrativeAssistantHandler
+  getAllUsersHandlerTeachers,
+  patchAdministrativeAssistantHandler, 
+  patchCuentameHandler,
+  patchNutriHandler,
+  patchTeacherHandlerTeachers,
+  patchUserHandlerTeachers,
 };

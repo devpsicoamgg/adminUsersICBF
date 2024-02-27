@@ -59,10 +59,23 @@ const UserFinalModel = (sequelize) => {
         allowNull: false,
       },
 
+      MINUTE: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      GROUP_OWNER: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      COVERAGE: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
       age: {
         type: DataTypes.STRING,
         allowNull: true,
       },
+      
 
       // Marital and Disability Information
       maritalStatus: {

@@ -3,7 +3,7 @@ const { sequelize } = require("../backend/src/3.-DataBase/dataBaseConfig");
 
  // const PORT_SERVER = 3001
 
-  const PORT_SERVER = 5432;
+ const PORT_SERVER = 5432;
 
 server.listen(PORT_SERVER, () => {
   sequelize.sync({ alter: true });
