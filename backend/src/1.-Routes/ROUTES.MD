@@ -12,52 +12,106 @@ Dentro del folder `1.-Routes`, hay subcarpetas que representan los diferentes pe
 - **/1.2.-Coordinators**: Contiene las rutas y métodos relacionadas con la administración de los coordinadores, contiene a `subRouterCoordinators.js` quien gestiona todos los métodos que configuran las rutas
 - **/1.3.-Teachers**: Contiene las rutas relacionadas con la administración de los docentes, contiene a `subRouterTeachers.js` quien gestiona todos los métodos que configuran las rutas
 
+### delAdminRouter
 
+- DELETE /coordinators/:id
+- DELETE /groups/:id
+- DELETE /teachers/:id
+- DELETE /contract/:id
+- DELETE /administrativeassistant/:id
+- DELETE /cuentamecollaborator/:id
+- DELETE /nutricollaborator/:id
+- DELETE /psysocial/:id
 
-| Endpoint                          | Método | Descripción                                | Ruta localhost                                   |
-|-----------------------------------|--------|--------------------------------------------|--------------------------------------------------|
-| **Administradores** |
-| /admin/coordinators/              | POST   | Crear un coordinador por administrador     | `http://localhost:3001/admin/coordinators/`      |
-| /admin/contract/                  | POST   | Crear un contrato por administrador        | `http://localhost:3001/admin/contract/`          |
-| /admin/teachers                   | POST   | Crear un docente por administrador        | `http://localhost:3001/admin/teachers`           |
-| /admin/groups/                    | POST   | Crear un grupo por administrador           | `http://localhost:3001/admin/groups`             |
-| /admin/coordinators/:id           | PATCH  | Actualizar coordinador por ID por admin    | `http://localhost:3001/admin/coordinators/:id`   |
-| /admin/users/:id                  | PATCH  | Actualizar usuario por ID por admin        | `http://localhost:3001/admin/users/:id`          |
-| /admin/groups/:id                 | PATCH  | Actualizar grupo por ID por admin          | `http://localhost:3001/admin/groups/:id`         |
-| /admin/teachers/:id               | PATCH  | Actualizar docente por ID por admin       | `http://localhost:3001/admin/teachers/:id`       |
-| /admin/contract/:id               | PATCH  | Actualizar contrato por ID por admin       | `http://localhost:3001/admin/contract/:id`       |
-| /admin/coordinators/              | GET    | Obtiene todos los coordinadores            | `http://localhost:3001/admin/coordinators/`      |
-| /admin/coordinators/:id           | GET    | Obtiene coordinador por ID                 | `http://localhost:3001/admin/coordinators/:id`   |
-| /admin/teachers/                  | GET    | Obtiene todos los docentes                 | `http://localhost:3001/admin/teachers/`          |
-| /admin/teachers/:id               | GET    | Obtiene docente por ID                    | `http://localhost:3001/admin/teachers/:id`       |
-| /admin/groups/                    | GET    | Obtiene todos los grupos                   | `http://localhost:3001/admin/groups/ `           |
-| /admin/groups/:id                 | GET    | Obtiene grupo por ID                       | `http://localhost:3001/admin/groups/:id`         |
-| /admin/users/                     | GET    | Obtiene todos los usuarios                 | `http://localhost:3001/admin/users/`             |
-| /admin/users/:id                  | GET    | Obtiene usuario por ID                     | `http://localhost:3001/admin/users/:id`          |
-| **Coordinadores** |
-| /coordinators/teachers            | POST   | Crear un docente por coordinador          | `http://localhost:3001/coordinators/teachers`    |
-| /coordinators/groups              | POST   | Crear un grupo por coordinador             | `http://localhost:3001/coordinators/groups`      |
-| /coordinators/users/:id           | PATCH  | Actualizar usuario por ID por coordinador  | `http://localhost:3001/coordinators/users/:id`   |
-| /coordinators/groups/:id          | PATCH  | Actualizar grupo por ID por coordinador    | `http://localhost:3001/coordinators/groups/:id`  |
-| /coordinators/teachers/:id        | PATCH  | Actualizar docente por ID por coordinador | `http://localhost:3001/coordinators/teachers/:id`|
-| /coordinators/users/:id           | DELETE | Eliminar usuario por ID por coordinador    | `http://localhost:3001/coordinators/users/:id`   |
-| /coordinators/groups/:id          | DELETE | Eliminar grupo por ID por coordinador      | `http://localhost:3001/coordinators/groups/:id`  |
-| /coordinators/teachers/:id        | DELETE | Eliminar docente por ID por coordinador   | `http://localhost:3001/coordinators/teachers/:id`|
-| /coordinators/contract/2          | GET    | Obtiene contrato                           | `http://localhost:3001/coordinators/contract/2`  |
-| /coordinators/users/              | GET    | Obtiene todos los usuarios                 | `http://localhost:3001/coordinators/users/`      |
-| /coordinators/users/:id           | GET    | Obtiene usuario por ID                     | `http://localhost:3001/coordinators/users/:id`   |
-| /coordinators/groups              | GET    | Obtiene todos los grupos                   | `http://localhost:3001/coordinators/groups`      |
-| /coordinators/groups/:id          | GET    | Obtiene grupo por ID                       | `http://localhost:3001/coordinators/groups/:id`  |
-| /coordinators/teachers            | GET    | Obtiene todos los docentes                 | `http://localhost:3001/coordinators/teachers`    |
-| **Docentes** |
-| /teachers/coordinators            | GET    | Obtiene coordinadores                      | `http://localhost:3001/teachers/coordinators`   |
-| /teachers/users/                  | POST   | Crea un usuario                            | `http://localhost:3001/teachers/users/`         |
-| /teachers/users/:id               | PATCH  | Patchea un usuario                         | `http://localhost:3001/teachers/users/:id`       |
-| /teachers/group/:id               | PATCH  | Patchea un grupo                           | `http://localhost:3001/teachers/group/:id`       |
-| /teachers/teachers/:id            | PATCH  | Se patchea a él mismo                      | `http://localhost:3001/teachers/teachers/:id`    |
-| /teachers/users/:id               | GET    | Obtiene usuario por ID                     | `http://localhost:3001/teachers/users/:id`      |
-| /teachers/users/                  | GET    | Obtiene usuarios                           | `http://localhost:3001/teachers/users/`         |
-| /teachers/contract/8              | GET    | Obtiene contrato por ID                    | `http://localhost:3001/teachers/contract/8`     |
-| /teachers/groups/:id              | GET    | Obtiene grupo por ID                       | `http://localhost:3001/teachers/groups/:id`     |
-| /teachers/groups/                 | GET    | Obtiene todos los grupos                   | `http://localhost:3001/teachers/groups/`        |
-| /teachers/teachers/               | GET    | Obtiene todos los docentes                 | `http://localhost:3001/teachers/teachers/`      |
+### getAdminRouter
+
+- GET /coordinators/
+- GET /coordinators/:id
+- GET /users
+- GET /contract
+- GET /contract/:id
+- GET /users/:id
+- GET /groups
+- GET /groups/:id
+- GET /teachers/:id
+- GET /teachers
+
+### postAdminRouter
+
+- POST /coordinators/
+- POST /contract/
+- POST /teachers
+- POST /groups
+- POST /nutritionist
+- POST /psysocial
+- POST /administrative
+- POST /informationsystems
+
+### patchAdminRouter
+
+- PATCH /coordinators/:id
+- PATCH /users/:id
+- PATCH /groups/:id
+- PATCH /teachers/:id
+- PATCH /contract/:id
+- PATCH /administrativeassistant/:id
+- PATCH /psysocial/:id
+- PATCH /informationsystems/:id
+- PATCH /nutritionist/:id
+
+### delCoordinatorsRouter
+
+- DELETE /groups/:id
+- DELETE /teachers/:id
+- DELETE /users/:id
+
+### getCoordinatorsRouter
+
+- GET /contract/:id
+- GET /users
+- GET /users/:id
+- GET /groups
+- GET /coordinators/:contractId
+- GET /groups/:id
+- GET /teachers
+- GET /teachers/:id
+
+### postCoordinatorsRouter
+
+- POST /teachers
+- POST /groups
+- POST /psysocial
+- POST /nutri
+
+### patchCoordinatorsRouter
+
+- PATCH /users/:id
+- PATCH /groups/:id
+- PATCH /teachers/:id
+- PATCH /coordinator/:id
+- PATCH /nutri/:id
+- PATCH /psysoc/:id
+
+### getTeachersRouter
+
+- GET /coordinators/:id
+- GET /users
+- GET /users/:id
+- GET /contract/:id
+- GET /groups
+- GET /groups/:id
+- GET /teachers
+
+### postTeachersRouter
+
+- POST /users
+- POST /users/:id
+
+### patchTeacherRouter
+
+- PATCH /users/:id
+- PATCH /groups/:id
+- PATCH /teachers/:id
+- PATCH /administrativeassiatant/:id
+- PATCH /cuentame/:id
+- PATCH /nutrition/:id
