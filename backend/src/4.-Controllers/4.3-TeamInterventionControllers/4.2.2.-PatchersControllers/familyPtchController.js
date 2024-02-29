@@ -1,10 +1,10 @@
-const { UserFinal } = require("../../../3.-DataBase/dataBaseConfig");
+const { Family } = require("../../../3.-DataBase/dataBaseConfig");
 
-console.log("3️⃣.-Controller 🛠️ PATCH -TEACHER-ROUTE-➡️ ", UserFinal);
+console.log("3️⃣.-Controller 🛠️ PATCH -TEACHER-ROUTE-➡️ ", Family);
 
-const patchUserByTeacher = async (userId, dataToUpdate) => {
+const patchFamilyMemberByTeacher = async (userId, dataToUpdate) => {
   try {
-    const user = await UserFinal.findByPk(userId);
+    const user = await Family.findByPk(userId);
     if (!user) {
       return {
         success: false,
@@ -28,19 +28,19 @@ const patchUserByTeacher = async (userId, dataToUpdate) => {
     const numCamposModificados = Object.keys(modifiedFields).length;
 
     const modificationInfo = {
-      fechaModificacionesAUsuarioPorDocente: new Date(),
+      fechaModificacionesAFamilyPorDocente: new Date(),
       numCamposModificados: numCamposModificados,
-      modificacionesAUsuarioRealizadasPorDocentes: modifiedFields,
+      modificacionesAFamilyRealizadasPorDocentes: modifiedFields,
     };
 
     let modificaciones = user.modificaciones || [];
     modificaciones.push(modificationInfo);
 
-    await UserFinal.update({ modificaciones }, { where: { id: userId } });
+    await Family.update({ modificaciones }, { where: { id: userId } });
 
     return {
       success: true,
-      message: `User actualizado exitosamente ${userId}`,
+      message: `Family actualizado exitosamente ${userId}`,
       modificaciones: modificaciones,
     };
   } catch (error) {
@@ -51,4 +51,4 @@ const patchUserByTeacher = async (userId, dataToUpdate) => {
   }
 };
 
-module.exports = { patchUserByTeacher };
+module.exports = { patchFamilyMemberByTeacher };

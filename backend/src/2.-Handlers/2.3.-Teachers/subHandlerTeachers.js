@@ -11,11 +11,14 @@ const {
 } = getTeachersHandler;
 
 const {
+  patchUserHandlerTeachers,
+  patchFamilyHandlerTeachers,
+  patchGroupHandlerTeachers,
   patchAdministrativeAssistantHandler, 
   patchCuentameHandler, 
   patchNutriHandler,
   patchTeacherHandlerTeachers,
-  patchUserHandlerTeachers,
+  patchPsySocialHandler,
 } = patchTeachersHandler;
 
 
@@ -32,4 +35,7 @@ module.exports = {
   patchNutriHandler,
   patchTeacherHandlerTeachers,
   patchUserHandlerTeachers,
+  patchFamilyHandlerTeachers,
+  patchGroupHandlerTeachers,
+  patchPsySocialHandler,
 };

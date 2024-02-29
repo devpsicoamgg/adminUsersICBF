@@ -75,7 +75,7 @@ const createFamilyMemberHandlerTeachers = async (req, res) => {
   try {
     const userData = req.body;
     const userFinalId = req.params.id;
-    console.log(userFinalId, "handler user final id")
+ 
     const {
       contractId,
       coordinatorId,

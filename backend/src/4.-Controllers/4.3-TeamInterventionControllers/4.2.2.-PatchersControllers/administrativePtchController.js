@@ -1,6 +1,6 @@
 const { AdministrativeAssistant } = require("../../../3.-DataBase/dataBaseConfig");
 
-console.log("2️⃣.-Controller 🛠️ PATCH -TEACHER-ROUTE-➡️ ", AdministrativeAssistant);
+console.log("3️⃣.-Controller 🛠️ PATCH -TEACHER-ROUTE-➡️ ", AdministrativeAssistant);
 
 const patchAdministrativeAssistantBySelf = async (administrativeAssistantId, dataToUpdate) => {
   try {

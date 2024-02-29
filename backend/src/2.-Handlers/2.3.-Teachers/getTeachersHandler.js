@@ -71,8 +71,7 @@ const getAllGroupsHandlerTeachers = async (req, res) => {
 const getGroupByIdHandlerTeachers = async (req, res) => {
   const groupId = req.params.id;
   const coordinatorId = req.body.coordinatorId;
-  console.log(coordinatorId, "coordi");
-  console.log(groupId, "grupo");
+
   try {
     const result = await getGroupById(groupId, coordinatorId);
     res.status(200).json(result);
@@ -107,12 +106,12 @@ const getAllTeachersHandlerTeachers = async (req, res) => {
 const getAllUsersHandlerTeachers = async (req, res) => {
   const groupId = req.body.groupId; 
 
-  console.log("groupId recibido en getAllUsersHandlerTeachers:", groupId);
+ 
 
   try {
     const result = await getAllUsersByGroup(groupId); 
 
-    console.log("Resultado de getAllUsersByGroup:", result);
+   
 
     res.status(result.status).json(result.data); 
   } catch (error) {
@@ -124,8 +123,7 @@ const getAllUsersHandlerTeachers = async (req, res) => {
 const getUserByIdHandlerTeachers = async (req, res) => {
   const userId = req.params.id;
   const teacherId = req.body.teacherId;
-  console.log("UserId:", userId);
-  console.log("TeacherId:", teacherId);
+
   try {
     const result = await getUserById(userId, teacherId); 
     res.status(result.status).json(result.data); 

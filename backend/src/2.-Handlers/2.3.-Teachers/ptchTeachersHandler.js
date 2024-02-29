@@ -22,6 +22,14 @@ const {
   patchUserByTeacher,
 } = require("../../4.-Controllers/4.3-TeamInterventionControllers/4.2.2.-PatchersControllers/finalUserPtchController");
 
+const {
+  patchFamilyMemberByTeacher,
+} = require("../../4.-Controllers/4.3-TeamInterventionControllers/4.2.2.-PatchersControllers/familyPtchController");
+
+const {
+  patchPsySocialBySelf,
+} = require("../../4.-Controllers/4.3-TeamInterventionControllers/4.2.2.-PatchersControllers/psySocialPtchController");
+
 
 const patchUserHandlerTeachers = async (req, res) => {
   const userId = req.params.id;
@@ -44,6 +52,26 @@ const patchUserHandlerTeachers = async (req, res) => {
   }
 };
 
+const patchFamilyHandlerTeachers = async (req, res) => {
+  const userId = req.params.id;
+  const dataToUpdate = req.body;
+  
+  const birthDate = new Date(dataToUpdate.nataleDate);
+  const today = new Date();
+  const diff = today.getTime() - birthDate.getTime();
+  const ageDate = new Date(diff);
+  const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+  
+  dataToUpdate.age = age;
+
+  const result = await patchFamilyMemberByTeacher(userId, dataToUpdate);
+
+  if (result.success) {
+    res.status(200).json(result);
+  } else {
+    res.status(404).json({ message: result.message });
+  }
+};
 
 const patchGroupHandlerTeachers = async (req, res) => {
   const groupId = req.params.id;
@@ -133,6 +161,30 @@ const patchNutriHandler = async (req, res) => {
   }
 };
 
+const patchPsySocialhandler = async (req, res) => {
+  const nutriId = req.params.id;
+  const dataToUpdate = req.body;
+
+  const birthDate = new Date(dataToUpdate.nataleDate);
+  const today = new Date();
+  const diff = today.getTime() - birthDate.getTime();
+  const ageDate = new Date(diff);
+  const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+  
+  dataToUpdate.age = age;
+
+  const result = await patchPsySocialBySelf(
+    nutriId,
+    dataToUpdate
+  );
+
+  if (result.success) {
+    res.status(200).json(result);
+  } else {
+    res.status(404).json({ message: result.message, result });
+  }
+};
+
 const patchTeacherHandlerTeachers = async (req, res) => {
   const teacherId = req.params.id;
   const dataToUpdate = req.body;
@@ -165,4 +217,6 @@ module.exports = {
   patchAdministrativeAssistantHandler,
   patchCuentameHandler,
   patchNutriHandler,
+  patchFamilyHandlerTeachers,
+  patchPsySocialhandler,
 };

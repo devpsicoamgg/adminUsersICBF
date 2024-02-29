@@ -1,6 +1,6 @@
 const { Group } = require("../../../3.-DataBase/dataBaseConfig");
 
-console.log("2️⃣.-Controller 🛠️ PATCH -COORDI-ROUTE-➡️ ", Group);
+console.log("3️⃣.-Controller 🛠️ PATCH -TEACHER-ROUTE-➡️ ", Group);
 
 const patchGroupByTeacher = async (groupId, dataToUpdate) => {
   try {

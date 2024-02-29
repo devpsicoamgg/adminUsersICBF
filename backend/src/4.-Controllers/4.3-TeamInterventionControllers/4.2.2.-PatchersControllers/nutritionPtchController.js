@@ -1,6 +1,6 @@
 const { HealthAndNutrition } = require("../../../3.-DataBase/dataBaseConfig");
 
-console.log("2️⃣.-Controller 🛠️ PATCH -TEACHER-ROUTE-➡️ ", HealthAndNutrition);
+console.log("3️⃣.-Controller 🛠️ PATCH -TEACHER-ROUTE-➡️ ", HealthAndNutrition);
 
 const patchNutriBySelf = async (nutriId, dataToUpdate) => {
   try {

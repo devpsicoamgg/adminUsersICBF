@@ -1,14 +1,14 @@
-const { TeamIntervention } = require("../../../3.-DataBase/dataBaseConfig");
+const { PsySocial } = require("../../../3.-DataBase/dataBaseConfig");
 
-console.log("2️⃣.-Controller 🛠️ PATCH -COORDI-ROUTE-➡️ ", TeamIntervention);
+console.log("3️⃣.-Controller 🛠️ PATCH -TEACHER-ROUTE-➡️ ", PsySocial);
 
-const patchCollaboratorByCoordi = async (teacherId, dataToUpdate) => {
+const patchPsySocialBySelf = async (psySocialId, dataToUpdate) => {
   try {
-    const teacher = await TeamIntervention.findByPk(teacherId);
+    const teacher = await PsySocial.findByPk(psySocialId);
     if (!teacher) {
       return {
         success: false,
-        message: `Teacher with id N° ${teacherId} not found`,
+        message: `PsySocial with id N° ${psySocialId} not found`,
       };
     }
 
@@ -27,21 +27,22 @@ const patchCollaboratorByCoordi = async (teacherId, dataToUpdate) => {
     const numCamposModificados = Object.keys(modifiedFields).length;
 
     const modificationInfo = {
-      fechaModificacionesCoordinador: new Date(),
+      fechaModificacionesPsySocial: new Date(),
       numCamposModificados: numCamposModificados,
-      modificacionesCoordinadorRealizadas: modifiedFields,
+      modificacionesPsySocialIdRealizadas: modifiedFields,
     };
 
     let modificaciones = teacher.modificaciones || [];
     modificaciones.push(modificationInfo);
-    await TeamIntervention.update(
+    await PsySocial.update(
       { modificaciones },
-      { where: { id: teacherId } }
+      { where: { id: psySocialId } }
     );
 
     return {
       success: true,
-      message: `Colaborador actualizado exitosamente ${teacherId}`,
+      message: `PsySocial actualizado exitosamente ${psySocialId}`,
+      modificaciones: modificaciones
     };
   } catch (error) {
     console.error("Error al actualizar el colaborador: ");
@@ -49,10 +50,10 @@ const patchCollaboratorByCoordi = async (teacherId, dataToUpdate) => {
       success: false,
       message:
         "Internal several error to update the teacher Id N° " +
-        teacherId +
+        psySocialId +
         error.message,
     };
   }
 };
 
-module.exports = { patchCollaboratorByCoordi };
+module.exports = { patchPsySocialBySelf };
