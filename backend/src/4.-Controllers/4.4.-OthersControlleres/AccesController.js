@@ -1,60 +1,53 @@
-const { AdministrativeAssistant, Coordinator, HealthAndNutrition, InformationSystems, PsySocial } = require("../../3.-DataBase/dataBaseConfig");
+const { AdministrativeAssistant, Coordinator, HealthAndNutrition, InformationSystems, PsySocial, TeamIntervention } = require("../../3.-DataBase/dataBaseConfig");
 
-const getAccesControl = async (email) => {
+const getAccesControl = async (email, password) => {
   try {
-    // Realiza la consulta para verificar si el email existe en las tablas correspondientes
-    const adminAssistant = await AdministrativeAssistant.findOne({ where: { email: email } });
-    const coordinator = await Coordinator.findOne({ where: { email: email } });
-    const healthNutrition = await HealthAndNutrition.findOne({ where: { email: email } });
-    const infoSystem = await InformationSystems.findOne({ where: { email: email } });
-    const psySocial = await PsySocial.findOne({ where: { email: email } });
+    const adminAssistant = await AdministrativeAssistant.findOne({ where: { email: email, password: password } });
+    const coordinator = await Coordinator.findOne({ where: { email: email, password: password } });
+    const healthNutrition = await HealthAndNutrition.findOne({ where: { email: email, password: password } });
+    const infoSystem = await InformationSystems.findOne({ where: { email: email, password: password } });
+    const psySocial = await PsySocial.findOne({ where: { email: email, password: password } });
+    const teamIntervention = await TeamIntervention.findOne({ where: { email: email, password: password } });
 
-    // Verifica de qué tabla proviene el email y si el acceso está permitido
     if (adminAssistant) {
       return {
         success: true,
-        message: "El email existe y tiene acceso permitido.",
-        table: "AdministrativeAssistant",
+        message: "El email y la contraseña son válidos.",
+        profile: "profileAdministrative"
       };
     } else if (coordinator) {
       return {
         success: true,
-        message: "El email existe y tiene acceso permitido.",
-        table: "Coordinator",
+        message: "El email y la contraseña son válidos.",
+        profile: "profileCoordinator"
       };
-    } else if (healthNutrition) {
+    } else if (healthNutrition || psySocial || teamIntervention) {
       return {
         success: true,
-        message: "El email existe y tiene acceso permitido.",
-        table: "HealthAndNutrition",
+        message: "El email y la contraseña son válidos.",
+        profile: "profileTeachers"
       };
     } else if (infoSystem) {
       return {
         success: true,
-        message: "El email existe y tiene acceso permitido.",
-        table: "InformationSystems",
-      };
-    } else if (psySocial) {
-      return {
-        success: true,
-        message: "El email existe y tiene acceso permitido.",
-        table: "PsySocial",
+        message: "El email y la contraseña son válidos.",
+        profile: "profileCuentame"
       };
     } else {
       return {
         success: false,
-        message: "El email no existe o no tiene acceso permitido.",
-        table: null,
+        message: "El email o la contraseña son incorrectos."
       };
     }
   } catch (error) {
     return {
       success: false,
-      message: "Error interno: " + error.message,
-      table: null,
+      message: "Error interno: " + error.message
     };
   }
 };
+
+
 
 module.exports = {
   getAccesControl,

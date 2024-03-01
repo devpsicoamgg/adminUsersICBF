@@ -1,0 +1,136 @@
+
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 97vh;
+  background-size: 400% 400%;
+  background-color: #f9f9f9;
+font-family: sans-serif;
+}
+
+
+.formContainer {
+  font-weight: bolder;
+  max-width: 400px;
+  margin: 0 auto;
+  width: 90%;
+  height: 52%;
+  padding: 20px;
+  border: 1px solid #555; 
+  color: #ccc;
+  border-radius: 10px; 
+  background-color: #242424;
+  font-family: sans-serif;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); 
+ 
+}
+
+
+
+.form label,
+.form input {
+  display: block;
+  margin-bottom: 10px;
+  
+}
+
+.form input {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+
+.ErrorMessage {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+
+
+.btn {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  margin-top: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+.btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+
+.eyeIcon {
+  position: absolute;
+  right: 25px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  font-size: 1.2rem; 
+}
+
+.passwordField {
+  position: relative;
+}
+
+
+
+.links {
+  margin-top: 40px;
+  display: flex;
+  font-size: 12px;
+  justify-content: space-between;
+  font-weight: 200;
+}
+
+.links a {
+  text-decoration: none;
+  color: #007bff;
+  transition: color 0.3s ease, font-size 0.3s ease;
+}
+
+.links a:hover {
+  color: #ebf2f9;
+  font-size: 13px;
+  font-weight: bolder;
+}
+
+
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+
+  .formContainer {
+    max-width: 80%;
+    height: 25%;
+  }
+
+  .eyeIcon {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+  }  
+}

@@ -2,15 +2,15 @@ const { getAccesControl } = require("../../4.-Controllers/4.4.-OthersControllere
 
 const getAccesHandlerAll = async (req, res) => {
   try {
-    const email = req.body.email;
-    const result = await getAccesControl(email);
+    const { email, password } = req.query; 
+    const result = await getAccesControl(email, password);
 
     res.status(200).json(result);
   } catch (error) {
-    console.error("Error in handler to get all contracts", error);
+    console.error("Error in handler ", error);
     res.status(500).json({
       success: false,
-      error: "Internal several error",
+      error: "Internal server error",
       details: error.message,
     });
   }
