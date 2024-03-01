@@ -8,6 +8,8 @@ import AdminView from "./components/AdminView/AdminView";
 import Login from "./components/Loging/Login";
 import PrivacyPolicy from "./components/PrivacyPolicy/PrivacyPolicy";
 import TermsAndConditions from "./components/TermsAndConditions/TermsAndConditions";
+import CuentameView from "./components/CuentameView/CuentameView";
+import TeachersView from "./components/TeachersView/TeachersView";
 
 const App = () => {
   const userProfile = useSelector((state) => state.user.userProfile);
@@ -19,9 +21,9 @@ const App = () => {
       <Route path={ROUTES.TERMS} element={<TermsAndConditions />} />
 
       <Route
-        path={ROUTES.HOME}
+        path={decodeURIComponent(ROUTES.HOME)}
         element={
-          userProfile === "profileCoordinator" ? (
+          userProfile  ? (
             <Home />
           ) : (
             <Navigate to={ROUTES.LOGIN} />
@@ -29,7 +31,7 @@ const App = () => {
         }
       />
       <Route
-        path={ROUTES.COORDINATOR}
+        path={decodeURIComponent(ROUTES.COORDINATOR)}
         element={
           userProfile === "profileCoordinator" ? (
             <CoordinatorsView />
@@ -39,7 +41,7 @@ const App = () => {
         }
       />
       <Route
-        path={ROUTES.ADMIN}
+        path={decodeURIComponent(ROUTES.ADMIN)}
         element={
           userProfile === "profileAdministrative" ? (
             <AdminView />
@@ -49,7 +51,7 @@ const App = () => {
         }
       />
       <Route
-        path={ROUTES.TEACHERS}
+        path={decodeURIComponent(ROUTES.TEACHERS)}
         element={
           userProfile === "profileTeachers" ? (
             <TeachersView />
@@ -59,7 +61,7 @@ const App = () => {
         }
       />
       <Route
-        path={ROUTES.CUENTAME}
+        path={decodeURIComponent(ROUTES.CUENTAME)}
         element={
           userProfile === "profileCuentame" ? (
             <CuentameView />

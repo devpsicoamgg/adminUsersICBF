@@ -24,18 +24,20 @@ const Login = () => {
 
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
+      const encodedPassword = encodeURIComponent(values.password);
       const response = await axios.get(
-        `${ADRES.TO}/acces/validate?email=${values.email}&password=${values.password}`
+        `${ADRES.TO}/acces/validate?email=${values.email}&password=${encodedPassword}`
       );
+      console.log("Respuesta del servidor:", response.data);
       const { success, message, profile } = response.data;
-
+  
       if (!success) {
         setErrorMessage(message);
-        console.log(response.data, "MAL");
       } else {
         setErrorMessage("");
         dispatch(setUserProfile(profile));
-
+        console.log("Perfil del usuario autenticado:", profile);
+  
         switch (profile) {
           case "profileCoordinator":
             console.log("Redirigiendo a coordinador");
@@ -45,9 +47,17 @@ const Login = () => {
             console.log("Redirigiendo a administrativo");
             navigate(ROUTES.ADMIN);
             break;
+          case "profileTeachers":
+            console.log("Redirigiendo a la vista de profesores");
+            navigate(ROUTES.TEACHERS);
+            break;
+          case "profileCuentame":
+            console.log("Redirigiendo a la vista de cuentame");
+            navigate(ROUTES.CUENTAME);
+            break;
           default:
             console.log("Redirigiendo a la página de inicio");
-            navigate(ROUTES.HOME);
+            navigate(ROUTES.LOGIN);
             break;
         }
       }
@@ -57,15 +67,30 @@ const Login = () => {
         "Error al enviar la solicitud. Por favor, intenta nuevamente."
       );
     }
-
+  
     setSubmitting(false);
   };
+  
 
   return (
     <div className={styles.container}>
       <div className={styles.header}>
         <h2> SISTEMA GESTOR USUARIOS </h2>
       </div>
+
+      <div className={styles.header}>
+        <h6>
+          {" "}
+          PERFIL ASIST-ADMIN: pepitocontreras212@uncorreox.com / T%qLdfTOi{" "}
+          <br />
+          PERFIL COORDINADOR: otro@estecorreo.com / s7RFfs-!y <br />
+          PERFIL NUTRI: cualquiermail@gmail.com / _?&=#(cb@ <br />
+          PERFIL CUENTAME: uncorreo.delcuentame@gmail.com / M3#THG$WT <br />
+          PERFIL PSYSOC: psy.social@gmail.com / Yz20Fk079 <br />
+          PERFIL DOCENTE: docente@gmail.com / hd_ueWIp7 <br />
+        </h6>
+      </div>
+
       <div className={styles.formContainer}>
         <Formik
           initialValues={{ email: "", password: "" }}

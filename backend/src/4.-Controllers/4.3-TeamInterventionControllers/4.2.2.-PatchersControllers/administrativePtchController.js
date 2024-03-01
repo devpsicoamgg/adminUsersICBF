@@ -1,10 +1,20 @@
-const { AdministrativeAssistant } = require("../../../3.-DataBase/dataBaseConfig");
+const {
+  AdministrativeAssistant,
+} = require("../../../3.-DataBase/dataBaseConfig");
 
-console.log("3️⃣.-Controller 🛠️ PATCH -TEACHER-ROUTE-➡️ ", AdministrativeAssistant);
+console.log(
+  "3️⃣.-Controller 🛠️ PATCH -TEACHER-ROUTE-➡️ ",
+  AdministrativeAssistant
+);
 
-const patchAdministrativeAssistantBySelf = async (administrativeAssistantId, dataToUpdate) => {
+const patchAdministrativeAssistantBySelf = async (
+  administrativeAssistantId,
+  dataToUpdate
+) => {
   try {
-    const collaborator = await AdministrativeAssistant.findByPk(administrativeAssistantId);
+    const collaborator = await AdministrativeAssistant.findByPk(
+      administrativeAssistantId
+    );
     if (!collaborator) {
       return {
         success: false,
@@ -19,7 +29,7 @@ const patchAdministrativeAssistantBySelf = async (administrativeAssistantId, dat
       if (previousCollaboratorData[key] !== collaborator[key]) {
         modifiedFields[key] = {
           valor_anterior: previousCollaboratorData[key],
-          valor_actual: previousCollaboratorData[key],
+          valor_actual: collaborator[key],
         };
       }
     }

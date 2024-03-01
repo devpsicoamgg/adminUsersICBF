@@ -18,7 +18,7 @@ const patchCoordinator = async (coordinatorId, dataToUpdate) => {
 
     const modifiedFields = {};
     for (const key of Object.keys(dataToUpdate)) {
-      if (previousCoordinatorData[key] !== coordinator[key]) {
+      if (key !== 'fecha_nacimiento' && key !== 'edad' && previousCoordinatorData[key] !== coordinator[key]) {
         modifiedFields[key] = {
           valor_anterior: previousCoordinatorData[key],
           valor_actual: coordinator[key],
