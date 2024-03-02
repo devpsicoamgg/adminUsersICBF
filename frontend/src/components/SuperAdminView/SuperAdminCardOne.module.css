@@ -35,6 +35,7 @@
   margin-bottom: 10px; 
 }
 
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -69,9 +70,17 @@ input[type="date"] {
 }
 
 .ErrorMessage {
-  color: red;
-  font-size: 14px;
   margin-top: 5px;
+  overflow: hidden;
+  position: fixed;
+}
+
+.ErrorMessageDiv {
+  height: 16px; 
+  color: red;
+  font-size: 9px;
+  width: 100%;
+  text-align: center;
 }
 
 button {
@@ -86,4 +95,34 @@ button {
 button:disabled {
   background-color: #cccccc;
   cursor: not-allowed;
+}
+.sending {
+  display: flex;
+  align-items: center;
+}
+
+.sending > button {
+  margin-right: 10px;
+}
+
+.loading {
+  color: rgb(211, 77, 0); 
+  font-weight: bolder;
+  margin-right: 10px;
+}
+
+.successMessage {
+  color: rgb(0, 98, 5); 
+  display: flex;
+  font-weight: bolder;
+  align-items: center;
+  padding: 1px; 
+  border-radius: 10px; 
+}
+
+.successMessage::before {
+  content: "\2713"; 
+  font-size: 1.9em;
+  font-weight: bolder;
+  margin-right: 5px;
 }

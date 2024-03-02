@@ -49,7 +49,7 @@ const SuperAdminView = () => {
     <>
       <div className={styles.containerAdminView}>
         <div className={styles.card} onClick={handleOpenModal1}>
-          <p> CREACIÓN DE CONTRATO </p>
+          <p className={styles.titles} > CREACIÓN DE CONTRATO </p>
           <FaFileContract className={styles.contractIcon} />
         </div>
         <div className={styles.card} onClick={handleOpenModal2}>

@@ -11,6 +11,7 @@ import TermsAndConditions from "./components/TermsAndConditions/TermsAndConditio
 import CuentameView from "./components/CuentameView/CuentameView";
 import TeachersView from "./components/TeachersView/TeachersView";
 import SuperAdminView from "./components/SuperAdminView/SuperAdminView";
+import Err404 from "./components/Err404/Err404";
 
 const App = () => {
   const userProfile = useSelector((state) => state.user.userProfile);
@@ -77,6 +78,7 @@ const App = () => {
           )
         }
       />
+       <Route path={ROUTES.ERROR404} element={<Err404 />} />
     </Routes>
   );
 };

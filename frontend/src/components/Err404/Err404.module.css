@@ -1,0 +1,25 @@
+.containerErr404 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.icon {
+  font-size: 48px;
+  margin-bottom: 20px;
+  color: #ff6347; 
+}
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}

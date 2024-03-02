@@ -8,6 +8,7 @@ export const ROUTES = {
   SUPERADMIN: "/superadmin",
   POLICY: "/policy",
   TERMS: "/termsAndConditions",
+  ERROR404: "*",
 };
 
 export const ADRES = {
