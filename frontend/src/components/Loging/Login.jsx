@@ -30,14 +30,14 @@ const Login = () => {
       );
       console.log("Respuesta del servidor:", response.data);
       const { success, message, profile } = response.data;
-  
+
       if (!success) {
         setErrorMessage(message);
       } else {
         setErrorMessage("");
         dispatch(setUserProfile(profile));
         console.log("Perfil del usuario autenticado:", profile);
-  
+
         switch (profile) {
           case "profileCoordinator":
             console.log("Redirigiendo a coordinador");
@@ -55,6 +55,10 @@ const Login = () => {
             console.log("Redirigiendo a la vista de cuentame");
             navigate(ROUTES.CUENTAME);
             break;
+          case "profileSuperAdmin":
+            console.log("Redirigiendo a la vista de superAdmin");
+            navigate(ROUTES.SUPERADMIN);
+            break;
           default:
             console.log("Redirigiendo a la página de inicio");
             navigate(ROUTES.LOGIN);
@@ -67,10 +71,9 @@ const Login = () => {
         "Error al enviar la solicitud. Por favor, intenta nuevamente."
       );
     }
-  
+
     setSubmitting(false);
   };
-  
 
   return (
     <div className={styles.container}>
@@ -79,16 +82,18 @@ const Login = () => {
       </div>
 
       <div className={styles.header}>
-        <h6>
+        <p>
           {" "}
-          PERFIL ASIST-ADMIN: pepitocontreras212@uncorreox.com / T%qLdfTOi{" "}
+          <b> PERFIL ASIST-ADMIN:</b> pepitocontreras212@uncorreox.com /
+          T%qLdfTOi <br />
+          <b> PERFIL COORDINADOR: </b> otro@estecorreo.com / s7RFfs-!y <br />
+          <b> PERFIL SUPER-ADMIN: </b> superadmin@gmail.com / H5ygNjcEp <br />
+          <b> PERFIL NUTRI: </b> cualquiermail@gmail.com / _?&=#(cb@ <br />
+          <b> PERFIL CUENTAME: </b> uncorreo.delcuentame@gmail.com / M3#THG$WT{" "}
           <br />
-          PERFIL COORDINADOR: otro@estecorreo.com / s7RFfs-!y <br />
-          PERFIL NUTRI: cualquiermail@gmail.com / _?&=#(cb@ <br />
-          PERFIL CUENTAME: uncorreo.delcuentame@gmail.com / M3#THG$WT <br />
-          PERFIL PSYSOC: psy.social@gmail.com / Yz20Fk079 <br />
-          PERFIL DOCENTE: docente@gmail.com / hd_ueWIp7 <br />
-        </h6>
+          <b> PERFIL PSYSOC: </b> psy.social@gmail.com / Yz20Fk079 <br />
+          <b> PERFIL DOCENTE: </b> docente@gmail.com / hd_ueWIp7 <br />
+        </p>
       </div>
 
       <div className={styles.formContainer}>

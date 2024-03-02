@@ -8,6 +8,7 @@ const {
   createPsySocialHandler,
   createAdministrativeHandler,
   createInformationSystemsHandler,
+  createSuperAdminHandler,
 } = require("../../2.-Handlers/2.1.-Admin/subHandlerAdmin");
 
 const postAdminRouter = Router();
@@ -20,5 +21,6 @@ postAdminRouter.post("/nutritionist", createNutritionistHandler);
 postAdminRouter.post("/psysocial", createPsySocialHandler);
 postAdminRouter.post("/administrative", createAdministrativeHandler);
 postAdminRouter.post("/informationsystems", createInformationSystemsHandler);
+postAdminRouter.post("/superadmin", createSuperAdminHandler);
 
 module.exports = postAdminRouter;

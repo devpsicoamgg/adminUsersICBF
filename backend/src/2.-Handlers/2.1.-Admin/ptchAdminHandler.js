@@ -30,6 +30,10 @@ const {
   patchNutritionist,
 } = require("../../4.-Controllers/4.1.-AdminControllers/4.1.3.-PatchersControllers/nutritionPtchController");
 
+const {
+  patchSuperAdmin,
+} = require("../../4.-Controllers/4.1.-AdminControllers/4.1.3.-PatchersControllers/superAdminPtchController");
+
 
 const patchCoordinatorHandler = async (req, res) => {
   const coordinatorId = req.params.id;
@@ -175,6 +179,27 @@ const patchNutriHandler = async (req, res) => {
   }
 };
 
+const patchSuperAdminHandler = async (req, res) => {
+  const superAdminId = req.params.id;
+  const dataToUpdate = req.body;
+
+  const birthDate = new Date(dataToUpdate.nataleDate);
+  const today = new Date();
+  const diff = today.getTime() - birthDate.getTime();
+  const ageDate = new Date(diff);
+  const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+
+  dataToUpdate.age = age;
+
+  const result = await patchSuperAdmin(superAdminId, dataToUpdate);
+
+  if (result.success) {
+    res.status(200).json(result);
+  } else {
+    res.status(404).json({ message: result.message, result });
+  }
+};
+
 const patchContractHandler = async (req, res) => {
   const contractId = req.params.id;
   const dataToUpdate = req.body;
@@ -198,4 +223,5 @@ module.exports = {
   patchPsyHandler, 
   patchCuentameHandler, 
   patchNutriHandler,
+  patchSuperAdminHandler,
 };

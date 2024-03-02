@@ -1,0 +1,39 @@
+.containerAdminView {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  position: relative;
+}
+
+.card {
+  width: 200px;
+  height: 150px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card + .card {
+  margin-left: 20px;
+}
+
+
+.contractIcon {
+  width: 40%; 
+  height: 40%;
+  color: rgb(174, 147, 66); 
+  margin-top: 5px; 
+}

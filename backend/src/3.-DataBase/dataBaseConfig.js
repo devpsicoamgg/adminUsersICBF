@@ -11,16 +11,17 @@ const AdministrativeAssistantModel = require("./3.1.-Models/AdministrativeAssist
 const HealthAndNutritionModel = require("./3.1.-Models/HealthAndNutrition");
 const InformationSystemsModel = require("./3.1.-Models/InformationSystems");
 const PsySocialModel = require("./3.1.-Models/PsySocial");
+const SuperAdminModel = require("./3.1.-Models/SuperAdmin");
 
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME } = process.env;
 const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
   {
       dialectOptions: {
-           ssl: {
+            ssl: {
         require: true,
        rejectUnauthorized: false, 
-      },     
+      },      
     }, 
     logging: false,
     native: false,
@@ -37,6 +38,7 @@ AdministrativeAssistantModel(sequelize);
 HealthAndNutritionModel(sequelize);
 InformationSystemsModel(sequelize);
 PsySocialModel(sequelize);
+SuperAdminModel(sequelize);
 
 const {
   Contract,
@@ -50,6 +52,7 @@ const {
   InformationSystems,
   PsySocial,
 } = sequelize.models;
+
 
 // Contract - Coordinator (Uno a muchos):
 Contract.hasMany(Coordinator, { foreignKey: "contractId" });

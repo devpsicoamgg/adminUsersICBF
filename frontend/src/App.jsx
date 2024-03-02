@@ -10,6 +10,7 @@ import PrivacyPolicy from "./components/PrivacyPolicy/PrivacyPolicy";
 import TermsAndConditions from "./components/TermsAndConditions/TermsAndConditions";
 import CuentameView from "./components/CuentameView/CuentameView";
 import TeachersView from "./components/TeachersView/TeachersView";
+import SuperAdminView from "./components/SuperAdminView/SuperAdminView";
 
 const App = () => {
   const userProfile = useSelector((state) => state.user.userProfile);
@@ -22,13 +23,7 @@ const App = () => {
 
       <Route
         path={decodeURIComponent(ROUTES.HOME)}
-        element={
-          userProfile  ? (
-            <Home />
-          ) : (
-            <Navigate to={ROUTES.LOGIN} />
-          )
-        }
+        element={userProfile ? <Home /> : <Navigate to={ROUTES.LOGIN} />}
       />
       <Route
         path={decodeURIComponent(ROUTES.COORDINATOR)}
@@ -60,6 +55,18 @@ const App = () => {
           )
         }
       />
+
+      <Route
+        path={decodeURIComponent(ROUTES.SUPERADMIN)}
+        element={
+          userProfile === "profileSuperAdmin" ? (
+            <SuperAdminView />
+          ) : (
+            <Navigate to={ROUTES.SUPERADMIN} />
+          )
+        }
+      />
+
       <Route
         path={decodeURIComponent(ROUTES.CUENTAME)}
         element={

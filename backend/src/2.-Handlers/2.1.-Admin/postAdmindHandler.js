@@ -31,7 +31,9 @@ const {
   createInformationSystemsCollaborator,
 } = require("../../4.-Controllers/4.1.-AdminControllers/4.1.4.-PostersControlleres/informationSystemsPostController");
 
-
+const {
+  createSuperAdmin,
+} = require("../../4.-Controllers/4.1.-AdminControllers/4.1.4.-PostersControlleres/SuperAdminPostController");
 
 const createContractHandler = async (req, res) => {
   const {
@@ -114,6 +116,51 @@ const createCoordinatorHandler = async (req, res) => {
       email,
       role,
       contractId
+    );
+
+    res.status(200).send(response);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+const createSuperAdminHandler = async (req, res) => {
+  const {
+    firstName,
+    secondName,
+    firstLastName,
+    secondLastName,
+    kindDoc,
+    numberDoc,
+    nataleDate,
+    gender,
+    entryDate,
+    phone,
+    email,
+    role,
+  } = req.body;
+
+  const birthDate = new Date(nataleDate);
+  const today = new Date();
+  const diff = today.getTime() - birthDate.getTime();
+  const ageDate = new Date(diff);
+  const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+
+  try {
+    const response = await createSuperAdmin(
+      firstName,
+      secondName,
+      firstLastName,
+      secondLastName,
+      kindDoc,
+      numberDoc,
+      nataleDate,
+      age,
+      gender,
+      entryDate,
+      phone,
+      email,
+      role,
     );
 
     res.status(200).send(response);
@@ -227,7 +274,7 @@ const createNutritionistHandler = async (req, res) => {
       email,
       role,
       coordinatorId,
-      contractId,
+      contractId
     );
     res.status(200).send(response);
   } catch (error) {
@@ -283,7 +330,7 @@ const createPsySocialHandler = async (req, res) => {
       email,
       role,
       coordinatorId,
-      contractId,
+      contractId
     );
     res.status(200).send(response);
   } catch (error) {
@@ -337,7 +384,7 @@ const createAdministrativeHandler = async (req, res) => {
       phone,
       email,
       role,
-      contractId,
+      contractId
     );
     res.status(200).send(response);
   } catch (error) {
@@ -391,7 +438,7 @@ const createInformationSystemsHandler = async (req, res) => {
       phone,
       email,
       role,
-      contractId,
+      contractId
     );
     res.status(200).send(response);
   } catch (error) {
@@ -434,7 +481,8 @@ module.exports = {
   createTeacherHandler,
   createGroupHandler,
   createNutritionistHandler,
-  createPsySocialHandler, 
-  createAdministrativeHandler, 
-  createInformationSystemsHandler
+  createPsySocialHandler,
+  createAdministrativeHandler,
+  createInformationSystemsHandler,
+  createSuperAdminHandler,
 };

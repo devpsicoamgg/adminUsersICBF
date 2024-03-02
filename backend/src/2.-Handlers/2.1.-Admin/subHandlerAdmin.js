@@ -36,6 +36,7 @@ const {
   createPsySocialHandler, 
   createAdministrativeHandler,
   createInformationSystemsHandler,
+  createSuperAdminHandler,
 } = postAdminHandlers;
 
 const {
@@ -48,6 +49,7 @@ const {
   patchPsyHandler,
   patchCuentameHandler,
   patchNutriHandler,
+  patchSuperAdminHandler,
 } = patchAdminHandlers;
 
 module.exports = {
@@ -77,9 +79,11 @@ module.exports = {
   createPsySocialHandler, 
   createAdministrativeHandler,
   createInformationSystemsHandler,
+  createSuperAdminHandler,
   patchCoordinatorHandler,
   patchUserHandler,
   patchGroupHandler,
+  patchSuperAdminHandler,
   patchTeacherHandler,
   patchContractHandler,
   patchAdministrativeAssistantHandler,

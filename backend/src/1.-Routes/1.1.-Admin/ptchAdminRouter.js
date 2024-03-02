@@ -9,7 +9,8 @@ const {
   patchAdministrativeAssistantHandler,
   patchPsyHandler,
   patchCuentameHandler,
-  patchNutriHandler
+  patchNutriHandler, 
+  patchSuperAdminHandler,
 } = require("../../2.-Handlers/2.1.-Admin/subHandlerAdmin");
 
 const patchAdminRouter = Router();
@@ -23,5 +24,6 @@ patchAdminRouter.patch("/administrativeassistant/:id", patchAdministrativeAssist
 patchAdminRouter.patch("/psysocial/:id", patchPsyHandler);
 patchAdminRouter.patch("/informationsystems/:id", patchCuentameHandler);
 patchAdminRouter.patch("/nutritionist/:id", patchNutriHandler);
+patchAdminRouter.patch("/superadmin/:id", patchSuperAdminHandler);
 
 module.exports = patchAdminRouter;

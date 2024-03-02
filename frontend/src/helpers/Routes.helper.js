@@ -5,6 +5,7 @@ export const ROUTES = {
   TEACHERS: "/teachers",
   CUENTAME: "/informationsystems",
   ADMIN: "/adminview",
+  SUPERADMIN: "/superadmin",
   POLICY: "/policy",
   TERMS: "/termsAndConditions",
 };

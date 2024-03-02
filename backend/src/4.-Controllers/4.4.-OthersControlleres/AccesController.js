@@ -5,11 +5,17 @@ const {
   InformationSystems,
   PsySocial,
   TeamIntervention,
+  SuperAdmin,
 } = require("../../3.-DataBase/dataBaseConfig");
+
+
 
 const getAccesControl = async (email, password) => {
   try {
     const adminAssistant = await AdministrativeAssistant.findOne({
+      where: { email: email, password: password },
+    });
+    const superAdmin = await SuperAdmin.findOne({
       where: { email: email, password: password },
     });
     const coordinator = await Coordinator.findOne({
@@ -28,13 +34,17 @@ const getAccesControl = async (email, password) => {
       where: { email: email, password: password },
     });
 
-console.log(HealthAndNutrition);
-
     if (adminAssistant) {
       return {
         success: true,
         message: "El email y la contraseña son válidos.",
         profile: "profileAdministrative",
+      };
+    } else if (superAdmin) {
+      return {
+        success: true,
+        message: "El email y la contraseña son válidos.",
+        profile: "profileSuperAdmin",
       };
     } else if (coordinator) {
       return {
@@ -52,13 +62,13 @@ console.log(HealthAndNutrition);
       return {
         success: true,
         message: "El email y la contraseña son válidos.",
-        profile: "profileTeachers",
+        profile: "profileHealthNutrition",
       };
     } else if (teamIntervention) {
       return {
         success: true,
         message: "El email y la contraseña son válidos.",
-        profile: "profileTeachers",
+        profile: "profileTeamIntervention",
       };
     } else if (infoSystem) {
       return {
