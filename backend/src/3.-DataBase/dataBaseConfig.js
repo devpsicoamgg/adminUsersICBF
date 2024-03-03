@@ -18,10 +18,10 @@ const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
   {
     dialectOptions: {
-      ssl: {
+       ssl: {
         require: true,
         rejectUnauthorized: false,
-      },
+      }, 
     },
     logging: false,
     native: false,

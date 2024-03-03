@@ -78,7 +78,7 @@ const SuperAdminCardTwo = ({ onClose }) => {
       {cuentameOpen && (
         <div className={styles.modalContainer}>
           <div className={styles.modalContent}>
-            <CreateHumanResource cardName="Digitador cuéntame " onClose={onClose}/>
+            <CreateHumanResource cardName="Digitador cuéntame" onClose={onClose}/>
           </div>
         </div>
       )}

@@ -4,18 +4,25 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { ADRES } from "../../helpers/Routes.helper";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchContracts } from "../../redux/Store/Slices/superAdminSlice";
+import {
+  fetchContracts,
+  fetchCoordinators,
+} from "../../redux/Store/Slices/superAdminSlice";
 import moment from "moment";
 import styles from "./CreateHumanResource.module.css";
 
 const CreateHumanResource = ({ cardName, onClose }) => {
   const dispatch = useDispatch();
   const contracts = useSelector((state) => state.superAdmin.contracts.data);
+  const coordinators = useSelector(
+    (state) => state.superAdmin.coordinators.data
+  );
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     dispatch(fetchContracts());
+    dispatch(fetchCoordinators());
   }, [dispatch]);
 
   const initialValues = {
@@ -69,6 +76,7 @@ const CreateHumanResource = ({ cardName, onClose }) => {
   });
 
   const handleSubmit = async (values, actions) => {
+    console.log(values);
     try {
       const formattedValues = { ...values };
       formattedValues.nataleDate = moment(values.nataleDate).format(
@@ -76,13 +84,25 @@ const CreateHumanResource = ({ cardName, onClose }) => {
       );
       formattedValues.entryDate = moment(values.entryDate).format("YYYY-MM-DD");
       let url = "";
+
       switch (cardName) {
         case "Coordinador":
           url = `${ADRES.TO}/admin/coordinators/`;
           break;
+        case "Nutricionista":
+          url = `${ADRES.TO}/admin/nutritionist/`;
+          break;
+        case "Psicosocial":
+          url = `${ADRES.TO}/admin/psysocial/`;
+          break;
+        case "Docente":
+          url = `${ADRES.TO}/admin/teachers/`;
+          break;
         default:
           break;
       }
+
+
       const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -101,7 +121,7 @@ const CreateHumanResource = ({ cardName, onClose }) => {
       }, 2000);
     } catch (error) {
       setErrorMessage(
-        "Error en  el envio, correo y numero documento podrían estar repetidos, verificar"
+        "Error en el envío, correo y número de documento podrían estar repetidos, verificar"
       );
     } finally {
       actions.setSubmitting(false);
@@ -123,7 +143,6 @@ const CreateHumanResource = ({ cardName, onClose }) => {
           <Form>
             <div className={styles.containerHumanResources}>
               <div className={styles.selectContract}>
-                <label htmlFor="contractId">Contratos</label>
                 <Field
                   as="select"
                   name="contractId"
@@ -141,6 +160,55 @@ const CreateHumanResource = ({ cardName, onClose }) => {
                 <div className={styles.ErrorMessageDivContract}>
                   <ErrorMessage name="contractId" />
                 </div>
+
+                {["Psicosocial", "Nutricionista", "Docente"].includes(
+                  cardName
+                ) && (
+                  <div className={styles.selectCoordinator}>
+                    <Field
+                      className={styles.selectFieldMore}
+                      as="select"
+                      name="coordinatorId"
+                    >
+                      <option value="">Seleccione el coordinador/a</option>
+                      {cardName === "Psicosocial" && (
+                        <>
+                          {coordinators &&
+                            coordinators.length > 0 &&
+                            coordinators.map((coordinator) => (
+                              <option
+                                key={coordinator.id}
+                                value={coordinator.id}
+                              >
+                                {coordinator.firstName} {coordinator.secondName}{" "}
+                                {coordinator.firstLastName}{" "}
+                                {coordinator.secondLastName}
+                              </option>
+                            ))}
+                        </>
+                      )}
+                      {cardName === "Nutricionista" && (
+                        <>
+                          {coordinators &&
+                            coordinators.length > 0 &&
+                            coordinators.map((coordinator) => (
+                              <option
+                                key={coordinator.id}
+                                value={coordinator.id}
+                              >
+                                {coordinator.firstName} {coordinator.secondName}{" "}
+                                {coordinator.firstLastName}{" "}
+                                {coordinator.secondLastName}
+                              </option>
+                            ))}
+                        </>
+                      )}
+                    </Field>
+                    <div className={styles.ErrorMessageDiv}>
+                      <ErrorMessage name="coordinador" />
+                    </div>
+                  </div>
+                )}
               </div>
 
               <div className={styles.row}>
