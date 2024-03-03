@@ -1,7 +1,7 @@
 const server = require("./src/server");
 const { sequelize } = require("../backend/src/3.-DataBase/dataBaseConfig");
 
-//  const PORT_SERVER = 3001
+// const PORT_SERVER = 3001;
 
   const PORT_SERVER = 5432;
 

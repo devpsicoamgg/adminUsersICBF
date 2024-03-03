@@ -1,5 +1,5 @@
 .containerSuperAdminCardOne {
-  max-width: 400px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 20px;
   border: 1px solid #ccc;
@@ -8,7 +8,7 @@
   font-family: sans-serif;
   box-shadow: 0px 1px 12px rgba(0, 0, 0, 1); 
   position: relative; 
-  top: 50%; 
+  top: 70%; 
   left: 50%; 
   transform: translate(-50%, -50%); 
   z-index: 1000; 
@@ -125,4 +125,19 @@ button:disabled {
   font-size: 1.9em;
   font-weight: bolder;
   margin-right: 5px;
+}
+
+.errorMessage {
+  color: rgb(166, 0, 0) !important; 
+  display: flex;
+  font-weight: bolder;
+  align-items: center;
+  padding: 1px; 
+  border-radius: 10px; 
+}
+
+.toDisplay {
+  display: flex !important ;
+  justify-content: space-between !important ;
+  align-items: center !important ;
 }

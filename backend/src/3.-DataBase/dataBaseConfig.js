@@ -17,12 +17,12 @@ const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME } = process.env;
 const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
   {
-      dialectOptions: {
-              ssl: {
+    dialectOptions: {
+      ssl: {
         require: true,
-       rejectUnauthorized: false, 
-      },        
-    }, 
+        rejectUnauthorized: false,
+      },
+    },
     logging: false,
     native: false,
   }
@@ -52,7 +52,6 @@ const {
   InformationSystems,
   PsySocial,
 } = sequelize.models;
-
 
 // Contract - Coordinator (Uno a muchos):
 Contract.hasMany(Coordinator, { foreignKey: "contractId" });
@@ -110,7 +109,6 @@ Coordinator.hasMany(UserFinal, { foreignKey: "coordinatorId" });
 // Un usuario final pertenece a un solo coordinador.
 UserFinal.belongsTo(Coordinator, { foreignKey: "coordinatorId" });
 
-
 //DOCENTES
 // TeamIntervention - Group (muchos a muchos):
 // Un colaborador puede tener muchos grupos.
@@ -124,8 +122,12 @@ TeamIntervention.belongsTo(UserFinal, { foreignKey: "teacherId" });
 
 // TeamIntervention - HealthAndNutrition (mucho a muchos):
 // Un docente puede tener muchos usuarios finales de nutrición.
-HealthAndNutrition.belongsToMany(Group, { through: "HealthAndNutritionGroups" });
-Group.belongsToMany(HealthAndNutrition, { through: "HealthAndNutritionGroups" });
+HealthAndNutrition.belongsToMany(Group, {
+  through: "HealthAndNutritionGroups",
+});
+Group.belongsToMany(HealthAndNutrition, {
+  through: "HealthAndNutritionGroups",
+});
 
 // TeamIntervention - PsySocial (mucho a muchos):
 // Un docente puede tener muchos usuarios finales de psicosocial.

@@ -1,0 +1,83 @@
+.containerSuperAdminCardTwo {
+  position: relative; 
+}
+
+.containerHumanResources label {
+  font-family: sans-serif;
+}
+
+.ErrorMessage {
+  font-family: sans-serif;
+  margin-top: 5px;
+  overflow: hidden;
+  position: fixed;
+}
+
+.selectFieldMore {
+  font-family: sans-serif;
+  width: 100% !important;
+  height: 40px !important; 
+}
+
+.successMessage {
+  color: rgb(0, 98, 5); 
+  display: flex;
+  font-weight: bolder;
+  align-items: center;
+  padding: 1px; 
+  display: row;
+  border-radius: 10px; 
+}
+
+.successMessage::before {
+  content: "\2713"; 
+  font-size: 1.9em;
+  font-weight: bolder;
+  margin-right: 5px;
+}
+
+.ErrorMessageDivContract {
+  font-family: sans-serif;
+  height: 16px; 
+  color: red;
+  font-size: 9px; 
+  width: 25%;
+  text-align: center;
+}
+
+
+.ErrorMessageDiv {
+  font-family: sans-serif;
+  height: 16px; 
+  color: red;
+  font-size: 9px;
+  width: 100%;
+  text-align: center;
+}
+
+
+.selectField {
+  font-family: sans-serif;
+  display: inline-block; 
+  width: 24% !important;
+  height: 40px; 
+}
+
+
+.row {
+  font-family: sans-serif;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 15px; 
+}
+
+.row > div {
+  flex: 1;
+  margin-right: 15px; 
+}
+
+.row > div:last-child {
+  margin-right: 0; 
+}
+
+
