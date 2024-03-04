@@ -17,6 +17,21 @@ export const createContract = createAsyncThunk(
   }
 );
 
+export const createUDS = createAsyncThunk(
+  "superAdmin/createUDS",
+  async (udsData, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        `${ADRES.TO}/admin/groups/`,
+        udsData
+      );
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 export const fetchContracts = createAsyncThunk(
   "superAdmin/fetchContracts",
   async (_, { rejectWithValue }) => {
@@ -41,6 +56,18 @@ export const fetchCoordinators = createAsyncThunk(
   }
 );
 
+export const fetchGroups = createAsyncThunk(
+  "superAdmin/fetchGroups",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(`${ADRES.TO}/admin/groups/`);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 const superAdminSlice = createSlice({
   name: "superAdmin",
   initialState: {
@@ -48,6 +75,7 @@ const superAdminSlice = createSlice({
     error: null,
     contracts: [],
     coordinators: [],
+    groups: [],
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -86,10 +114,30 @@ const superAdminSlice = createSlice({
       .addCase(fetchCoordinators.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
-      });
-
-
-      
+      })
+      .addCase(fetchGroups.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchGroups.fulfilled, (state, action) => {
+        state.loading = false;
+        state.groups = action.payload;
+      })
+      .addCase(fetchGroups.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(createUDS.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(createUDS.fulfilled, (state) => {
+        state.loading = false;
+      })
+      .addCase(createUDS.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });      
   },
 });
 

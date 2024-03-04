@@ -97,3 +97,27 @@ width: 23%;
 margin-left: -25%;
 margin-top: 14px;
 }
+
+
+.closeButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #333; 
+  font-size: 1.5rem; 
+  transition: color 0.3s ease; 
+  top: 10px; 
+  margin-left: 98%;
+  align-items: center;
+}
+
+.closeButton:hover {
+  color: #ff0000; 
+}
+
+.selectFieldMoreGroups {
+  font-family: sans-serif;
+  width: 100% !important;
+  height: 40px !important; 
+  margin-top: 14px;
+}

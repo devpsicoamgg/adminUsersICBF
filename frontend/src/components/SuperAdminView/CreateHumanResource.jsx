@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   fetchContracts,
   fetchCoordinators,
+  fetchGroups,
 } from "../../redux/Store/Slices/superAdminSlice";
 import moment from "moment";
 import styles from "./CreateHumanResource.module.css";
@@ -17,12 +18,14 @@ const CreateHumanResource = ({ cardName, onClose }) => {
   const coordinators = useSelector(
     (state) => state.superAdmin.coordinators.data
   );
+  const groups = useSelector((state) => state.superAdmin.groups.data);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     dispatch(fetchContracts());
     dispatch(fetchCoordinators());
+    dispatch(fetchGroups());
   }, [dispatch]);
 
   const initialValues = {
@@ -84,6 +87,7 @@ const CreateHumanResource = ({ cardName, onClose }) => {
       );
       formattedValues.entryDate = moment(values.entryDate).format("YYYY-MM-DD");
       let url = "";
+      let additionalData = {};
 
       switch (cardName) {
         case "Coordinador":
@@ -97,18 +101,18 @@ const CreateHumanResource = ({ cardName, onClose }) => {
           break;
         case "Docente":
           url = `${ADRES.TO}/admin/teachers/`;
+          additionalData = { groupId: values.groupId };
           break;
         default:
           break;
       }
-
 
       const response = await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formattedValues),
+        body: JSON.stringify({ ...formattedValues, ...additionalData }),
       });
 
       if (!response.ok) {
@@ -203,9 +207,47 @@ const CreateHumanResource = ({ cardName, onClose }) => {
                             ))}
                         </>
                       )}
+                      {cardName === "Docente" && (
+                        <>
+                          {coordinators &&
+                            coordinators.length > 0 &&
+                            coordinators.map((coordinator) => (
+                              <option
+                                key={coordinator.id}
+                                value={coordinator.id}
+                              >
+                                {coordinator.firstName} {coordinator.secondName}{" "}
+                                {coordinator.firstLastName}{" "}
+                                {coordinator.secondLastName}
+                              </option>
+                            ))}
+                        </>
+                      )}
                     </Field>
                     <div className={styles.ErrorMessageDiv}>
                       <ErrorMessage name="coordinador" />
+                    </div>
+                  </div>
+                )}
+
+                {cardName === "Docente" && (
+                  <div>
+                    <Field
+                      className={styles.selectFieldMoreGroups}
+                      as="select"
+                      name="groupId"
+                    >
+                      <option value="">Seleccione un grupo</option>
+                      {groups &&
+                        groups.length > 0 &&
+                        groups.map((group) => (
+                          <option key={group.id} value={group.id}>
+                            {group.groupName} - {group.cuentameCode}
+                          </option>
+                        ))}
+                    </Field>
+                    <div className={styles.ErrorMessageDiv}>
+                      <ErrorMessage name="grupo" />
                     </div>
                   </div>
                 )}

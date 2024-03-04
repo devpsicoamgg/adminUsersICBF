@@ -149,3 +149,11 @@ button:disabled {
   justify-content: space-between !important ;
   align-items: center !important ;
 }
+
+.selectField {
+  font-family: sans-serif;
+  width: 48% !important;
+  margin-left: 1%;
+  height: 40px !important; 
+  margin-top: 14px;
+}

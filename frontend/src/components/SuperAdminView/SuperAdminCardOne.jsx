@@ -91,123 +91,131 @@ const SuperAdminCardOne = ({ onClose }) => {
       >
         {({ isSubmitting }) => (
           <Form>
-            <div className={styles.formGroup}>
-              <label htmlFor="areaMisionalIcbf">Área Misional ICBF:</label>
-              <Field
-                type="text"
-                id="areaMisionalIcbf"
-                name="areaMisionalIcbf"
-              />
-              <div className={styles.ErrorMessageDiv}>
-                <ErrorMessage
+            <div className={styles.formGroupOne}>
+              <div>
+                <label htmlFor="areaMisionalIcbf">Área Misional ICBF:</label>
+                <Field
+                  type="text"
+                  id="areaMisionalIcbf"
                   name="areaMisionalIcbf"
-                  component="div"
-                  className={styles.ErrorMessage}
                 />
+                <div className={styles.ErrorMessageDiv}>
+                  <ErrorMessage
+                    name="areaMisionalIcbf"
+                    component="div"
+                    className={styles.ErrorMessage}
+                  />
+                </div>
+              </div>
+
+              <div className={styles.formGroup}>
+                <label htmlFor="regional">Regional:</label>
+                <Field type="text" id="regional" name="regional" />
+                <div className={styles.ErrorMessageDiv}>
+                  <ErrorMessage
+                    name="regional"
+                    component="div"
+                    className={styles.ErrorMessage}
+                  />
+                </div>
+              </div>
+
+              <div className={styles.formGroup}>
+                <label htmlFor="vigencia">Vigencia:</label>
+                <Field type="text" id="vigencia" name="vigencia" />
+                <div className={styles.ErrorMessageDiv}>
+                  <ErrorMessage
+                    name="vigencia"
+                    component="div"
+                    className={styles.ErrorMessage}
+                  />
+                </div>
               </div>
             </div>
 
-            <div className={styles.formGroup}>
-              <label htmlFor="regional">Regional:</label>
-              <Field type="text" id="regional" name="regional" />
-              <div className={styles.ErrorMessageDiv}>
-                <ErrorMessage
-                  name="regional"
-                  component="div"
-                  className={styles.ErrorMessage}
-                />
+            <div className={styles.formGroupOne}>
+              <div>
+                <label htmlFor="serviceName">Nombre del Servicio:</label>
+                <Field type="text" id="serviceName" name="serviceName" />
+                <div className={styles.ErrorMessageDiv}>
+                  <ErrorMessage
+                    name="serviceName"
+                    component="div"
+                    className={styles.ErrorMessage}
+                  />
+                </div>
+              </div>
+
+              <div className={styles.formGroup}>
+                <label htmlFor="supervisor">Supervisor:</label>
+                <Field type="text" id="supervisor" name="supervisor" />
+                <div className={styles.ErrorMessageDiv}>
+                  <ErrorMessage
+                    name="supervisor"
+                    component="div"
+                    className={styles.ErrorMessage}
+                  />
+                </div>
+              </div>
+
+              <div className={styles.formGroup}>
+                <label htmlFor="startDate">Fecha de Inicio:</label>
+                <Field type="date" id="startDate" name="startDate" />
+                <div className={styles.ErrorMessageDiv}>
+                  <ErrorMessage
+                    name="startDate"
+                    component="div"
+                    className={styles.ErrorMessage}
+                  />
+                </div>
               </div>
             </div>
 
-            <div className={styles.formGroup}>
-              <label htmlFor="vigencia">Vigencia:</label>
-              <Field type="text" id="vigencia" name="vigencia" />
-              <div className={styles.ErrorMessageDiv}>
-                <ErrorMessage
-                  name="vigencia"
-                  component="div"
-                  className={styles.ErrorMessage}
-                />
+            <div className={styles.formGroupOne}>
+              <div>
+                <label htmlFor="endDate">Fecha de Fin:</label>
+                <Field type="date" id="endDate" name="endDate" />
+                <div className={styles.ErrorMessageDiv}>
+                  <ErrorMessage
+                    name="endDate"
+                    component="div"
+                    className={styles.ErrorMessage}
+                  />
+                </div>
               </div>
-            </div>
 
-            <div className={styles.formGroup}>
-              <label htmlFor="serviceName">Nombre del Servicio:</label>
-              <Field type="text" id="serviceName" name="serviceName" />
-              <div className={styles.ErrorMessageDiv}>
-                <ErrorMessage
-                  name="serviceName"
-                  component="div"
-                  className={styles.ErrorMessage}
-                />
+              <div className={styles.formGroup}>
+                <label htmlFor="contractNumber">Número de Contrato:</label>
+                <Field type="text" id="contractNumber" name="contractNumber" />
+                <div className={styles.ErrorMessageDiv}>
+                  <ErrorMessage
+                    name="contractNumber"
+                    component="div"
+                    className={styles.ErrorMessage}
+                  />
+                </div>
               </div>
-            </div>
 
-            <div className={styles.formGroup}>
-              <label htmlFor="supervisor">Supervisor:</label>
-              <Field type="text" id="supervisor" name="supervisor" />
-              <div className={styles.ErrorMessageDiv}>
-                <ErrorMessage
-                  name="supervisor"
-                  component="div"
-                  className={styles.ErrorMessage}
-                />
-              </div>
-            </div>
-
-            <div className={styles.formGroup}>
-              <label htmlFor="startDate">Fecha de Inicio:</label>
-              <Field type="date" id="startDate" name="startDate" />
-              <div className={styles.ErrorMessageDiv}>
-                <ErrorMessage
-                  name="startDate"
-                  component="div"
-                  className={styles.ErrorMessage}
-                />
-              </div>
-            </div>
-
-            <div className={styles.formGroup}>
-              <label htmlFor="endDate">Fecha de Fin:</label>
-              <Field type="date" id="endDate" name="endDate" />
-              <div className={styles.ErrorMessageDiv}>
-                <ErrorMessage
-                  name="endDate"
-                  component="div"
-                  className={styles.ErrorMessage}
-                />
-              </div>
-            </div>
-
-            <div className={styles.formGroup}>
-              <label htmlFor="contractNumber">Número de Contrato:</label>
-              <Field type="text" id="contractNumber" name="contractNumber" />
-              <div className={styles.ErrorMessageDiv}>
-                <ErrorMessage
-                  name="contractNumber"
-                  component="div"
-                  className={styles.ErrorMessage}
-                />
-              </div>
-            </div>
-
-            <div className={styles.formGroup}>
-              <label htmlFor="legalRepresentative">Representante Legal:</label>
-              <Field
-                type="text"
-                id="legalRepresentative"
-                name="legalRepresentative"
-              />
-              <div className={styles.ErrorMessageDiv}>
-                <ErrorMessage
+              <div className={styles.formGroup}>
+                <label htmlFor="legalRepresentative">
+                  Representante Legal:
+                </label>
+                <Field
+                  type="text"
+                  id="legalRepresentative"
                   name="legalRepresentative"
-                  component="div"
-                  className={styles.ErrorMessage}
                 />
+                <div className={styles.ErrorMessageDiv}>
+                  <ErrorMessage
+                    name="legalRepresentative"
+                    component="div"
+                    className={styles.ErrorMessage}
+                  />
+                </div>
               </div>
             </div>
 
-            <div className={styles.formGroup}>
+            <div className={styles.formGroupOne}>
               <label htmlFor="spots">Cupos:</label>
               <Field type="text" id="spots" name="spots" />
               <div className={styles.ErrorMessageDiv}>
@@ -217,16 +225,17 @@ const SuperAdminCardOne = ({ onClose }) => {
                   className={styles.ErrorMessage}
                 />
               </div>
-            </div>
-            <div className={styles.sending}>
-              <button type="submit" disabled={isSubmitting}>
-                {isSubmitting ? "Enviando..." : "Crear Contrato"}
-              </button>
 
-              {loading && <div className={styles.loading}>Cargando...</div>}
-              {successMessage && (
-                <div className={styles.successMessage}>{successMessage}</div>
-              )}
+              <div className={styles.sending}>
+                <button type="submit" disabled={isSubmitting}>
+                  {isSubmitting ? "Enviando..." : "Crear Contrato"}
+                </button>
+
+                {loading && <div className={styles.loading}>Cargando...</div>}
+                {successMessage && (
+                  <div className={styles.successMessage}>{successMessage}</div>
+                )}
+              </div>
             </div>
           </Form>
         )}
