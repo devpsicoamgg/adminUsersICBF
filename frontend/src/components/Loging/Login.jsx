@@ -84,15 +84,9 @@ const Login = () => {
       <div className={styles.header}>
         <p>
           {" "}
-          <b> PERFIL ASIST-ADMIN:</b> pepitocontreras212@uncorreox.com /
-          T%qLdfTOi <br />
-          <b> PERFIL COORDINADOR: </b> otro@estecorreo.com / s7RFfs-!y <br />
-          <b> PERFIL SUPER-ADMIN: </b> superadmin@gmail.com / H5ygNjcEp <br />
-          <b> PERFIL NUTRI: </b> cualquiermail@gmail.com / _?&=#(cb@ <br />
-          <b> PERFIL CUENTAME: </b> uncorreo.delcuentame@gmail.com / M3#THG$WT{" "}
-          <br />
-          <b> PERFIL PSYSOC: </b> psy.social@gmail.com / Yz20Fk079 <br />
-          <b> PERFIL DOCENTE: </b> docente@gmail.com / hd_ueWIp7 <br />
+    
+          <b> PERFIL SUPER-ADMIN: </b> superadmin@gmail.com /  CLAVE 👉🏻 H5ygNjcEp <br />
+    
         </p>
       </div>
 
